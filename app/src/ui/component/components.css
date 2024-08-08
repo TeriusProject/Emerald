@@ -1,0 +1,49 @@
+.emerald-component-title {
+	width: fit-content;
+	font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--default-font-color);
+}
+
+.emerald-table-component{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	max-width: 70%;
+}
+
+.emerald-table {
+	border-collapse: separate;
+	border-spacing: 0 17px;
+	width: fit-content;
+	overflow-x: hidden;
+	font-variant-numeric: lining-nums tabular-nums;
+}
+
+.emerald-table tbody {
+	margin-top: 0.5em;
+}
+
+.emerald-table th {
+	border-top: 2px solid var(--table-border);
+	border-bottom: 2px solid var(--table-border);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	padding-left: 10px;
+    padding-right: 10px;
+}
+
+.emerald-table td {
+	border-bottom: 1px solid var(--table-border);
+	text-align: center;
+	font-weight: 300;
+	font-size: 18px;
+	padding-left: 10px;
+    padding-right: 10px;
+	padding-bottom: 20px;
+	margin-top: 20px;
+}

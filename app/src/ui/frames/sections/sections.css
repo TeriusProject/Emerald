@@ -1,0 +1,21 @@
+.series-title {
+	width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ridge-row {
+	display:flex;
+}
+
+.histogram-row {
+	display:flex;
+}
+
+.additives-section {
+	display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}

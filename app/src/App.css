@@ -1,0 +1,10 @@
+:root {
+	--menu-height: 70px;
+	--menu-font-color: #50c878ff;;
+	--default-font-color: #424242;
+	--hr-color: #dfdfdf37;
+	--table-border: rgba(198, 198, 198, 0.61);
+	--default-font-size: 18px;
+	--default-font-family: Helvetica Neue;
+	--default-caption-font-size: 15px;
+}
