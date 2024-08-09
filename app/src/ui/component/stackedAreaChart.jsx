@@ -1,5 +1,5 @@
 /*
- * sections.css
+ * stackedAreaChart.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,36 +20,36 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- .series-section {
-	margin-left: 50px;
-	margin-right: 50px;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	padding-top: 30px;
-	border-radius: 3px;
- }
 
- .series-title {
-	width: 100%;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-around;
-}
+import { React } from "react";
+import { LineChart, lineElementClasses } from "@mui/x-charts";
 
-.ridge-row {
-	display:flex;
-}
+export function StackedAreaChart({ title, seriesDataCollection, xLabels }) {
 
-.histogram-row {
-	display:flex;
-	justify-content: space-around;
-    align-items: center;
-}
-
-.additives-section {
-	display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
+	const data = Object.keys(seriesDataCollection).map(seriesDataKey => {
+		return {
+			data: seriesDataCollection[seriesDataKey],
+			label: seriesDataKey,
+			area: true,
+			stack: 'total',
+			showMark: false
+		};
+	});
+	return (
+		<div className="area-chart-component">
+			<div className="area-chart-component-title">
+				{title}
+			</div>
+			<LineChart
+				style={{ width: "100%", height: "100%" }}
+				series={data}
+				xAxis={[{ scaleType: 'point', data: xLabels }]}
+				sx={{
+					[`& .${lineElementClasses.root}`]: {
+						display: 'none',
+					},
+				}}
+			/>
+		</div>
+	);
 }

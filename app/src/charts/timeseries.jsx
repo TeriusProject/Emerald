@@ -403,8 +403,8 @@ export function TimeSeries() {
 
 				brush.extent([[fullxscale.range()[0], 0], [fullxscale.range()[1], drawerHeight - drawerTopMargin]])
 
-					.on('brush', () => {
-						let selection = d3.event.selection;
+					.on('brush', (event) => {
+						let selection = event.selection;
 
 						xscale.domain(selection.map(fullxscale.invert, fullxscale));
 
@@ -414,8 +414,8 @@ export function TimeSeries() {
 						updatefocusRing();
 					})
 
-					.on('end', () => {
-						let selection = d3.event.selection;
+					.on('end', (event) => {
+						let selection = event.selection;
 						if (selection === null) {
 							xscale.domain(fullxscale.domain());
 
@@ -500,11 +500,8 @@ export function TimeSeries() {
 			}
 		}
 
-
-
-
 		// accessors for margin.left(), margin.right(), margin.top(), margin.bottom()
-		d3.keys(margin).forEach(function (k) {
+		Object.keys(margin).forEach(function (k) {
 			chart.margin[k] = function (_) {
 				if (!arguments.length) return margin[k];
 				margin[k] = _;

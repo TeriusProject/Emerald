@@ -1,5 +1,5 @@
 /*
- * main.jsx
+ * stackedBarChart.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -22,14 +22,38 @@
  */
 
 import { React } from "react";
-import { Navbar } from "../navbar/navbar";
-import { Adf } from "./adf";
+import { BarChart } from "@mui/x-charts";
+import { axisClasses } from '@mui/x-charts/ChartsAxis';
 
-export function Main() {
+export function StackedBarChart({ title, data }) {
+
 	return (
-		<>
-			<Navbar />
-			<Adf />
-		</>
+		<div className="stacked-bar-chart-component">
+			<div className="stacked-bar-chart-component-title">
+				{title}
+			</div>
+			<BarChart
+				dataset={data}
+				height={300}
+				sx={{
+					[`& .${axisClasses.directionY} .${axisClasses.label}`]: {
+						transform: 'translateX(-10px)',
+					},
+				}}
+				slotProps={{
+					legend: {
+						direction: 'row',
+						position: { vertical: 'bottom', horizontal: 'middle' },
+						padding: -5,
+					},
+				}}
+				xAxis={[{ scaleType: 'band', dataKey: 'order' }]}
+				borderRadius={10}
+				series={[
+					{ dataKey: 'high', label: 'High', layout:'vertical', stack: 'stack' },
+					{ dataKey: 'low', label: 'Low', layout:'vertical', stack: 'stack' },
+				]}
+			/>
+		</div>
 	);
 }
