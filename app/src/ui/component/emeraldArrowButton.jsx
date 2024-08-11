@@ -1,5 +1,5 @@
 /*
- * App.css
+ * emeraldArrowButton.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,27 +20,13 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- :root {
-	--max-width-mobile-screen: 1200px;
-	--menu-height: 70px;
-	--menu-font-color: #50c878ff;;
-	--default-font-color: #424242;
-	--hr-color: #dfdfdf37;
-	--table-border: rgba(198, 198, 198, 0.61);
-	--default-font-size: 18px;
-	--default-font-family: Helvetica Neue;
-	--default-caption-font-size: 15px;
-	--default-section-margins: 0px 50px 20px 50px;
-	--section-margins-mobile: 0px 13px 20px 13px;
-}
 
-footer {
-	font-size: 18px;
-	bottom: 0;
-	margin-top: 100px;
-	margin-bottom: 15px;
-	text-align: center;
-	font-family: Times Times New Roman;
-	font-style: italic;
+import { React } from "react";
+
+export function EmeraldArrowButton(props) {
+	return (
+		<div className="emerald-arrow-button" onClick={props.onClick}>
+			{props.children}
+		</div>
+	);
 }

@@ -25,7 +25,7 @@ import { React } from "react";
 import { BarChart } from "@mui/x-charts";
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 
-export function StackedBarChart({ title, data }) {
+export function StackedBarChart({ title, data, labelFormatter }) {
 
 	return (
 		<div className="stacked-bar-chart-component">
@@ -50,8 +50,8 @@ export function StackedBarChart({ title, data }) {
 				xAxis={[{ scaleType: 'band', dataKey: 'order' }]}
 				borderRadius={10}
 				series={[
-					{ dataKey: 'high', label: 'High', layout:'vertical', stack: 'stack' },
-					{ dataKey: 'low', label: 'Low', layout:'vertical', stack: 'stack' },
+					{ dataKey: 'high', label: 'High', layout:'vertical', stack: 'stack', valueFormatter: labelFormatter },
+					{ dataKey: 'low', label: 'Low', layout:'vertical', stack: 'stack', valueFormatter: labelFormatter },
 				]}
 			/>
 		</div>

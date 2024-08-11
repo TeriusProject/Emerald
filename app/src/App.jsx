@@ -21,13 +21,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import './App.css';
+import { React, Fragment } from "react";
 import { Main } from './ui/frames/main';
+import './App.css';
 
-function App() {
-  return (
-    <Main />
-  );
+export function App() {
+	return (
+		<Fragment>
+			<Main />
+			<footer>
+				Emerald data visualizer - Terius &copy; 2024
+			</footer>
+		</Fragment>
+	);
 }
-
-export default App;

@@ -105,3 +105,75 @@
 .stacked-bar-chart-component-title {
 	width: fit-content;
 }
+
+.emerald-arrow-button {
+	background-color: rgb(80 200 120 / 10%);
+	padding: 3px;
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.emerald-arrow-button:hover {
+	background-color: rgb(156 219 177 / 83%);
+}
+
+.emerald-arrow-button svg {
+	width: 30px;
+	height: 30px;
+	color: #a0ada1;
+}
+
+.emerald-time-unit-selector {
+	width: 140px;
+}
+
+.emerald-property {
+	display: flex;
+    align-items: center;
+    width: fit-content;
+    column-gap: 7px;
+	margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 1200px) {
+
+
+.emerald-table {
+	max-width: 100%;
+}
+
+	.emerald-table th {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.emerald-table td {
+		font-size: 14px;
+		padding-left: 5px;
+		padding-right: 5px;
+		width: 100%;
+		overflow: auto;
+	}
+
+	.area-chart-component {
+		width: 100%;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+	.stacked-bar-chart-component {
+		width: 100%;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+
+	.chart-component {
+		width: 100%;
+	}
+}

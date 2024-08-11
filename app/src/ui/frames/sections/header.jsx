@@ -21,13 +21,22 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, Fragment } from "react";
+import { React, useEffect, useState } from "react";
+import { Paper } from "@mui/material";
+import { EmeraldProperty } from "../../component/emeraldProperty";
+import "./sections.css";
 
-export function Header({ adfHeader }) {
+export function Header({ adf, timeUnit }) {
+	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
+
+	useEffect(() => {
+		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
+	}, [timeUnit, adf.metadata.periodSec]);
 	return (
-		<Fragment>
-			<div>ADF version: {adfHeader.version}</div>
-			<div>Farming technique: {adfHeader.farmingTechnique}</div>
-		</Fragment>
+		<Paper className="adf-header-section" elevation={2}>
+			<EmeraldProperty label="ADF version" value={adf.header.version.label} />
+			<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
+			<EmeraldProperty label="Period length" value={`${timeLength} ${timeUnit.symbol}`} />
+		</Paper>
 	);
 }

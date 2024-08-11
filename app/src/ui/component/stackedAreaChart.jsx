@@ -24,17 +24,18 @@
 import { React } from "react";
 import { LineChart, lineElementClasses } from "@mui/x-charts";
 
-export function StackedAreaChart({ title, seriesDataCollection, xLabels }) {
-
-	const data = Object.keys(seriesDataCollection).map(seriesDataKey => {
+export function StackedAreaChart({ title, seriesDataCollection, labelFormatter }) {
+	const series = seriesDataCollection.series;
+	const data = Object.keys(series).map(seriesDataKey => {
 		return {
-			data: seriesDataCollection[seriesDataKey],
+			data: series[seriesDataKey],
 			label: seriesDataKey,
 			area: true,
 			stack: 'total',
 			showMark: false
 		};
 	});
+
 	return (
 		<div className="area-chart-component">
 			<div className="area-chart-component-title">
@@ -43,7 +44,7 @@ export function StackedAreaChart({ title, seriesDataCollection, xLabels }) {
 			<LineChart
 				style={{ width: "100%", height: "100%" }}
 				series={data}
-				xAxis={[{ scaleType: 'point', data: xLabels }]}
+				xAxis={[{ scaleType: 'point', data: seriesDataCollection.labels, valueFormatter: labelFormatter}]}
 				sx={{
 					[`& .${lineElementClasses.root}`]: {
 						display: 'none',

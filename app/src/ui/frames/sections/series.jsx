@@ -21,23 +21,32 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import { Table } from "../../component/table";
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ColumnAlign } from "../../../model/columnAlign";
 import { StackedAreaChart } from "../../component/stackedAreaChart";
 import { StackedBarChart } from "../../component/stackedBarChart";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import './sections.css';
 
+const soilAdditiveTableTitle = "Soil Additives";
+const atmosphereAdditiveTableTitle = "Atmosphere Additives";
+
 function AdditiveTable({ title, rows }) {
-	const header = ["ChEBI ID", "Name", "Concentration (g/kg)"];
-	const columnsAlign = [ColumnAlign.CENTER, ColumnAlign.LEFT, ColumnAlign.RIGHT];
+	const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
+	const header = ["Name", "Concentration (g/kg)"];
+	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
+	const getAdditiveUrl = (id, name) => {
+		return (
+			<a href={`${chEBIUrl}${id}`} target="_blank" rel="noopener noreferrer">{name}</a>
+		);
+	};
 	const tableRows = rows.map(row => [
-		row.id,
-		row.name,
+		getAdditiveUrl(row.id, row.name),
 		row.concentration
 	]);
 
@@ -46,66 +55,73 @@ function AdditiveTable({ title, rows }) {
 	);
 }
 
-export function Series({ adfSeries, n, periodSec }) {
-	const soilAdditiveTableTitle = "Soil Additives";
-	const atmosphereAdditiveTableTitle = "Atmosphere Additives";
+export function Series({ adf, timeUnit }) {
+	const [seriesIndex, setSeriesIndex] = useState(0);
+	const [series, setSeries] = useState(adf.series[0]);
 
-	const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-	const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-	const amtData = [2400, 2210, 0, 2000, 2181, 2500, 2100];
-	const xLabels = [
-		'Page A',
-		'Page B',
-		'Page C',
-		'Page D',
-		'Page E',
-		'Page F',
-		'Page G',
-		];
-	const aa = {
-		'uv': uData,
-		'pv': pData,
-		'amt': amtData
+	const onBackButtonClick = (event) => {
+		if (seriesIndex === 0) return;
+		setSeriesIndex(seriesIndex - 1);
+	}
+	const onNextButtonClick = (event) => {
+		if (seriesIndex === adf.series.length - 1) return;
+		setSeriesIndex(seriesIndex + 1);
+	}
+
+	useEffect(() => {
+		setSeries(adf.series[seriesIndex]);
+	}, [seriesIndex, adf.series]);
+
+
+	const renderOrdinalSeries = () => {
+		const suffix = seriesIndex === 0
+			? "st" : seriesIndex === 1
+				? "nd" : "th";
+		return `${seriesIndex + 1}${suffix}`;
 	};
-	const _data = [
-		[3, -7, 'First'],
-		[0, -5, 'Second'],
-		[10, 0, 'Third'],
-		[9, 6, 'Fourth'],
-	].map(([high, low, order]) => ({
-		high,
-		low,
-		order,
-	}));
 
 	return (
-		<Paper className="series-section" elevation={3}>
+		<Paper className="adf-series-section" elevation={3}>
 			<div className="series-title">
-				<ArrowBackIosNewIcon />
-				<div>Series {n} ({periodSec * n} - {periodSec * (n + 1) - 1})</div>
-				<ArrowForwardIosIcon />
+				<EmeraldArrowButton onClick={onBackButtonClick}>
+					<KeyboardArrowLeftIcon />
+				</EmeraldArrowButton>
+				<div>{renderOrdinalSeries()} series</div>
+				<EmeraldArrowButton onClick={onNextButtonClick}>
+					<KeyboardArrowRightIcon />
+				</EmeraldArrowButton>
 			</div>
 			<div className="additives-section">
-				<AdditiveTable title={soilAdditiveTableTitle} rows={adfSeries.soilAdditives} />
-				<AdditiveTable title={atmosphereAdditiveTableTitle} rows={adfSeries.atmAdditives} />
+				<AdditiveTable title={soilAdditiveTableTitle} rows={series.soilAdditives} />
+				<AdditiveTable title={atmosphereAdditiveTableTitle} rows={series.atmAdditives} />
 			</div>
-			<StackedAreaChart title={"Light exposure (W/m\u00B2)"} seriesDataCollection={aa} xLabels={xLabels} />
-			<StackedBarChart title={"Soil temperature (\u2103)"} data={_data}/>
+			<div className="multidimension-chart-row">
+				<StackedAreaChart
+					title={"Light exposure (W/m\u00B2)"}
+					seriesDataCollection={series.lightExposure}
+					labelFormatter={function (v) { return `${v} nm`; }}
+				/>
+				<StackedBarChart
+					title={"Soil temperature (\u2103)"}
+					data={series.soilTemperature}
+					labelFormatter={function (v) { return `${v} \u2103`; }}
+				/>
+			</div>
 			<div className="histogram-row">
 				<BarChart
-					dataset={adfSeries.waterUse}
+					className="emerald-series-histogram"
+					dataset={series.waterUse}
 					xAxis={[{ scaleType: 'band', dataKey: 'chunk' }]}
-					series={[{ dataKey: 'mm', label: 'Water use (mm)', valueFormatter: function(v) {return`${v} mm`;} }]}
-					width={500}
-					height={300}
+					series={[{ dataKey: 'mm', label: 'Water use (mm)', valueFormatter: function (v) { return `${v} mm`; } }]}
+					height={350}
 					borderRadius={10}
 				/>
 				<BarChart
-					dataset={adfSeries.environmentTemp}
+					className="emerald-series-histogram"
+					dataset={series.environmentTemp}
 					xAxis={[{ scaleType: 'band', dataKey: 'chunk' }]}
-					series={[{ dataKey: 'temp', label: 'Environment temperature', valueFormatter: function(v) {return`${v} \u2103`;} }]}
-					width={500}
-					height={300}
+					series={[{ dataKey: 'temp', label: 'Environment temperature', valueFormatter: function (v) { return `${v} \u2103`; } }]}
+					height={350}
 					borderRadius={10}
 				/>
 			</div>

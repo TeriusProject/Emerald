@@ -24,3 +24,8 @@
  .adf-content {
 	margin-top:  calc(var(--menu-height) + 20px);
 }
+
+a {
+	color: #868686;
+    font-weight: 200;
+}

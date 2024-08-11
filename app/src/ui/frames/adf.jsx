@@ -21,21 +21,28 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
+import { React, useState } from "react";
 import { Header } from "./sections/header";
 import { Series } from "./sections/series";
-import { adfSeries } from "./mock_series";
+import { adf } from "./mock_adf";
+import { timeUnits } from "../../model/timeUnit";
+import { Ribbon } from "./sections/ribbon";
 import "./frames.css";
 
 export function Adf() {
-	const adfHeader = {
-		version: "0.9.2"
+
+	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
+
+	const onUnitChange = (event, newValue) => {
+		if (!newValue) return;
+		setTimeUnit(newValue);
 	};
 
 	return (
 		<div className="adf-content">
-			<Header adfHeader={adfHeader} />
-			<Series adfSeries={adfSeries[0]} n={0} periodSec={10} />
+			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
+			<Header adf={adf} timeUnit={timeUnit} />
+			<Series adf={adf} timeUnit={timeUnit} />
 		</div>
 	);
 }

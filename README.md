@@ -1,2 +1,3 @@
-# Emerald
-Interactive visualizer for ADF data
+![Emerald](./emerald.png)
+
+An interactive visualizer for ADF data

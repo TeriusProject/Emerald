@@ -21,15 +21,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
+import { React, Fragment } from "react";
 import { Navbar } from "../navbar/navbar";
 import { Adf } from "./adf";
 
 export function Main() {
 	return (
-		<>
+		<Fragment>
 			<Navbar />
 			<Adf />
-		</>
+		</Fragment>
 	);
 }
