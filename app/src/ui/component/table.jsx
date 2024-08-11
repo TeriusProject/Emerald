@@ -24,7 +24,7 @@
 import { React } from "react";
 import "./components.css";
 
-export function Table({ title, headers, rows, columnsAlign }) {
+export function Table({ title, headers, rows, columnsAlign, tableId }) {
 
 	const getCellStyle = (index) => {
 		return {
@@ -34,7 +34,7 @@ export function Table({ title, headers, rows, columnsAlign }) {
 
 	const renderHeaderCell = (columnName, i) => {
 		return (
-			<th key={`header-cell-${columnName}`} style={getCellStyle(i)}>
+			<th key={`${tableId}-header-cell-${columnName}`} style={getCellStyle(i)}>
 				{columnName}
 			</th>
 		);
@@ -42,15 +42,15 @@ export function Table({ title, headers, rows, columnsAlign }) {
 
 	const renderCell = (cell, i) => {
 		return (
-			<td key={`cell-${cell}`} style={getCellStyle(i)}>
+			<td key={`${tableId}-cell-${cell}`} style={getCellStyle(i)}>
 				{cell}
 			</td>
 		);
 	};
 
-	const renderRow = (rowArray) => {
+	const renderRow = (rowArray, index) => {
 		return (
-			<tr key={`row-${rowArray[0]}`}>
+			<tr key={`${tableId}row-${index}`}>
 				{
 					rowArray.map((cell, i) => renderCell(cell, i))
 				}
@@ -75,7 +75,7 @@ export function Table({ title, headers, rows, columnsAlign }) {
 					</tr>
 				</thead>
 				<tbody>
-					{rows.map(row => renderRow(row))}
+					{rows.map((row, i) => renderRow(row, i))}
 				</tbody>
 			</table>
 		</div>

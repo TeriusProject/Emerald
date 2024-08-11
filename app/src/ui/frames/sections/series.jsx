@@ -36,7 +36,7 @@ import './sections.css';
 const soilAdditiveTableTitle = "Soil Additives";
 const atmosphereAdditiveTableTitle = "Atmosphere Additives";
 
-function AdditiveTable({ title, rows }) {
+function AdditiveTable({ tableId, title, rows }) {
 	const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
 	const header = ["Name", "Concentration (g/kg)"];
 	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
@@ -51,7 +51,13 @@ function AdditiveTable({ title, rows }) {
 	]);
 
 	return (
-		<Table title={title} headers={header} rows={tableRows} columnsAlign={columnsAlign} />
+		<Table
+			tableId={tableId}
+			title={title}
+			headers={header}
+			rows={tableRows}
+			columnsAlign={columnsAlign}
+		/>
 	);
 }
 
@@ -92,8 +98,16 @@ export function Series({ adf, timeUnit }) {
 				</EmeraldArrowButton>
 			</div>
 			<div className="additives-section">
-				<AdditiveTable title={soilAdditiveTableTitle} rows={series.soilAdditives} />
-				<AdditiveTable title={atmosphereAdditiveTableTitle} rows={series.atmAdditives} />
+				<AdditiveTable
+					tableId={`${seriesIndex}-soilAdditiveTable`}
+					title={soilAdditiveTableTitle}
+					rows={series.soilAdditives}
+				/>
+				<AdditiveTable
+					tableId={`${seriesIndex}-atmAdditiveTable`}
+					title={atmosphereAdditiveTableTitle}
+					rows={series.atmAdditives}
+				/>
 			</div>
 			<div className="multidimension-chart-row">
 				<StackedAreaChart
