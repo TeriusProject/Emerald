@@ -32,11 +32,17 @@ export function Header({ adf, timeUnit }) {
 	useEffect(() => {
 		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
 	}, [timeUnit, adf.metadata.periodSec]);
+
+	const formatTime = () => {
+		const timeStr = timeLength.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2});
+		return `${timeStr} ${timeUnit.symbol}`
+	}
+
 	return (
 		<Paper className="adf-header-section" elevation={2}>
-			<EmeraldProperty label="ADF version" value={adf.header.version.label} />
+			<EmeraldProperty label="ADF version" value={adf.header.version.label} hexColor="#2996CD" />
 			<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
-			<EmeraldProperty label="Period length" value={`${timeLength} ${timeUnit.symbol}`} />
+			<EmeraldProperty label="Series duration" value={formatTime()} hexColor="#F67E92" />
 		</Paper>
 	);
 }

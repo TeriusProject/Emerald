@@ -23,13 +23,14 @@
 
 import { React, Fragment } from "react";
 import { Navbar } from "../navbar/navbar";
+import { adf } from "./mock_adf";
 import { Adf } from "./adf";
 
 export function Main() {
 	return (
 		<Fragment>
 			<Navbar />
-			<Adf />
+			<Adf adf={adf} />
 		</Fragment>
 	);
 }

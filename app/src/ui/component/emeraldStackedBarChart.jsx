@@ -25,16 +25,31 @@ import { React } from "react";
 import { BarChart } from "@mui/x-charts";
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 
-export function StackedBarChart({ title, data, labelFormatter }) {
-
+export function EmeraldStackedBarChart({ title, data, labelFormatter }) {
+	const getSeries = () => {
+		return Object.keys(data.series[0]).map(seriesKey => {
+			return {
+				dataKey: seriesKey,
+				label: `Depth ${seriesKey}`,
+				layout: 'vertical',
+				stack: 'stack',
+				valueFormatter: labelFormatter
+			};
+		})
+	}
+	const onClickHandler = (a,b,c) => {
+		debugger;
+	}
 	return (
 		<div className="stacked-bar-chart-component">
 			<div className="stacked-bar-chart-component-title">
 				{title}
 			</div>
 			<BarChart
-				dataset={data}
-				height={300}
+				onItemClick={onClickHandler}
+				dataset={data.series}
+				height={350}
+				grid={{ horizontal: true }}
 				sx={{
 					[`& .${axisClasses.directionY} .${axisClasses.label}`]: {
 						transform: 'translateX(-10px)',
@@ -47,12 +62,9 @@ export function StackedBarChart({ title, data, labelFormatter }) {
 						padding: -5,
 					},
 				}}
-				xAxis={[{ scaleType: 'band', dataKey: 'order' }]}
+				xAxis={[{ scaleType: 'band', data: data.labels }]}
 				borderRadius={10}
-				series={[
-					{ dataKey: 'high', label: 'High', layout:'vertical', stack: 'stack', valueFormatter: labelFormatter },
-					{ dataKey: 'low', label: 'Low', layout:'vertical', stack: 'stack', valueFormatter: labelFormatter },
-				]}
+				series={getSeries()}
 			/>
 		</div>
 	);

@@ -23,6 +23,7 @@
 
 import { React, Fragment } from "react";
 import { Main } from './ui/frames/main';
+import emeraldLogo from "./img/emerald.png";
 import './App.css';
 
 export function App() {
@@ -30,7 +31,8 @@ export function App() {
 		<Fragment>
 			<Main />
 			<footer>
-				Emerald data visualizer - Terius &copy; 2024
+				<img src={emeraldLogo} alt="Emerald" />
+				<span>Emerald data visualizer &mdash; Terius &copy; 2024</span>
 			</footer>
 		</Fragment>
 	);

@@ -24,22 +24,39 @@
 import { React, useState } from "react";
 import { Header } from "./sections/header";
 import { Series } from "./sections/series";
-import { adf } from "./mock_adf";
 import { timeUnits } from "../../model/timeUnit";
 import { Ribbon } from "./sections/ribbon";
 import "./frames.css";
+import { EmeraldNotification } from "../component/EmeraldNotification";
 
-export function Adf() {
-
+export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
+	const [openNotification, setOpenNotification] = useState(false);
 
 	const onUnitChange = (event, newValue) => {
 		if (!newValue) return;
+
+		if (checkTimeUnit(newValue))
+			setOpenNotification(true);
 		setTimeUnit(newValue);
+	};
+
+	const onCloseNotification = () => {
+		setOpenNotification(false);
+	};
+
+	const checkTimeUnit = (newValue) => {
+		return (adf.metadata.periodSec < newValue.timeInSeconds)
 	};
 
 	return (
 		<div className="adf-content">
+			<EmeraldNotification
+				id={`unit-conversion-failed`}
+				open={openNotification}
+				handleClose={onCloseNotification}
+				message={"AAA"}
+			/>
 			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
 			<Header adf={adf} timeUnit={timeUnit} />
 			<Series adf={adf} timeUnit={timeUnit} />

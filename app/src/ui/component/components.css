@@ -30,7 +30,6 @@
 
 .emerald-table-component {
 	margin-top: 50px;
-	margin-bottom: 50px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -83,11 +82,13 @@
 
 .area-chart-component {
 	height: 350px;
+	width: 100%;
 	margin-left: 50px;
 	margin-right: 50px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-bottom: var(--default-vertical-skip);
 }
 
 .area-chart-component-title {
@@ -100,6 +101,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
+	margin-bottom: var(--default-vertical-skip);
 }
 
 .stacked-bar-chart-component-title {
@@ -138,6 +141,24 @@
 	margin-top: 10px;
     margin-bottom: 5px;
 }
+
+.emerald-property-value {
+	padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 10px;
+	border-style: solid;
+    border-width: 1px;
+}
+
+.emerald-notification {
+	z-index:1000000
+}
+
+/* .emerald-series-histogram {
+
+} */
 
 @media only screen and (max-width: 1200px) {
 

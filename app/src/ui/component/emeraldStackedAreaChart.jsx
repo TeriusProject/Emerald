@@ -24,7 +24,7 @@
 import { React } from "react";
 import { LineChart, lineElementClasses } from "@mui/x-charts";
 
-export function StackedAreaChart({ title, seriesDataCollection, labelFormatter }) {
+export function EmeraldStackedAreaChart({ title, seriesDataCollection, labelFormatter }) {
 	const series = seriesDataCollection.series;
 	const data = Object.keys(series).map(seriesDataKey => {
 		return {
@@ -42,7 +42,7 @@ export function StackedAreaChart({ title, seriesDataCollection, labelFormatter }
 				{title}
 			</div>
 			<LineChart
-				style={{ width: "100%", height: "100%" }}
+				height={300}
 				series={data}
 				xAxis={[{ scaleType: 'point', data: seriesDataCollection.labels, valueFormatter: labelFormatter}]}
 				sx={{
@@ -50,6 +50,14 @@ export function StackedAreaChart({ title, seriesDataCollection, labelFormatter }
 						display: 'none',
 					},
 				}}
+				slotProps={{
+					legend: {
+						direction: 'row',
+						position: { vertical: 'bottom', horizontal: 'middle' },
+						padding: -10,
+					},
+				}}
+				grid={{ horizontal: true }}
 			/>
 		</div>
 	);

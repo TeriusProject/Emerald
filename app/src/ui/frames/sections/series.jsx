@@ -23,15 +23,15 @@
 
 import { React, useEffect, useState } from "react";
 import { Paper } from "@mui/material";
-import { Table } from "../../component/table";
-import { BarChart } from '@mui/x-charts/BarChart';
+import { Table } from "../../component/emeraldTable";
 import { ColumnAlign } from "../../../model/columnAlign";
-import { StackedAreaChart } from "../../component/stackedAreaChart";
-import { StackedBarChart } from "../../component/stackedBarChart";
+import { EmeraldBarChart } from "../../component/emeraldBarChart";
+import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
+import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import './sections.css';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import "./sections.css";
 
 const soilAdditiveTableTitle = "Soil Additives";
 const atmosphereAdditiveTableTitle = "Atmosphere Additives";
@@ -110,33 +110,31 @@ export function Series({ adf, timeUnit }) {
 				/>
 			</div>
 			<div className="multidimension-chart-row">
-				<StackedAreaChart
+				<EmeraldStackedAreaChart
 					title={"Light exposure (W/m\u00B2)"}
 					seriesDataCollection={series.lightExposure}
 					labelFormatter={function (v) { return `${v} nm`; }}
 				/>
-				<StackedBarChart
+				<EmeraldStackedBarChart
 					title={"Soil temperature (\u2103)"}
 					data={series.soilTemperature}
 					labelFormatter={function (v) { return `${v} \u2103`; }}
 				/>
 			</div>
 			<div className="histogram-row">
-				<BarChart
-					className="emerald-series-histogram"
-					dataset={series.waterUse}
-					xAxis={[{ scaleType: 'band', dataKey: 'chunk' }]}
-					series={[{ dataKey: 'mm', label: 'Water use (mm)', valueFormatter: function (v) { return `${v} mm`; } }]}
-					height={350}
-					borderRadius={10}
+				<EmeraldBarChart
+					data={series.waterUse}
+					xAxisKey={"chunk"}
+					dataKey={"mm"}
+					seriesLabel={"Water use (mm)"}
+					labelFormatter={(v) => `${v} mm`}
 				/>
-				<BarChart
-					className="emerald-series-histogram"
-					dataset={series.environmentTemp}
-					xAxis={[{ scaleType: 'band', dataKey: 'chunk' }]}
-					series={[{ dataKey: 'temp', label: 'Environment temperature', valueFormatter: function (v) { return `${v} \u2103`; } }]}
-					height={350}
-					borderRadius={10}
+				<EmeraldBarChart
+					data={series.environmentTemp}
+					xAxisKey={"chunk"}
+					dataKey={"temp"}
+					seriesLabel={"Environment temperature (\u2103)"}
+					labelFormatter={(v) => `${v} \u2103`}
 				/>
 			</div>
 		</Paper>

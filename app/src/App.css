@@ -27,20 +27,31 @@
 	--menu-font-color: #50c878ff;;
 	--default-font-color: #424242;
 	--hr-color: #dfdfdf37;
-	--table-border: rgba(198, 198, 198, 0.61);
+	--table-border: #c6c6c69c;
 	--default-font-size: 18px;
 	--default-font-family: Helvetica Neue;
 	--default-caption-font-size: 15px;
+	--default-vertical-skip: 70px;
 	--default-section-margins: 0px 50px 20px 50px;
 	--section-margins-mobile: 0px 13px 20px 13px;
 }
 
 footer {
-	font-size: 18px;
-	bottom: 0;
-	margin-top: 100px;
-	margin-bottom: 15px;
-	text-align: center;
-	font-family: Times Times New Roman;
-	font-style: italic;
+	font-size: calc(var(--default-font-size) - "2px");
+    bottom: 0;
+    margin-top: var(--default-vertical-skip);
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: var(--default-font-family);
+    font-weight: 300;
+    font-style: italic;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 5px;
+}
+
+footer img {
+	width: 95px;
 }
