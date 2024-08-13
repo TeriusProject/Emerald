@@ -1,5 +1,5 @@
 /*
- * main.jsx
+ * seriesSelector.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -21,16 +21,25 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, Fragment } from "react";
-import { Navbar } from "../navbar/navbar";
-import { adf } from "./mock_adf";
-import { Adf } from "./adf";
+import { React } from "react";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { EmeraldChartRangeSelector } from "../../component/emeraldChartRangeSelector";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import "./sections.css";
 
-export function Main() {
+export function SeriesSelector({ adf, time, timeUnit, onRangeChange }) {
 	return (
-		<Fragment>
-			<Navbar />
-			<Adf adf={adf} />
-		</Fragment>
+		<Accordion defaultExpanded style={{ margin: "var(--default-section-margins)", borderRadius: "4px" }}>
+			<AccordionSummary expandIcon={<ExpandMoreIcon />}>
+				Select the starting series
+			</AccordionSummary>
+			<AccordionDetails style={{ margin: "var(--default-section-margins)" }}>
+				<EmeraldChartRangeSelector
+				timeUnit={timeUnit}
+				time={time}
+				series={adf.series}
+				onRangeChange={onRangeChange}/>
+			</AccordionDetails>
+		</Accordion>
 	);
 }

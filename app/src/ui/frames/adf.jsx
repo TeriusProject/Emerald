@@ -21,17 +21,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useState } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import { Header } from "./sections/header";
 import { Series } from "./sections/series";
 import { timeUnits } from "../../model/timeUnit";
 import { Ribbon } from "./sections/ribbon";
-import "./frames.css";
 import { EmeraldNotification } from "../component/EmeraldNotification";
+import { SeriesSelector } from "./sections/seriesSelector";
+import "./frames.css";
 
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
+	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
+	const [seriesRange, setSeriesRange] = useState([0, adf.series.length]);
 	const [openNotification, setOpenNotification] = useState(false);
+
+	useEffect(() => {
+		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
+	}, [timeUnit, adf.metadata.periodSec]);
 
 	const onUnitChange = (event, newValue) => {
 		if (!newValue) return;
@@ -44,6 +51,10 @@ export function Adf({ adf }) {
 	const onCloseNotification = () => {
 		setOpenNotification(false);
 	};
+
+	const onSeriesRangeChange = useCallback((newRange) => {
+		setSeriesRange([...newRange]);
+	}, []);
 
 	const checkTimeUnit = (newValue) => {
 		return (adf.metadata.periodSec < newValue.timeInSeconds)
@@ -58,8 +69,14 @@ export function Adf({ adf }) {
 				message={"AAA"}
 			/>
 			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
-			<Header adf={adf} timeUnit={timeUnit} />
-			<Series adf={adf} timeUnit={timeUnit} />
+			<Header adf={adf} time={timeLength} timeUnit={timeUnit} />
+			<SeriesSelector
+				time={timeLength}
+				timeUnit={timeUnit}
+				adf={adf}
+				onRangeChange={onSeriesRangeChange}
+			/>
+			<Series adf={adf} time={timeLength} timeUnit={timeUnit} range={seriesRange} />
 		</div>
 	);
 }

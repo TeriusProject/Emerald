@@ -21,7 +21,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useEffect, useState } from "react";
+import { React, useCallback, useEffect, useState } from "react";
 import { Paper } from "@mui/material";
 import { Table } from "../../component/emeraldTable";
 import { ColumnAlign } from "../../../model/columnAlign";
@@ -61,22 +61,30 @@ function AdditiveTable({ tableId, title, rows }) {
 	);
 }
 
-export function Series({ adf, timeUnit }) {
-	const [seriesIndex, setSeriesIndex] = useState(0);
-	const [series, setSeries] = useState(adf.series[0]);
+export function Series({ adf, time, timeUnit, range }) {
+	const [seriesIndex, setSeriesIndex] = useState(range[0]);
+	const [series, setSeries] = useState(adf.series[range[0]]);
 
 	const onBackButtonClick = (event) => {
-		if (seriesIndex === 0) return;
+		if (seriesIndex === range[0]) return;
 		setSeriesIndex(seriesIndex - 1);
 	}
 	const onNextButtonClick = (event) => {
-		if (seriesIndex === adf.series.length - 1) return;
+		if (seriesIndex === range[1]-1) return;
 		setSeriesIndex(seriesIndex + 1);
 	}
+	const updateStartingSeries = useCallback((startingIndex) => {
+			setSeriesIndex(startingIndex);
+			setSeries(adf.series[startingIndex]);
+	}, [adf.series]);
 
 	useEffect(() => {
 		setSeries(adf.series[seriesIndex]);
 	}, [seriesIndex, adf.series]);
+
+	useEffect(() => {
+		updateStartingSeries(range[0]);
+	}, [range, updateStartingSeries]);
 
 
 	const renderOrdinalSeries = () => {

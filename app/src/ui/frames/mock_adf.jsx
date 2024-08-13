@@ -130,48 +130,52 @@ export const adf = {
 				labels: ['350', '450', '550', '650', '750', '850', '950'],
 				series: {
 					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
-					'2': [2400, 198, 900, 308, 400, 300, 4300],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
 					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
-					'4': [0, 0, 1, 1, 1, 0, 0],
+					'4': [0, 0, 0, 0, 0, 0, 0],
 				}
 			},
-			soilTemperature: [
-				{
-					order: 'Chunk 1',
-					high: 3,
-					low: -7,
-				},
-				{
-					order: 'Chunk 2',
-					high: 0,
-					low: -5,
-				},
-				{
-					order: 'Chunk 3',
-					high: 10,
-					low: 0,
-				},
-				{
-					order: 'Chunk 4',
-					high: 9,
-					low: 6,
-				}
-			],
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
 			environmentTemp: [
 				{
 					temp: 10,
 					chunk: 'Chunk 1',
 				},
 				{
-					temp: 15,
+					temp: 25,
 					chunk: 'Chunk 2',
 				},
 				{
-					temp: 20,
+					temp: 30,
 					chunk: 'Chunk 3',
 				},
 				{
-					temp: 4,
+					temp: 34,
 					chunk: 'Chunk 4',
 				}],
 			waterUse: [
@@ -180,15 +184,15 @@ export const adf = {
 					chunk: 'Chunk 1',
 				},
 				{
-					mm: 48,
+					mm: 28,
 					chunk: 'Chunk 2',
 				},
 				{
-					mm: 16,
+					mm: 106,
 					chunk: 'Chunk 3',
 				},
 				{
-					mm: 0,
+					mm: 92,
 					chunk: 'Chunk 4',
 				}],
 			soilAdditives: [{
@@ -207,10 +211,2799 @@ export const adf = {
 				concentration: 2123.4
 			},
 			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
 				id: '39745',
 				name: 'Dihydrogenphosphate',
 				concentration: 165.2
 			}]
-		}
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
+		{
+			lightExposure: {
+				labels: ['350', '450', '550', '650', '750', '850', '950'],
+				series: {
+					'1': [4000, 3000, 2000, 2780, 1890, 2390, 3490],
+					'2': [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+					'3': [2400, 2210, 0, 2000, 2181, 2500, 2100],
+					'4': [0, 0, 0, 0, 0, 0, 0],
+				}
+			},
+			soilTemperature: {
+				depths: ["0", "10"],
+				labels: ['Chunk 1', 'Chunk 2', 'Chunk 3', 'Chunk 4'],
+				series: [
+					{
+						"0": 3,
+						"10": -7,
+						"12": 9,
+					},
+					{
+						"0": 0,
+						"10": -5,
+						"12": 9,
+					},
+					{
+						"0": 10,
+						"10": 0,
+						"12": 9,
+					},
+					{
+						"0": 9,
+						"10": 6,
+						"12": 9,
+					}
+				]
+			},
+			environmentTemp: [
+				{
+					temp: 10,
+					chunk: 'Chunk 1',
+				},
+				{
+					temp: 25,
+					chunk: 'Chunk 2',
+				},
+				{
+					temp: 30,
+					chunk: 'Chunk 3',
+				},
+				{
+					temp: 34,
+					chunk: 'Chunk 4',
+				}],
+			waterUse: [
+				{
+					mm: 59,
+					chunk: 'Chunk 1',
+				},
+				{
+					mm: 28,
+					chunk: 'Chunk 2',
+				},
+				{
+					mm: 106,
+					chunk: 'Chunk 3',
+				},
+				{
+					mm: 92,
+					chunk: 'Chunk 4',
+				}],
+			soilAdditives: [{
+				id: '17632',
+				name: 'Nitrate',
+				concentration: 13.45
+			},
+			{
+				id: '18420',
+				name: 'Magnesium(2+) ion',
+				concentration: 1.79
+			}],
+			atmAdditives: [{
+				id: '49552',
+				name: 'Copper(1+) ion',
+				concentration: 2123.4
+			},
+			{
+				id: '17996',
+				name: 'Chloride',
+				concentration: 3e-5
+			},
+			{
+				id: '39745',
+				name: 'Dihydrogenphosphate',
+				concentration: 165.2
+			}]
+		},
 	]
 };

@@ -24,7 +24,7 @@
  :root {
 	--max-width-mobile-screen: 1200px;
 	--menu-height: 70px;
-	--menu-font-color: #50c878ff;;
+	--menu-font-color: #50c878ff;
 	--default-font-color: #424242;
 	--hr-color: #dfdfdf37;
 	--table-border: #c6c6c69c;
@@ -33,7 +33,6 @@
 	--default-caption-font-size: 15px;
 	--default-vertical-skip: 70px;
 	--default-section-margins: 0px 50px 20px 50px;
-	--section-margins-mobile: 0px 13px 20px 13px;
 }
 
 footer {
@@ -54,4 +53,10 @@ footer {
 
 footer img {
 	width: 95px;
+}
+
+@media only screen and (max-width: 1200px) {
+	:root {
+		--default-section-margins: 0px 13px 20px 13px;
+	}
 }
