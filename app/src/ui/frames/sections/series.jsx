@@ -22,8 +22,8 @@
  */
 
 import { React, useCallback, useEffect, useState } from "react";
-import { Paper } from "@mui/material";
-import { Table } from "../../component/emeraldTable";
+import { EmeraldTable } from "../../component/emeraldTable";
+import { EmeraldSection } from "../../component/emeraldSection";
 import { ColumnAlign } from "../../../model/columnAlign";
 import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
@@ -52,7 +52,7 @@ function AdditiveTable({ tableId, title, rows }) {
 	]);
 
 	return (
-		<Table
+		<EmeraldTable
 			tableId={tableId}
 			title={title}
 			headers={header}
@@ -62,48 +62,57 @@ function AdditiveTable({ tableId, title, rows }) {
 	);
 }
 
-export function Series({ adf, time, timeUnit, range }) {
-	const [seriesIndex, setSeriesIndex] = useState(range[0]);
-	const [series, setSeries] = useState(adf.series[range[0]]);
+export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange }) {
+	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange);
+	const [series, setSeries] = useState(adf.series[lowerBoundRange]);
 
 	const onBackButtonClick = (event) => {
-		if (seriesIndex === range[0]) return;
+		if (seriesIndex === lowerBoundRange) return;
 		setSeriesIndex(seriesIndex - 1);
 	}
 	const onNextButtonClick = (event) => {
-		if (seriesIndex === range[1] - 1) return;
+		if (seriesIndex === upperBoundRange-1) return;
 		setSeriesIndex(seriesIndex + 1);
 	}
 	const updateStartingSeries = useCallback((startingIndex) => {
 		setSeriesIndex(startingIndex);
 		setSeries(adf.series[startingIndex]);
 	}, [adf.series]);
+	const updateEndingSeries = useCallback((endingIndex) => {
+		if (endingIndex < seriesIndex) {
+			setSeriesIndex(endingIndex);
+			setSeries(adf.series[endingIndex-1]);
+		}
+	}, [adf.series, seriesIndex]);
 
 	useEffect(() => {
 		setSeries(adf.series[seriesIndex]);
 	}, [seriesIndex, adf.series]);
 
 	useEffect(() => {
-		updateStartingSeries(range[0]);
-	}, [range, updateStartingSeries]);
+		updateStartingSeries(lowerBoundRange);
+	}, [lowerBoundRange, updateStartingSeries]);
 
+	useEffect(() => {
+		updateEndingSeries(upperBoundRange);
+	}, [upperBoundRange, updateEndingSeries]);
 
 	const renderOrdinalSeries = () => {
-		const suffix = seriesIndex === 0
-			? "st" : seriesIndex === 1
+		const suffix = seriesIndex === 1
+			? "st" : seriesIndex === 2
 				? "nd" : "th";
-		return `${seriesIndex + 1}${suffix}`;
+		return `${seriesIndex}${suffix}`;
 	};
 
 	return (
-		<Paper className="adf-series-section" elevation={3}>
+		<EmeraldSection className="adf-series-section" elevation={3}>
 			<div className="series-title">
 				<EmeraldArrowButton onClick={onBackButtonClick}>
 					<KeyboardArrowLeftIcon />
 				</EmeraldArrowButton>
 				<div className="series-metadata">
 					<span>{renderOrdinalSeries()} series</span>
-					<span>{formatTime(seriesIndex * time, timeUnit)} &mdash; {formatTime(((seriesIndex + 1) * time), timeUnit)}</span>
+					<span>{formatTime((seriesIndex - 1) * time, timeUnit)} &mdash; {formatTime((seriesIndex * time), timeUnit)}</span>
 				</div>
 				<EmeraldArrowButton onClick={onNextButtonClick}>
 					<KeyboardArrowRightIcon />
@@ -149,6 +158,6 @@ export function Series({ adf, time, timeUnit, range }) {
 					labelFormatter={(v) => `${v} \u2103`}
 				/>
 			</div>
-		</Paper>
+		</EmeraldSection>
 	);
 }

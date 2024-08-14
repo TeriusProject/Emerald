@@ -1,5 +1,5 @@
 /*
- * frames.css
+ * emeraldSection.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,16 +20,14 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- .adf-content {
-	margin-top:  calc(var(--menu-height) + 20px);
-}
 
-a {
-	color: #868686;
-    font-weight: 200;
-}
+import { React } from "react";
+import { Paper } from "@mui/material";
 
-p {
-	margin: var(--default-section-margins);
+export function EmeraldSection({ className, children, elevation }) {
+	return (
+		<Paper className={className} elevation={elevation ?? 2}>
+			{children}
+		</Paper>
+	);
 }

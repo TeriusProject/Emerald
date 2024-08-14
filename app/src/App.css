@@ -22,7 +22,7 @@
  */
  
  :root {
-	--max-width-mobile-screen: 1200px;
+	--max-width-mobile-screen: 1000px;
 	--menu-height: 70px;
 	--menu-font-color: #50c878ff;
 	--default-font-color: #424242;
@@ -55,7 +55,7 @@ footer img {
 	width: 95px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1000px) {
 	:root {
 		--default-section-margins: 0px 13px 20px 13px;
 	}

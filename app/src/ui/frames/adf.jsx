@@ -53,6 +53,7 @@ export function Adf({ adf }) {
 	};
 
 	const onSeriesRangeChange = useCallback((newRange) => {
+		console.log(newRange);
 		setSeriesRange([...newRange]);
 	}, []);
 
@@ -76,7 +77,14 @@ export function Adf({ adf }) {
 				adf={adf}
 				onRangeChange={onSeriesRangeChange}
 			/>
-			<Series adf={adf} time={timeLength} timeUnit={timeUnit} range={seriesRange} />
+			<p>We can bla bla bla</p>
+			<Series
+				adf={adf}
+				time={timeLength}
+				timeUnit={timeUnit}
+				lowerBoundRange={seriesRange[0]}
+				upperBoundRange={seriesRange[1]}
+			/>
 		</div>
 	);
 }

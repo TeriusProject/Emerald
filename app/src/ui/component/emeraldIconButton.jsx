@@ -1,5 +1,5 @@
 /*
- * frames.css
+ * emeraldIconButton.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,16 +20,20 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- .adf-content {
-	margin-top:  calc(var(--menu-height) + 20px);
-}
 
-a {
-	color: #868686;
-    font-weight: 200;
-}
+import { React } from "react";
 
-p {
-	margin: var(--default-section-margins);
+export function EmeraldIconButton({ colorHex, icon, label, selected, onClick }) {
+	const hexBorderColor = colorHex ?? "#c6c6c69c";
+	const fillColor = selected ? colorHex : "transparent";
+	return (
+		<div
+			className="emerald-icon-button"
+			style={{ borderColor: hexBorderColor, backgroundColor: fillColor }}
+			onClick={onClick}
+		>
+			{icon}
+			<span style={{ color: selected ? 'white' : 'black' }}>{label}</span>
+		</div>
+	);
 }

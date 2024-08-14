@@ -22,17 +22,17 @@
  */
 
 import { React } from "react";
-import { Paper } from "@mui/material";
+import { EmeraldSection } from "../../component/emeraldSection";
 import { EmeraldProperty } from "../../component/emeraldProperty";
 import { formatTime } from "../../../utils/formatter";
 import "./sections.css";
 
 export function Header({ adf, time, timeUnit }) {
 	return (
-		<Paper className="adf-header-section" elevation={2}>
+		<EmeraldSection className="adf-header-section">
 			<EmeraldProperty label="ADF version" value={adf.header.version.label} hexColor="#2996CD" />
 			<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
 			<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />
-		</Paper>
+		</EmeraldSection>
 	);
 }

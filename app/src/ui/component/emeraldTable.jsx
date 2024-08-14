@@ -24,7 +24,7 @@
 import { React } from "react";
 import "./components.css";
 
-export function Table({ title, headers, rows, columnsAlign, tableId }) {
+export function EmeraldTable({ title, headers, rows, columnsAlign, tableId }) {
 
 	const getCellStyle = (index) => {
 		return {

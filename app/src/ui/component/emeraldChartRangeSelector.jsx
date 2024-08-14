@@ -29,32 +29,57 @@ import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
 import { ChartsGrid } from '@mui/x-charts/ChartsGrid';
 import { ChartsTooltip } from "@mui/x-charts";
 import { Slider } from '@mui/material';
-import { formatTime } from "../../utils/formatter";
+import { formatTime, formatDataTypeUnit } from "../../utils/formatter";
+import { SelectorDataType } from "../../model/seriesSelectorDataType";
 import useId from '@mui/utils/useId';
 
-export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChange }) {
-	const [rangeLimits, setRangeLimits] = useState([0, series.length - 1]);
+function add(acc, x) {
+	return acc + x;
+}
+
+function getChartData(series, dataType) {
+	switch (dataType) {
+		case SelectorDataType.WATER_USE:
+			return series.map(s => s.waterUse.map(wu => wu.mm).reduce(add, 0));
+		case SelectorDataType.TEMPERATURE:
+			const avg = (s) => s.environmentTemp
+				.map(t => t.temp)
+				.reduce(add, 0) / s.environmentTemp.length;
+			return series.map(s => avg(s));
+		default:
+			break;
+	}
+	return [];
+}
+
+export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChange, dataType }) {
+	const [rangeLimits, setRangeLimits] = useState([1, series.length]);
+	const [labelSuffix, setLabelSuffix] = useState(formatDataTypeUnit(dataType));
+	const [chartData, setChartData] = useState(getChartData(series, dataType));
 
 	const minDistance = 1;
 	const id = useId();
-	const add = (acc, x) => acc + x;
 	const clipPathId = `${id}-clip-path`;
-	const headers = [...Array(series.length).keys()];
+	const headers = [...Array(series.length).keys().map(x => x + 1)];
 	const marks = [
 		{
-			value: 0,
+			value: 1,
 			label: formatTime(0, timeUnit),
 		},
 		{
-			value: series.length - 1,
+			value: series.length,
 			label: formatTime(time * (series.length - 1), timeUnit),
 		},
 	];
-	const chartData = series.map(s => s.waterUse.map(wu => wu.mm).reduce(add, 0));
 
 	useEffect(() => {
 		onRangeChange(rangeLimits);
 	}, [rangeLimits, onRangeChange]);
+
+	useEffect(() => {
+		setLabelSuffix(formatDataTypeUnit(dataType));
+		setChartData(getChartData(series, dataType));
+	}, [dataType, series]);
 
 	const handleChange = (_, newValue, activeThumb) => {
 		if (!Array.isArray(newValue))
@@ -88,14 +113,15 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 				yAxis={[
 					{
 						min: 0,
-						valueFormatter: (v) => `${v} ml`
+						valueFormatter: (v) => `${v} ${labelSuffix}`
 					}
 				]}
 				series={[
 					{
 						type: 'line',
 						data: chartData,
-						color: "var(--menu-font-color)"
+						color: "var(--menu-font-color)",
+						valueFormatter: (v) => `${v} ${labelSuffix}`
 					},
 				]}
 				height={250}
@@ -112,13 +138,13 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 				<MarkPlot />
 			</ResponsiveChartContainer>
 			<Slider
-				min={0}
-				max={series.length - 1}
+				min={1}
+				max={series.length}
 				value={rangeLimits}
 				onChange={handleChange}
 				valueLabelDisplay="auto"
 				getAriaValueText={(v) => v.label}
-				valueLabelFormat={(v) => `${formatTime(time * v, timeUnit)}`}
+				valueLabelFormat={(v) => `${formatTime(time * (v - 1), timeUnit)}`}
 				marks={marks}
 				sx={{
 					mt: 2,

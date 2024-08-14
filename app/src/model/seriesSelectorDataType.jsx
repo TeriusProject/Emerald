@@ -1,5 +1,5 @@
 /*
- * frames.css
+ * seriesSelectorDataType.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,16 +20,5 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
- 
- .adf-content {
-	margin-top:  calc(var(--menu-height) + 20px);
-}
 
-a {
-	color: #868686;
-    font-weight: 200;
-}
-
-p {
-	margin: var(--default-section-margins);
-}
+export const SelectorDataType = Object.freeze({WATER_USE: 0, TEMPERATURE: 1});
