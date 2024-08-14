@@ -26,7 +26,7 @@ import { Header } from "./sections/header";
 import { Series } from "./sections/series";
 import { timeUnits } from "../../model/timeUnit";
 import { Ribbon } from "./sections/ribbon";
-import { EmeraldNotification } from "../component/EmeraldNotification";
+import { EmeraldNotification } from "../component/emeraldNotification";
 import { SeriesSelector } from "./sections/seriesSelector";
 import "./frames.css";
 

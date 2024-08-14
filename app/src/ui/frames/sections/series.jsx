@@ -29,6 +29,7 @@ import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
+import { formatTime } from "../../../utils/formatter";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -70,12 +71,12 @@ export function Series({ adf, time, timeUnit, range }) {
 		setSeriesIndex(seriesIndex - 1);
 	}
 	const onNextButtonClick = (event) => {
-		if (seriesIndex === range[1]-1) return;
+		if (seriesIndex === range[1] - 1) return;
 		setSeriesIndex(seriesIndex + 1);
 	}
 	const updateStartingSeries = useCallback((startingIndex) => {
-			setSeriesIndex(startingIndex);
-			setSeries(adf.series[startingIndex]);
+		setSeriesIndex(startingIndex);
+		setSeries(adf.series[startingIndex]);
 	}, [adf.series]);
 
 	useEffect(() => {
@@ -100,7 +101,10 @@ export function Series({ adf, time, timeUnit, range }) {
 				<EmeraldArrowButton onClick={onBackButtonClick}>
 					<KeyboardArrowLeftIcon />
 				</EmeraldArrowButton>
-				<div>{renderOrdinalSeries()} series</div>
+				<div className="series-metadata">
+					<span>{renderOrdinalSeries()} series</span>
+					<span>{formatTime(seriesIndex * time, timeUnit)} &mdash; {formatTime(((seriesIndex + 1) * time), timeUnit)}</span>
+				</div>
 				<EmeraldArrowButton onClick={onNextButtonClick}>
 					<KeyboardArrowRightIcon />
 				</EmeraldArrowButton>
