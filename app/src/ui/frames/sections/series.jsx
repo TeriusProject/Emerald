@@ -62,16 +62,27 @@ function AdditiveTable({ tableId, title, rows }) {
 	);
 }
 
-export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange }) {
-	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange);
+export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries }) {
+	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange - 1);
 	const [series, setSeries] = useState(adf.series[lowerBoundRange]);
+	const [repeatedCounter, setRepeatedCounter] = useState(adf.series[lowerBoundRange].repeated);
 
-	const onBackButtonClick = (event) => {
+	const onBackButtonClick = (_) => {
 		if (seriesIndex === lowerBoundRange) return;
+		console.log(`${seriesIndex}) ${series.repeated} - ${repeatedCounter} [back]`);
+		if (series.repeated > repeatedCounter) {
+			setRepeatedCounter(repeatedCounter + 1);
+			return;
+		}
 		setSeriesIndex(seriesIndex - 1);
 	}
-	const onNextButtonClick = (event) => {
-		if (seriesIndex === upperBoundRange-1) return;
+	const onNextButtonClick = (_) => {
+		if (seriesIndex === upperBoundRange - 1) return;
+		console.log(`${seriesIndex}) ${series.repeated} - ${repeatedCounter} [forward]`);
+		if (repeatedCounter > 1) {
+			setRepeatedCounter(repeatedCounter - 1);
+			return;
+		}
 		setSeriesIndex(seriesIndex + 1);
 	}
 	const updateStartingSeries = useCallback((startingIndex) => {
@@ -80,13 +91,17 @@ export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange }
 	}, [adf.series]);
 	const updateEndingSeries = useCallback((endingIndex) => {
 		if (endingIndex < seriesIndex) {
-			setSeriesIndex(endingIndex);
-			setSeries(adf.series[endingIndex-1]);
+			setSeriesIndex(endingIndex - 1);
+			setSeries(adf.series[endingIndex - 1]);
 		}
 	}, [adf.series, seriesIndex]);
 
 	useEffect(() => {
-		setSeries(adf.series[seriesIndex]);
+		setRepeatedCounter(series.repeated);
+	}, [series]);
+
+	useEffect(() => {
+		setSeries(adf.series[seriesIndex - 1]);
 	}, [seriesIndex, adf.series]);
 
 	useEffect(() => {
@@ -96,6 +111,10 @@ export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange }
 	useEffect(() => {
 		updateEndingSeries(upperBoundRange);
 	}, [upperBoundRange, updateEndingSeries]);
+
+	useEffect(() => {
+		setSeriesIndex(currentSeries);
+	}, [currentSeries, adf.series]);
 
 	const renderOrdinalSeries = () => {
 		const suffix = seriesIndex === 1

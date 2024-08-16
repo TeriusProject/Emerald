@@ -170,7 +170,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     column-gap: 10px;
-	width: 150px;
+	width: 170px;
 }
 
 .emerald-icon-button:hover {
@@ -211,5 +211,14 @@
 
 	.chart-component {
 		width: 100%;
+	}
+
+	.emerald-icon-button {
+		width: 120px;
+	}
+
+	.emerald-icon-button span {
+		text-wrap: nowrap;
+		overflow-x: hidden;
 	}
 }

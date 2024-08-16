@@ -112,9 +112,11 @@
 	}
 
 	.series-selector-buttons-layout {
-		flex-direction: column;
-		align-items: center;
-		column-gap: unset;
-		row-gap: 10px;
+		display: grid;
+  		grid-template-columns: auto auto;
+		column-gap: 5px;
+		row-gap: 5px;
+		font-size: 14px;
+		margin-bottom: 30px;
 	}
 }

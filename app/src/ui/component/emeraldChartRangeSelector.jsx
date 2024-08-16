@@ -27,9 +27,10 @@ import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
 import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
 import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
 import { ChartsGrid } from '@mui/x-charts/ChartsGrid';
+import { ChartsOnAxisClickHandler } from '@mui/x-charts';
 import { ChartsTooltip } from "@mui/x-charts";
 import { Slider } from '@mui/material';
-import { formatTime, formatDataTypeUnit } from "../../utils/formatter";
+import { formatTime, formatDataTypeUnit, formatFloatingPoint } from "../../utils/formatter";
 import { SelectorDataType } from "../../model/seriesSelectorDataType";
 import useId from '@mui/utils/useId';
 
@@ -46,13 +47,17 @@ function getChartData(series, dataType) {
 				.map(t => t.temp)
 				.reduce(add, 0) / s.environmentTemp.length;
 			return series.map(s => avg(s));
+		case SelectorDataType.PH:
+			return series.map(s => s.pH);
+		case SelectorDataType.SOIL_DENSITY:
+			return series.map(s => s.soilDensity);
 		default:
 			break;
 	}
 	return [];
 }
 
-export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChange, dataType }) {
+export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChange, onSeriesClick, dataType }) {
 	const [rangeLimits, setRangeLimits] = useState([1, series.length]);
 	const [labelSuffix, setLabelSuffix] = useState(formatDataTypeUnit(dataType));
 	const [chartData, setChartData] = useState(getChartData(series, dataType));
@@ -60,14 +65,14 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 	const minDistance = 1;
 	const id = useId();
 	const clipPathId = `${id}-clip-path`;
-	const headers = [...Array(series.length).keys().map(x => x + 1)];
+	const headers = [...Array(series.length).keys()].map(x => x + 1);
 	const marks = [
 		{
 			value: 1,
 			label: formatTime(0, timeUnit),
 		},
 		{
-			value: series.length,
+			value: series.length - 1,
 			label: formatTime(time * (series.length - 1), timeUnit),
 		},
 	];
@@ -112,8 +117,9 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 				]}
 				yAxis={[
 					{
-						min: 0,
-						valueFormatter: (v) => `${v} ${labelSuffix}`
+						min: dataType === SelectorDataType.PH ? 1 : 0,
+						max: dataType === SelectorDataType.PH ? 14 : undefined,
+						valueFormatter: (v) => `${formatFloatingPoint(v)} ${labelSuffix}`
 					}
 				]}
 				series={[
@@ -121,7 +127,7 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 						type: 'line',
 						data: chartData,
 						color: "var(--menu-font-color)",
-						valueFormatter: (v) => `${v} ${labelSuffix}`
+						valueFormatter: (v) => `${formatFloatingPoint(v)} ${labelSuffix}`
 					},
 				]}
 				height={250}
@@ -130,7 +136,7 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 				<ChartsGrid />
 				<ChartsTooltip trigger="axis" />
 				<g clipPath={`url(#${clipPathId})`}>
-
+					<ChartsOnAxisClickHandler onAxisClick={onSeriesClick} />
 					<LinePlot />
 				</g>
 				<ChartsXAxis />
@@ -139,7 +145,7 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 			</ResponsiveChartContainer>
 			<Slider
 				min={1}
-				max={series.length}
+				max={series.length - 1}
 				value={rangeLimits}
 				onChange={handleChange}
 				valueLabelDisplay="auto"

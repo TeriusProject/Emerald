@@ -30,17 +30,20 @@ import { EmeraldNotification } from "../component/emeraldNotification";
 import { SeriesSelector } from "./sections/seriesSelector";
 import "./frames.css";
 
+const WarningMessage = "";
+
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
-	const [seriesRange, setSeriesRange] = useState([0, adf.series.length]);
+	const [seriesRange, setSeriesRange] = useState([1, adf.series.length]);
+	const [currentSeries, setCurrentSeries] = useState(1);
 	const [openNotification, setOpenNotification] = useState(false);
 
 	useEffect(() => {
 		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
 	}, [timeUnit, adf.metadata.periodSec]);
 
-	const onUnitChange = (event, newValue) => {
+	const onUnitChange = (_, newValue) => {
 		if (!newValue) return;
 
 		if (checkTimeUnit(newValue))
@@ -53,7 +56,6 @@ export function Adf({ adf }) {
 	};
 
 	const onSeriesRangeChange = useCallback((newRange) => {
-		console.log(newRange);
 		setSeriesRange([...newRange]);
 	}, []);
 
@@ -61,13 +63,17 @@ export function Adf({ adf }) {
 		return (adf.metadata.periodSec < newValue.timeInSeconds)
 	};
 
+	const onSeriesClick = (_, clickedItem) => {
+		setCurrentSeries(clickedItem.dataIndex + 1);
+	}
+
 	return (
 		<div className="adf-content">
 			<EmeraldNotification
 				id={`unit-conversion-failed`}
 				open={openNotification}
 				handleClose={onCloseNotification}
-				message={"AAA"}
+				message={WarningMessage}
 			/>
 			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
 			<Header adf={adf} time={timeLength} timeUnit={timeUnit} />
@@ -76,14 +82,18 @@ export function Adf({ adf }) {
 				timeUnit={timeUnit}
 				adf={adf}
 				onRangeChange={onSeriesRangeChange}
+				onSeriesClick={onSeriesClick}
 			/>
-			<p>We can bla bla bla</p>
+			<p>
+				...
+			</p>
 			<Series
 				adf={adf}
 				time={timeLength}
 				timeUnit={timeUnit}
 				lowerBoundRange={seriesRange[0]}
 				upperBoundRange={seriesRange[1]}
+				currentSeries={currentSeries}
 			/>
 		</div>
 	);

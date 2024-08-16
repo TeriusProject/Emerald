@@ -28,6 +28,8 @@ import { EmeraldIconButton } from "../../component/emeraldIconButton";
 import { SelectorDataType } from "../../../model/seriesSelectorDataType";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import DeblurIcon from '@mui/icons-material/Deblur';
+import HPlusMobiledataIcon from '@mui/icons-material/HPlusMobiledata';
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import "./sections.css";
 
@@ -40,7 +42,7 @@ function WaterUseButton({ isCurrentDataType, onClick }) {
 		<EmeraldIconButton
 			colorHex={hexColor}
 			icon={<WaterDropIcon style={btnStyle} />}
-			label={"Water use (ml)"}
+			label={"Water use"}
 			onClick={onClick}
 			selected={isCurrentDataType}
 		/>
@@ -56,14 +58,46 @@ function TemperatureButton({ isCurrentDataType, onClick }) {
 		<EmeraldIconButton
 			colorHex={hexColor}
 			icon={<DeviceThermostatIcon style={btnStyle} />}
-			label={"Temperature (\u2103)"}
+			label={"Temperature"}
 			onClick={onClick}
 			selected={isCurrentDataType}
 		/>
 	);
 }
 
-export function SeriesSelector({ adf, time, timeUnit, onRangeChange }) {
+function SoilDensityButton({ isCurrentDataType, onClick }) {
+	const hexColor = "#765341";
+	const btnStyle = {
+		color: isCurrentDataType ? "white" : hexColor
+	};
+	return (
+		<EmeraldIconButton
+			colorHex={hexColor}
+			icon={<DeblurIcon style={btnStyle} />}
+			label={"Soil density"}
+			onClick={onClick}
+			selected={isCurrentDataType}
+		/>
+	);
+}
+
+function PHButton({ isCurrentDataType, onClick }) {
+	const hexColor = "#1d7c1d";
+	const btnStyle = {
+		color: isCurrentDataType ? "white" : hexColor
+	};
+	return (
+		<EmeraldIconButton
+			colorHex={hexColor}
+			icon={<HPlusMobiledataIcon style={btnStyle} />}
+			label={"Soil pH"}
+			onClick={onClick}
+			selected={isCurrentDataType}
+		/>
+	);
+}
+
+export function SeriesSelector({ adf, time, timeUnit, onRangeChange, onSeriesClick }) {
 	const [currentDataType, setCurrentDataType] = useState(SelectorDataType.WATER_USE);
 
 	const onWaterUseButtonClick = (_) => {
@@ -72,6 +106,14 @@ export function SeriesSelector({ adf, time, timeUnit, onRangeChange }) {
 
 	const onTemperatureButtonClick = (_) => {
 		setCurrentDataType(SelectorDataType.TEMPERATURE);
+	}
+
+	const onPHButtonClick = (_) => {
+		setCurrentDataType(SelectorDataType.PH);
+	}
+
+	const onSoilDensityButtonClick = (_) => {
+		setCurrentDataType(SelectorDataType.SOIL_DENSITY);
 	}
 
 	return (
@@ -89,12 +131,21 @@ export function SeriesSelector({ adf, time, timeUnit, onRangeChange }) {
 						isCurrentDataType={currentDataType === SelectorDataType.TEMPERATURE}
 						onClick={onTemperatureButtonClick}
 					/>
+					<SoilDensityButton
+						isCurrentDataType={currentDataType === SelectorDataType.SOIL_DENSITY}
+						onClick={onSoilDensityButtonClick}
+					/>
+					<PHButton
+						isCurrentDataType={currentDataType === SelectorDataType.PH}
+						onClick={onPHButtonClick}
+					/>
 				</div>
 				<EmeraldChartRangeSelector
 					timeUnit={timeUnit}
 					time={time}
 					series={adf.series}
 					onRangeChange={onRangeChange}
+					onSeriesClick={onSeriesClick}
 					dataType={currentDataType}
 				/>
 			</AccordionDetails>
