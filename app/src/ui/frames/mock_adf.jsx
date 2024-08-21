@@ -332,7 +332,7 @@ export const adf = {
 			],
 			pH: 12.780770578964626,
 			soilDensity: 35.42248845279271,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -485,7 +485,7 @@ export const adf = {
 			],
 			pH: 10.710612499962949,
 			soilDensity: 5.848603253666683,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -638,7 +638,7 @@ export const adf = {
 			],
 			pH: 1.967243273712512,
 			soilDensity: 9.308523405556462,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -791,7 +791,7 @@ export const adf = {
 			],
 			pH: 10.378885329534222,
 			soilDensity: 1.4018801413725275,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -944,7 +944,7 @@ export const adf = {
 			],
 			pH: 2.1456537150088852,
 			soilDensity: 5.777672748364711,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1097,7 +1097,7 @@ export const adf = {
 			],
 			pH: 9.472238528120085,
 			soilDensity: 47.46839712541707,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1250,7 +1250,7 @@ export const adf = {
 			],
 			pH: 8.208404874182044,
 			soilDensity: 14.045501681441849,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1403,7 +1403,7 @@ export const adf = {
 			],
 			pH: 8.58459339567812,
 			soilDensity: 11.022619966814105,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1556,7 +1556,7 @@ export const adf = {
 			],
 			pH: 4.448794141273132,
 			soilDensity: 15.735223763033584,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1709,7 +1709,7 @@ export const adf = {
 			],
 			pH: 7.328544641808348,
 			soilDensity: 41.62961563075377,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -1862,7 +1862,7 @@ export const adf = {
 			],
 			pH: 12.83621496694197,
 			soilDensity: 15.980298059825206,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2015,7 +2015,7 @@ export const adf = {
 			],
 			pH: 8.9901635311869,
 			soilDensity: 6.420849275319377,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2168,7 +2168,7 @@ export const adf = {
 			],
 			pH: 2.647801031836769,
 			soilDensity: 13.781428833178357,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2321,7 +2321,7 @@ export const adf = {
 			],
 			pH: 5.499410486014794,
 			soilDensity: 31.97664784624955,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2474,7 +2474,7 @@ export const adf = {
 			],
 			pH: 5.145289867550833,
 			soilDensity: 21.36941790899453,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2627,7 +2627,7 @@ export const adf = {
 			],
 			pH: 10.05572456310878,
 			soilDensity: 43.11732765456582,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2780,7 +2780,7 @@ export const adf = {
 			],
 			pH: 4.667405711604095,
 			soilDensity: 20.6936358735565,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -2933,7 +2933,7 @@ export const adf = {
 			],
 			pH: 2.3487852044618247,
 			soilDensity: 36.591420590946186,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3086,7 +3086,7 @@ export const adf = {
 			],
 			pH: 9.932576785777421,
 			soilDensity: 14.906373216040064,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3239,7 +3239,7 @@ export const adf = {
 			],
 			pH: 9.877679240531991,
 			soilDensity: 28.42161849148067,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3392,7 +3392,7 @@ export const adf = {
 			],
 			pH: 7.795974874328161,
 			soilDensity: 24.08617347525839,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3545,7 +3545,7 @@ export const adf = {
 			],
 			pH: 1.6536373691411401,
 			soilDensity: 4.953859775090785,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3698,7 +3698,7 @@ export const adf = {
 			],
 			pH: 8.659421440022504,
 			soilDensity: 30.26130014403906,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -3851,7 +3851,7 @@ export const adf = {
 			],
 			pH: 8.422195941536057,
 			soilDensity: 36.746685949093575,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4004,7 +4004,7 @@ export const adf = {
 			],
 			pH: 12.807092507467242,
 			soilDensity: 28.52035442306982,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4157,7 +4157,7 @@ export const adf = {
 			],
 			pH: 1.1910653634988684,
 			soilDensity: 32.01626121407238,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4310,7 +4310,7 @@ export const adf = {
 			],
 			pH: 3.9403966844479656,
 			soilDensity: 9.29008719916824,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4463,7 +4463,7 @@ export const adf = {
 			],
 			pH: 11.482881485133337,
 			soilDensity: 9.671511474140907,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4616,7 +4616,7 @@ export const adf = {
 			],
 			pH: 5.723153369270975,
 			soilDensity: 31.17942615407085,
-			repeated: 0
+			repeated: 1
 		},
 		{
 			lightExposure: {
@@ -4769,7 +4769,7 @@ export const adf = {
 			],
 			pH: 12.210979518811689,
 			soilDensity: 25.280977274072985,
-			repeated: 0
+			repeated: 1
 		}
 	]
 };

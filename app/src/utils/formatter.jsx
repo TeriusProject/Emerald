@@ -1,5 +1,4 @@
-/*
- * formatter.jsx
+/* formatter.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -30,6 +29,29 @@ export const formatFloatingPoint = (n) => {
 export const formatTime = (time, timeUnit) => {
 	const timeStr = formatFloatingPoint(time);
 	return `${timeStr} ${timeUnit.symbol}`
+}
+
+function add(acc, x) {
+	return acc + x;
+}
+
+export function getDataProviderByType(dataType) {
+	switch (dataType) {
+		case SelectorDataType.WATER_USE:
+			return (series) => series.waterUse.map(wu => wu.mm).reduce(add, 0);
+		case SelectorDataType.TEMPERATURE:
+			const avg = (s) => s.environmentTemp
+				.map(t => t.temp)
+				.reduce(add, 0) / s.environmentTemp.length;
+			return (series) => avg(series);
+		case SelectorDataType.PH:
+			return (series) => series.pH;
+		case SelectorDataType.SOIL_DENSITY:
+			return (series) => series.soilDensity;
+		default:
+			break;
+	}
+	return (_) => { };
 }
 
 export const formatDataTypeUnit = (dataType) => {

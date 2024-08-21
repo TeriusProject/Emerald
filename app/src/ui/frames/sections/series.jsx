@@ -1,5 +1,4 @@
-/*
- * series.jsx
+/* series.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -43,7 +42,9 @@ function AdditiveTable({ tableId, title, rows }) {
 	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
 	const getAdditiveUrl = (id, name) => {
 		return (
-			<a href={`${chEBIUrl}${id}`} target="_blank" rel="noopener noreferrer">{name}</a>
+			<a href={`${chEBIUrl}${id}`} target="_blank" rel="noopener noreferrer">
+				{name}
+			</a>
 		);
 	};
 	const tableRows = rows.map(row => [
@@ -62,14 +63,14 @@ function AdditiveTable({ tableId, title, rows }) {
 	);
 }
 
-export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries }) {
+export function Series(props) {
+	const { adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries } = props;
 	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange - 1);
 	const [series, setSeries] = useState(adf.series[lowerBoundRange]);
 	const [repeatedCounter, setRepeatedCounter] = useState(adf.series[lowerBoundRange].repeated);
 
 	const onBackButtonClick = (_) => {
 		if (seriesIndex === lowerBoundRange) return;
-		console.log(`${seriesIndex}) ${series.repeated} - ${repeatedCounter} [back]`);
 		if (series.repeated > repeatedCounter) {
 			setRepeatedCounter(repeatedCounter + 1);
 			return;
@@ -78,7 +79,6 @@ export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange, 
 	}
 	const onNextButtonClick = (_) => {
 		if (seriesIndex === upperBoundRange - 1) return;
-		console.log(`${seriesIndex}) ${series.repeated} - ${repeatedCounter} [forward]`);
 		if (repeatedCounter > 1) {
 			setRepeatedCounter(repeatedCounter - 1);
 			return;
@@ -113,14 +113,23 @@ export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange, 
 	}, [upperBoundRange, updateEndingSeries]);
 
 	useEffect(() => {
-		setSeriesIndex(currentSeries);
+		setSeriesIndex(currentSeries.index);
 	}, [currentSeries, adf.series]);
 
 	const renderOrdinalSeries = () => {
-		const suffix = seriesIndex === 1
-			? "st" : seriesIndex === 2
+		const seriesNumber = currentSeries.number;
+		const suffix = seriesNumber === 1
+			? "st" : seriesNumber === 2
 				? "nd" : "th";
-		return `${seriesIndex}${suffix}`;
+		return `${seriesNumber}${suffix}`;
+	};
+
+	const startSeriesTime = () => {
+		return formatTime((currentSeries.number - 1) * time, timeUnit);
+	};
+
+	const endSeriesTime = () => {
+		return formatTime((currentSeries.number * time), timeUnit);
 	};
 
 	return (
@@ -131,7 +140,9 @@ export function Series({ adf, time, timeUnit, lowerBoundRange, upperBoundRange, 
 				</EmeraldArrowButton>
 				<div className="series-metadata">
 					<span>{renderOrdinalSeries()} series</span>
-					<span>{formatTime((seriesIndex - 1) * time, timeUnit)} &mdash; {formatTime((seriesIndex * time), timeUnit)}</span>
+					<span>
+						{startSeriesTime()} &mdash; {endSeriesTime()}
+					</span>
 				</div>
 				<EmeraldArrowButton onClick={onNextButtonClick}>
 					<KeyboardArrowRightIcon />

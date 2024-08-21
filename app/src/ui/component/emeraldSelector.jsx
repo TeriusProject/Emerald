@@ -1,5 +1,4 @@
-/*
- * emeraldSelector.jsx
+/* emeraldSelector.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli

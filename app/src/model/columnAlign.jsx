@@ -1,5 +1,4 @@
-/*
- * columnAlign.jsx
+/* columnAlign.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli

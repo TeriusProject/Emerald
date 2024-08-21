@@ -1,5 +1,4 @@
-/*
- * adf.jsx
+/* adf.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -30,18 +29,26 @@ import { EmeraldNotification } from "../component/emeraldNotification";
 import { SeriesSelector } from "./sections/seriesSelector";
 import "./frames.css";
 
-const WarningMessage = "";
+const warningMessage = "";
+const getRepetatedMask = (series) => {
+	return series.map(s => s.repeated);
+};
 
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
 	const [seriesRange, setSeriesRange] = useState([1, adf.series.length]);
-	const [currentSeries, setCurrentSeries] = useState(1);
+	const [currentSeries, setCurrentSeries] = useState({ index: 1, number: 1 });
 	const [openNotification, setOpenNotification] = useState(false);
+	const [repeatedMask, setRepeatedMask] = useState(getRepetatedMask(adf.series));
 
 	useEffect(() => {
 		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
 	}, [timeUnit, adf.metadata.periodSec]);
+
+	useEffect(() => {
+		setRepeatedMask(getRepetatedMask(adf.series));
+	}, [adf]);
 
 	const onUnitChange = (_, newValue) => {
 		if (!newValue) return;
@@ -63,8 +70,22 @@ export function Adf({ adf }) {
 		return (adf.metadata.periodSec < newValue.timeInSeconds)
 	};
 
+	const getSeriesIndex = (seriesNumber) => {
+		if (repeatedMask.length === 0) return 0;
+		for (var i = 0, acc = 0; i < repeatedMask.length; i++) {
+			var lowerBound = acc;
+			acc += repeatedMask[i];
+			if (seriesNumber >= lowerBound && seriesNumber < acc)
+				return i;
+		}
+		throw new Error("Series index out of bound");
+	};
+
 	const onSeriesClick = (_, clickedItem) => {
-		setCurrentSeries(clickedItem.dataIndex + 1);
+		setCurrentSeries({
+			index: getSeriesIndex(clickedItem.dataIndex) + 1,
+			number: clickedItem.dataIndex + 1,
+		});
 	}
 
 	return (
@@ -73,7 +94,7 @@ export function Adf({ adf }) {
 				id={`unit-conversion-failed`}
 				open={openNotification}
 				handleClose={onCloseNotification}
-				message={WarningMessage}
+				message={warningMessage}
 			/>
 			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
 			<Header adf={adf} time={timeLength} timeUnit={timeUnit} />

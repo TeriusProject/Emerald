@@ -1,5 +1,4 @@
-/*
- * emeraldIconButton.jsx
+/* emeraldIconButton.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli

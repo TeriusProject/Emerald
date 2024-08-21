@@ -1,5 +1,4 @@
-/*
- * seriesSelector.jsx
+/* seriesSelector.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -143,6 +142,7 @@ export function SeriesSelector({ adf, time, timeUnit, onRangeChange, onSeriesCli
 				<EmeraldChartRangeSelector
 					timeUnit={timeUnit}
 					time={time}
+					nSeries={adf.metadata.nSeries}
 					series={adf.series}
 					onRangeChange={onRangeChange}
 					onSeriesClick={onSeriesClick}

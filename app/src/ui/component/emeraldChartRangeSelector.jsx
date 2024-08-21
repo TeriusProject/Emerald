@@ -1,5 +1,4 @@
-/*
- * emeraldChartRangeSelector.jsx
+/* emeraldChartRangeSelector.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -30,50 +29,53 @@ import { ChartsGrid } from '@mui/x-charts/ChartsGrid';
 import { ChartsOnAxisClickHandler } from '@mui/x-charts';
 import { ChartsTooltip } from "@mui/x-charts";
 import { Slider } from '@mui/material';
-import { formatTime, formatDataTypeUnit, formatFloatingPoint } from "../../utils/formatter";
 import { SelectorDataType } from "../../model/seriesSelectorDataType";
+import {
+	formatTime,
+	formatDataTypeUnit,
+	formatFloatingPoint,
+	getDataProviderByType
+} from "../../utils/formatter";
 import useId from '@mui/utils/useId';
 
-function add(acc, x) {
-	return acc + x;
-}
-
-function getChartData(series, dataType) {
-	switch (dataType) {
-		case SelectorDataType.WATER_USE:
-			return series.map(s => s.waterUse.map(wu => wu.mm).reduce(add, 0));
-		case SelectorDataType.TEMPERATURE:
-			const avg = (s) => s.environmentTemp
-				.map(t => t.temp)
-				.reduce(add, 0) / s.environmentTemp.length;
-			return series.map(s => avg(s));
-		case SelectorDataType.PH:
-			return series.map(s => s.pH);
-		case SelectorDataType.SOIL_DENSITY:
-			return series.map(s => s.soilDensity);
-		default:
-			break;
+const getChartData = (series, dataType) => {
+	const resultData = [];
+	const dataProvider = getDataProviderByType(dataType);
+	for (var i = 0; i < series.length; i++) {
+		const tmp = dataProvider(series[i]);
+		for (var j = 0, n = series[i].repeated; j < n; j++) {
+			resultData.push(tmp);
+		}
 	}
-	return [];
-}
+	return resultData;
+};
 
-export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChange, onSeriesClick, dataType }) {
-	const [rangeLimits, setRangeLimits] = useState([1, series.length]);
+export function EmeraldChartRangeSelector(props) {
+	const {
+		series,
+		nSeries,
+		time,
+		timeUnit,
+		onRangeChange,
+		onSeriesClick,
+		dataType
+	} = props;
+	const [rangeLimits, setRangeLimits] = useState([1, nSeries]);
 	const [labelSuffix, setLabelSuffix] = useState(formatDataTypeUnit(dataType));
 	const [chartData, setChartData] = useState(getChartData(series, dataType));
 
 	const minDistance = 1;
 	const id = useId();
 	const clipPathId = `${id}-clip-path`;
-	const headers = [...Array(series.length).keys()].map(x => x + 1);
+	const headers = [...Array(nSeries).keys()].map(x => x + 1);
 	const marks = [
 		{
 			value: 1,
 			label: formatTime(0, timeUnit),
 		},
 		{
-			value: series.length - 1,
-			label: formatTime(time * (series.length - 1), timeUnit),
+			value: nSeries - 1,
+			label: formatTime(time * (nSeries - 1), timeUnit),
 		},
 	];
 
@@ -145,7 +147,7 @@ export function EmeraldChartRangeSelector({ series, time, timeUnit, onRangeChang
 			</ResponsiveChartContainer>
 			<Slider
 				min={1}
-				max={series.length - 1}
+				max={nSeries - 1}
 				value={rangeLimits}
 				onChange={handleChange}
 				valueLabelDisplay="auto"
