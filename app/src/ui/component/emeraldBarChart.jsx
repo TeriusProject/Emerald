@@ -22,14 +22,20 @@
 
 import { React } from "react";
 import { BarChart } from "@mui/x-charts";
+import { pastelPalette } from "../../utils/palette";
 
-export function EmeraldBarChart({ data, xAxisKey, dataKey, labelFormatter, seriesLabel }) {
+export function EmeraldBarChart({ data, xAxisKey, dataKey, labelFormatter, seriesLabel, colors }) {
 	return (
 		<BarChart
 			className="emerald-series-histogram"
 			dataset={data}
 			xAxis={[{ scaleType: 'band', dataKey: xAxisKey }]}
-			series={[{ dataKey: dataKey, label: seriesLabel, valueFormatter: labelFormatter }]}
+			series={[{
+				dataKey: dataKey,
+				label: seriesLabel,
+				valueFormatter: labelFormatter,
+				color: colors ? colors[dataKey]?? pastelPalette[0] : pastelPalette[1]
+			}]}
 			height={350}
 			grid={{ horizontal: true }}
 			borderRadius={10}

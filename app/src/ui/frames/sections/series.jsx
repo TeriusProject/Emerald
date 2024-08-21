@@ -29,6 +29,7 @@ import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart
 import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime } from "../../../utils/formatter";
+import { pastelPalette, palettesByFamily, soilDepthPalette } from "../../../utils/palette";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -61,6 +62,37 @@ function AdditiveTable({ tableId, title, rows }) {
 			columnsAlign={columnsAlign}
 		/>
 	);
+}
+
+function SoilDepthBarChart({ soilTemperatureData }) {
+	const chartSeriesToColor = () => {
+		if (soilTemperatureData.series.length === 0) return;
+		return Object.keys(soilTemperatureData.series[0])
+			.sort()
+			.map((seriesKey, i) => {
+				return [seriesKey, soilDepthPalette[i]];
+			});
+	};
+	const colors = chartSeriesToColor()
+		? Object.fromEntries(chartSeriesToColor())
+		: undefined;
+
+	return (
+		<EmeraldStackedBarChart
+			title={"Soil temperature (\u2103)"}
+			data={soilTemperatureData}
+			labelFormatter={function (v) { return `${v} \u2103`; }}
+			colors={colors}
+		/>
+	);
+}
+
+function LightExposureAreaChart({ lightExposureData }) {
+	<EmeraldStackedAreaChart
+		title={"Light exposure (W/m\u00B2)"}
+		seriesDataCollection={lightExposureData}
+		labelFormatter={function (v) { return `${v} nm`; }}
+	/>
 }
 
 export function Series(props) {
@@ -161,16 +193,8 @@ export function Series(props) {
 				/>
 			</div>
 			<div className="multidimension-chart-row">
-				<EmeraldStackedAreaChart
-					title={"Light exposure (W/m\u00B2)"}
-					seriesDataCollection={series.lightExposure}
-					labelFormatter={function (v) { return `${v} nm`; }}
-				/>
-				<EmeraldStackedBarChart
-					title={"Soil temperature (\u2103)"}
-					data={series.soilTemperature}
-					labelFormatter={function (v) { return `${v} \u2103`; }}
-				/>
+				<LightExposureAreaChart lightExposureData={series.lightExposure} />
+				<SoilDepthBarChart soilTemperatureData={series.soilTemperature} />
 			</div>
 			<div className="histogram-row">
 				<EmeraldBarChart
@@ -179,6 +203,7 @@ export function Series(props) {
 					dataKey={"mm"}
 					seriesLabel={"Water use (mm)"}
 					labelFormatter={(v) => `${v} mm`}
+					colors={{ "mm": palettesByFamily.blue[0] }}
 				/>
 				<EmeraldBarChart
 					data={series.environmentTemp}
@@ -186,6 +211,7 @@ export function Series(props) {
 					dataKey={"temp"}
 					seriesLabel={"Environment temperature (\u2103)"}
 					labelFormatter={(v) => `${v} \u2103`}
+					colors={{ "temp": pastelPalette[2] }}
 				/>
 			</div>
 		</EmeraldSection>

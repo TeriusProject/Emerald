@@ -24,21 +24,25 @@ import { React } from "react";
 import { BarChart } from "@mui/x-charts";
 import { axisClasses } from '@mui/x-charts/ChartsAxis';
 
-export function EmeraldStackedBarChart({ title, data, labelFormatter }) {
+export function EmeraldStackedBarChart({ title, data, labelFormatter, colors }) {
 	const getSeries = () => {
 		return Object.keys(data.series[0]).map(seriesKey => {
-			return {
+			const seriesObject = {
 				dataKey: seriesKey,
 				label: `Depth ${seriesKey}`,
 				layout: 'vertical',
 				stack: 'stack',
-				valueFormatter: labelFormatter
+				valueFormatter: labelFormatter,
 			};
-		})
+			if (colors)
+				seriesObject["color"] = colors[seriesKey];
+
+			return seriesObject;
+		});
 	}
-	const onClickHandler = (a,b,c) => {
+	const onClickHandler = (a, b, c) => {
 		debugger;
-	}
+	};
 	return (
 		<div className="stacked-bar-chart-component">
 			<div className="stacked-bar-chart-component-title">

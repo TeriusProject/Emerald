@@ -31,3 +31,6 @@ export const palettesByFamily = {
 	red: ["#C9190B", "#A30000", "#7D1007", "#470000", "#2C0000"],
 	black: ["#F0F0F0", "#D2D2D2", "#B8BBBE", "#8A8D90", "#6A6E73"],
 };
+/* Color palette from green to brown */
+export const soilDepthPalette = ["#AFD198", "#E8EFCF", "#ECCA9C", "DBA979"];
+export const lightExposurePalette = ["#EEA5A6", "#E493B3", "#B784B7", "#8E7AB5"];

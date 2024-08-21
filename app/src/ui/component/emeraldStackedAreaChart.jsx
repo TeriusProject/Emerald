@@ -31,7 +31,7 @@ export function EmeraldStackedAreaChart({ title, seriesDataCollection, labelForm
 			label: seriesDataKey,
 			area: true,
 			stack: 'total',
-			showMark: false
+			showMark: false,
 		};
 	});
 
