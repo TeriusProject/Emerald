@@ -17,7 +17,7 @@ export const adf = {
 		},
 		soilTempInfo: {
 			n: 2,
-			min: 0,
+			tY: 0,
 			max: 50
 		},
 		reductionInfo: {},

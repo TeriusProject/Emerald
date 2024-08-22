@@ -28,8 +28,13 @@ import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
-import { formatTime } from "../../../utils/formatter";
-import { pastelPalette, palettesByFamily, soilDepthPalette } from "../../../utils/palette";
+import { formatTime, formatFloatingPoint } from "../../../utils/formatter";
+import {
+	pastelPalette,
+	palettesByFamily,
+	soilDepthPalette,
+	lightExposurePalette
+} from "../../../utils/palette";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -68,6 +73,7 @@ function SoilDepthBarChart({ soilTemperatureData }) {
 	const chartSeriesToColor = () => {
 		if (soilTemperatureData.series.length === 0) return;
 		return Object.keys(soilTemperatureData.series[0])
+			.map(k => parseInt(k))
 			.sort()
 			.map((seriesKey, i) => {
 				return [seriesKey, soilDepthPalette[i]];
@@ -81,40 +87,45 @@ function SoilDepthBarChart({ soilTemperatureData }) {
 		<EmeraldStackedBarChart
 			title={"Soil temperature (\u2103)"}
 			data={soilTemperatureData}
-			labelFormatter={function (v) { return `${v} \u2103`; }}
+			labelFormatter={function (v) { return `${formatFloatingPoint(v)} \u2103`; }}
 			colors={colors}
 		/>
 	);
 }
 
 function LightExposureAreaChart({ lightExposureData }) {
-	<EmeraldStackedAreaChart
-		title={"Light exposure (W/m\u00B2)"}
-		seriesDataCollection={lightExposureData}
-		labelFormatter={function (v) { return `${v} nm`; }}
-	/>
+	const chartSeriesToColor = () => {
+		return Object.keys(lightExposureData.series)
+			.map(k => parseInt(k))
+			.sort()
+			.map((seriesKey, i) => {
+				return [seriesKey, lightExposurePalette[i]];
+			});
+	};
+
+	return (
+		<EmeraldStackedAreaChart
+			title={"Light exposure (W/m\u00B2)"}
+			seriesDataCollection={lightExposureData}
+			labelFormatter={function (v) { return `${formatFloatingPoint(v)} nm`; }}
+			colors={Object.fromEntries(chartSeriesToColor())}
+		/>
+	);
 }
 
 export function Series(props) {
-	const { adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries } = props;
+	const { adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries, getSeriesIndex } = props;
 	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange - 1);
 	const [series, setSeries] = useState(adf.series[lowerBoundRange]);
-	const [repeatedCounter, setRepeatedCounter] = useState(adf.series[lowerBoundRange].repeated);
 
 	const onBackButtonClick = (_) => {
-		if (seriesIndex === lowerBoundRange) return;
-		if (series.repeated > repeatedCounter) {
-			setRepeatedCounter(repeatedCounter + 1);
-			return;
-		}
+		debugger;
+		if (currentSeries.number === lowerBoundRange) return;
 		setSeriesIndex(seriesIndex - 1);
 	}
 	const onNextButtonClick = (_) => {
-		if (seriesIndex === upperBoundRange - 1) return;
-		if (repeatedCounter > 1) {
-			setRepeatedCounter(repeatedCounter - 1);
-			return;
-		}
+		debugger;
+		if (currentSeries.number === upperBoundRange - 1) return;
 		setSeriesIndex(seriesIndex + 1);
 	}
 	const updateStartingSeries = useCallback((startingIndex) => {
@@ -127,10 +138,6 @@ export function Series(props) {
 			setSeries(adf.series[endingIndex - 1]);
 		}
 	}, [adf.series, seriesIndex]);
-
-	useEffect(() => {
-		setRepeatedCounter(series.repeated);
-	}, [series]);
 
 	useEffect(() => {
 		setSeries(adf.series[seriesIndex - 1]);
@@ -202,7 +209,7 @@ export function Series(props) {
 					xAxisKey={"chunk"}
 					dataKey={"mm"}
 					seriesLabel={"Water use (mm)"}
-					labelFormatter={(v) => `${v} mm`}
+					labelFormatter={(v) => `${formatFloatingPoint(v)} mm`}
 					colors={{ "mm": palettesByFamily.blue[0] }}
 				/>
 				<EmeraldBarChart
@@ -210,7 +217,7 @@ export function Series(props) {
 					xAxisKey={"chunk"}
 					dataKey={"temp"}
 					seriesLabel={"Environment temperature (\u2103)"}
-					labelFormatter={(v) => `${v} \u2103`}
+					labelFormatter={(v) => `${formatFloatingPoint(v)} \u2103`}
 					colors={{ "temp": pastelPalette[2] }}
 				/>
 			</div>

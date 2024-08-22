@@ -163,17 +163,45 @@
 	user-select: none;
 	cursor: pointer;
 	display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 5px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    column-gap: 10px;
+	justify-content: center;
+	align-items: center;
+	padding-top: 5px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	column-gap: 10px;
 	width: 170px;
 }
 
 .emerald-icon-button:hover {
 	background: #8080802e;
+}
+
+.soil-scheme {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0px;
+}
+
+.soil-block-content {
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: brown;
+	position: relative;
+}
+
+.sensor {
+	position: relative;
+}
+
+.soil-scheme-block {
+	background: #D8AE7E;
+}
+
+.block-label {
+	width: fit-content;
+    position: relative;
+    float: right;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -115,6 +115,7 @@ export function Adf({ adf }) {
 				lowerBoundRange={seriesRange[0]}
 				upperBoundRange={seriesRange[1]}
 				currentSeries={currentSeries}
+				getSeriesIndex={getSeriesIndex}
 			/>
 		</div>
 	);

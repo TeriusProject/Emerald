@@ -20,18 +20,36 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
+import { React, useState } from "react";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { EmeraldProperty } from "../../component/emeraldProperty";
 import { formatTime } from "../../../utils/formatter";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import "./sections.css";
+import { EmeraldSoilScheme } from "../../component/emeraldSoilScheme";
 
 export function Header({ adf, time, timeUnit }) {
+
+	const [isExpandedSectionOpen, setExpandedSectionOpen] = useState(false);
+
+	const onExpandClick = (_) => {
+		setExpandedSectionOpen(!isExpandedSectionOpen);
+	};
+
 	return (
 		<EmeraldSection className="adf-header-section">
-			<EmeraldProperty label="ADF version" value={adf.header.version.label} hexColor="#2996CD" />
-			<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
-			<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />
+			<div className="adf-header-properties">
+				<EmeraldProperty label="ADF version" value={adf.header.version.label} hexColor="#2996CD" />
+				<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
+				<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />
+			</div>
+			<div className="expanded-section" style={{ display: isExpandedSectionOpen ? 'block' : 'none' }}>
+				<EmeraldSoilScheme height={400} width={70} n={4}/>
+			</div>
+			<div className="expand-button" onClick={onExpandClick}>
+				{isExpandedSectionOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+			</div>
 		</EmeraldSection>
 	);
 }

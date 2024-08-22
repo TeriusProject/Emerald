@@ -26,7 +26,7 @@ import { axisClasses } from '@mui/x-charts/ChartsAxis';
 
 export function EmeraldStackedBarChart({ title, data, labelFormatter, colors }) {
 	const getSeries = () => {
-		return Object.keys(data.series[0]).map(seriesKey => {
+		return data.depths.map(seriesKey => {
 			const seriesObject = {
 				dataKey: seriesKey,
 				label: `Depth ${seriesKey}`,

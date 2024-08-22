@@ -121,14 +121,14 @@ export function EmeraldChartRangeSelector(props) {
 					{
 						min: dataType === SelectorDataType.PH ? 1 : 0,
 						max: dataType === SelectorDataType.PH ? 14 : undefined,
-						valueFormatter: (v) => `${formatFloatingPoint(v)} ${labelSuffix}`
+						valueFormatter: (v) => `${formatFloatingPoint(v)}`
 					}
 				]}
 				series={[
 					{
 						type: 'line',
 						data: chartData,
-						color: "var(--menu-font-color)",
+						color: "#9CDBA6",
 						valueFormatter: (v) => `${formatFloatingPoint(v)} ${labelSuffix}`
 					},
 				]}
@@ -157,10 +157,10 @@ export function EmeraldChartRangeSelector(props) {
 				sx={{
 					mt: 2,
 					'& .MuiSlider-thumb': {
-						color: "var(--menu-font-color)"
+						color: "#9CDBA6"
 					},
 					'& .MuiSlider-track': {
-						color: "var(--menu-font-color)"
+						color: "#9CDBA6"
 					},
 					'& .MuiSlider-rail': {
 						color: "var(--table-border)"
