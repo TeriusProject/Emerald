@@ -103,6 +103,12 @@
 	padding-bottom: 20px;
 }
 
+.expanded-section {
+	align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
 @media only screen and (max-width: 1000px) {
 	.adf-header-section {
 		display: grid;

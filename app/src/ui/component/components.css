@@ -180,13 +180,14 @@
 	display: flex;
 	flex-direction: column;
 	row-gap: 0px;
+	width: fit-content;
 }
 
 .soil-block-content {
 	width: 100%;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
-	border-bottom-color: brown;
+	border-bottom-color: #DED0B6;
 	position: relative;
 }
 
@@ -200,8 +201,51 @@
 
 .block-label {
 	width: fit-content;
-    position: relative;
-    float: right;
+	position: relative;
+	float: right;
+}
+
+.translation-block {
+	background: #D8AE7E;
+	position: relative;
+}
+
+.translation-block-content {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #bbc0bb;
+}
+
+.wavelength-scheme {
+	display: flex;
+	flex-direction: column;
+}
+
+.spectrum-scheme {
+	border-style: solid;
+	border-color: #bebebe;
+	border-width: 1px;
+	display: flex;
+}
+
+.visible-light-subsection {
+	background: linear-gradient(90deg, Indigo, Blue, Green, Yellow, Orange, Red);
+}
+
+.spectrum-subsection {
+	border-right-color: #000000;
+	border-right-style: solid;
+	border-right-width: 1px;
+	text-align: center;
+}
+
+.wavelength-block-container {
+	border-color: #bebebe;
+	align-items: end;
+}
+
+.wavelength-block:hover {
+	background-color: aqua;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -12,8 +12,8 @@ export const adf = {
 		},
 		lightInfo: {
 			n: 10,
-			min: 350,
-			max: 950
+			min: 200,
+			max: 700
 		},
 		soilTempInfo: {
 			n: 2,

@@ -26,13 +26,15 @@ import { EmeraldProperty } from "../../component/emeraldProperty";
 import { formatTime } from "../../../utils/formatter";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import "./sections.css";
 import { EmeraldSoilScheme } from "../../component/emeraldSoilScheme";
+import { EmeraldWaveScheme } from "../../component/emeraldWaveScheme";
+import "./sections.css";
 
 export function Header({ adf, time, timeUnit }) {
 
 	const [isExpandedSectionOpen, setExpandedSectionOpen] = useState(false);
 
+	const header = adf.header;
 	const onExpandClick = (_) => {
 		setExpandedSectionOpen(!isExpandedSectionOpen);
 	};
@@ -44,8 +46,15 @@ export function Header({ adf, time, timeUnit }) {
 				<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
 				<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />
 			</div>
-			<div className="expanded-section" style={{ display: isExpandedSectionOpen ? 'block' : 'none' }}>
-				<EmeraldSoilScheme height={400} width={70} n={4}/>
+			<div className="expanded-section" style={{ display: isExpandedSectionOpen ? 'flex' : 'none' }}>
+				<EmeraldSoilScheme height={200} width={70} n={2} maxDepth={500} tY={20} />
+				<EmeraldWaveScheme
+					width={400}
+					height={80}
+					minLength={header.lightInfo.min}
+					maxLength={header.lightInfo.max}
+					n={header.lightInfo.n}
+				/>
 			</div>
 			<div className="expand-button" onClick={onExpandClick}>
 				{isExpandedSectionOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

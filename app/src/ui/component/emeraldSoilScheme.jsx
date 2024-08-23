@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
+import { Fragment, React } from "react";
 import { ReactComponent as Grass } from "../../img/grass.svg"
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import "./components.css";
@@ -48,23 +48,59 @@ export function EmeraldSoilScheme({ height, width, n, maxDepth, tY }) {
 	const labelStyle = {
 		top: `${labelTopPosition}px`
 	}
-
+	const blockSizeMm = (maxDepth - tY) / n;
 	const renderBlock = (index) => {
 		return (
 			<div key={`scheme-block-${index}`} className="soil-scheme-block" style={blockStyle}>
 				<div key={`block-content-${index}`} className="soil-block-content" style={blockContentStyle}>
 					<DeviceThermostatIcon key={`icon-${index}`} className="sensor" style={iconStyle} />
 					<div key={`label-${index}`} className="block-label" style={labelStyle}>
-						aaa
+						{`${blockSizeMm * (index + 1)}mm`}
 					</div>
 				</div>
 			</div>
 		);
+	};
+
+	const renderTranslationBlock = () => {
+		const translationBlockStyle = {
+			width: `${width}px`,
+			height: `20px`,
+		};
+		const translationBlockContent = {
+			width: `${blockContentWidth}px`,
+			height: '100%',
+		};
+		const translationBlockLabel = {
+			top: `1px`
+		};
+		return (
+			<div className="translation-block" style={translationBlockStyle}>
+				<div className="translation-block-content" style={translationBlockContent}>
+					<div className="block-label" style={translationBlockLabel}>
+						{`${tY}mm`}
+					</div>
+				</div>
+			</div>
+		);
+	};
+	
+	const renderShiftBlock = () => {
+		const shiftBlockStyle = {
+			width: `${width}px`,
+			height: `30px`,
+		};
+		return (
+			<div className="soil-scheme-block" style={shiftBlockStyle}>
+			</div>
+		)
 	}
 
 	return (
 		<div className="soil-scheme">
 			<Grass style={{ width: `${width}px`, height: "20px" }} />
+			{tY ? renderTranslationBlock() : <Fragment></Fragment>}
+			{renderShiftBlock()}
 			{[...Array(n).keys()].map(i => renderBlock(i))}
 		</div>
 	);

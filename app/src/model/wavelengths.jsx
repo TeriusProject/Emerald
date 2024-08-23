@@ -1,4 +1,4 @@
-/* columnAlign.jsx
+/* wavelengths.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,8 +20,15 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-export const ColumnAlign = Object.freeze({
-	LEFT: 'left',
-	CENTER: 'center',
-	RIGHT: 'right'
+export const uvLightNM = Object.freeze({
+	min: 4,
+	max: 400,
+});
+export const visibleLightNM = Object.freeze({
+	min: 400,
+	max: 750,
+});
+export const infraredLightNM = Object.freeze({
+	min: 750,
+	max: 5000,
 });

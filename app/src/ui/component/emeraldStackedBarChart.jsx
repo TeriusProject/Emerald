@@ -1,4 +1,4 @@
-/* stackedBarChart.jsx
+/* emeraldStackedBarChart.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
