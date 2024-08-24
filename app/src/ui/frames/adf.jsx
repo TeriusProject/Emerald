@@ -34,14 +34,9 @@ const warningMessage = "WARN: The time unit you chose is bigger than the measure
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
-	const [seriesRange, setSeriesRange] = useState([1, adf.series.length]);
 	const [currentSeries, setCurrentSeries] = useState({ index: 1, number: 1 });
 	const [openNotification, setOpenNotification] = useState(false);
 	const [repeatedMask, setRepeatedMask] = useState([]);
-
-	const getRepetatedMask = (series) => {
-		return series.map(s => s.repeated);
-	};
 
 	const onUnitChange = (_, newValue) => {
 		if (!newValue) return;
@@ -51,28 +46,35 @@ export function Adf({ adf }) {
 		setTimeUnit(newValue);
 	};
 
+	const getRepetatedMask = (series) => {
+		return series.map(s => s.repeated);
+	};
+
 	const onCloseNotification = () => {
 		setOpenNotification(false);
 	};
-
-	const onSeriesRangeChange = useCallback((newRange) => {
-		setSeriesRange([...newRange]);
-	}, []);
 
 	const checkTimeUnit = (newValue) => {
 		return (adf.metadata.periodSec < newValue.timeInSeconds)
 	};
 
-	const getSeriesIndex = (seriesNumber) => {
+	const getSeriesIndex = useCallback((seriesNumber) => {
 		if (repeatedMask.length === 0) return 0;
 		for (var i = 0, acc = 0; i < repeatedMask.length; i++) {
 			var lowerBound = acc;
 			acc += repeatedMask[i];
-			if (seriesNumber >= lowerBound && seriesNumber < acc)
+			if (seriesNumber >= lowerBound && seriesNumber <= acc)
 				return i;
 		}
 		throw new Error("Series index out of bound");
-	};
+	},[repeatedMask]);
+
+	const onSeriesRangeChange = useCallback((newRange) => {
+		setCurrentSeries({
+			index: getSeriesIndex(newRange[0]) + 1,
+			number: newRange[0],
+		});
+	}, [getSeriesIndex]);
 
 	const onSeriesClick = (_, clickedItem) => {
 		setCurrentSeries({
@@ -113,10 +115,7 @@ export function Adf({ adf }) {
 				adf={adf}
 				time={timeLength}
 				timeUnit={timeUnit}
-				lowerBoundRange={seriesRange[0]}
-				upperBoundRange={seriesRange[1]}
-				selectedSeriesMetadata={currentSeries}
-				getSeriesIndex={getSeriesIndex}
+				currentSeries={currentSeries}
 			/>
 		</div>
 	);

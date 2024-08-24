@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useCallback, useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { EmeraldTable } from "../../component/emeraldTable";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { ColumnAlign } from "../../../model/columnAlign";
@@ -113,43 +113,22 @@ function LightExposureAreaChart({ lightExposureData }) {
 	);
 }
 
-export function Series(props) {
-	const { adf, time, timeUnit, lowerBoundRange, upperBoundRange, currentSeries, getSeriesIndex } = props;
-	const [seriesIndex, setSeriesIndex] = useState(lowerBoundRange - 1);
-	const [series, setSeries] = useState(adf.series[lowerBoundRange]);
+export function Series({ adf, time, timeUnit, currentSeries }) {
+	const [seriesIndex, setSeriesIndex] = useState(currentSeries.index);
+	const [series, setSeries] = useState(adf.series[currentSeries.index]);
 
 	const onBackButtonClick = (_) => {
 		debugger;
-		if (currentSeries.number === lowerBoundRange) return;
 		setSeriesIndex(seriesIndex - 1);
 	}
 	const onNextButtonClick = (_) => {
 		debugger;
-		if (currentSeries.number === upperBoundRange - 1) return;
 		setSeriesIndex(seriesIndex + 1);
 	}
-	const updateStartingSeries = useCallback((startingIndex) => {
-		setSeriesIndex(startingIndex);
-		setSeries(adf.series[startingIndex]);
-	}, [adf.series]);
-	const updateEndingSeries = useCallback((endingIndex) => {
-		if (endingIndex < seriesIndex) {
-			setSeriesIndex(endingIndex - 1);
-			setSeries(adf.series[endingIndex - 1]);
-		}
-	}, [adf.series, seriesIndex]);
 
 	useEffect(() => {
 		setSeries(adf.series[seriesIndex - 1]);
 	}, [seriesIndex, adf.series]);
-
-	useEffect(() => {
-		updateStartingSeries(lowerBoundRange);
-	}, [lowerBoundRange, updateStartingSeries]);
-
-	useEffect(() => {
-		updateEndingSeries(upperBoundRange);
-	}, [upperBoundRange, updateEndingSeries]);
 
 	useEffect(() => {
 		setSeriesIndex(currentSeries.index);
