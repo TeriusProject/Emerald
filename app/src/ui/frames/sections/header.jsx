@@ -76,9 +76,9 @@ export function Header({ adf, time, timeUnit }) {
 						title={"Soil temperature sensors"}
 						height={200}
 						width={70}
-						n={2}
-						maxDepth={500}
-						tY={20}
+						n={header.soilTempInfo.n}
+						maxDepth={header.soilTempInfo.max}
+						tY={header.soilTempInfo.tY}
 					/>
 					<EmeraldWaveScheme
 						title={"Wavelengths tracked"}

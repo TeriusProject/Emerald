@@ -17,8 +17,8 @@ export const adf = {
 		},
 		soilTempInfo: {
 			n: 2,
-			tY: 0,
-			max: 50
+			tY: 20,
+			max: 500
 		},
 		reductionInfo: {
 			soilDensity: 0,
