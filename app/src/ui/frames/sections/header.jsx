@@ -83,7 +83,7 @@ export function Header({ adf, time, timeUnit }) {
 					<EmeraldWaveScheme
 						title={"Wavelengths tracked"}
 						height={400}
-						width={100}
+						width={150}
 						minLength={header.lightInfo.min}
 						maxLength={header.lightInfo.max}
 						n={header.lightInfo.n}

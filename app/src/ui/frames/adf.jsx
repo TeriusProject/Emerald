@@ -29,10 +29,7 @@ import { EmeraldNotification } from "../component/emeraldNotification";
 import { SeriesSelector } from "./sections/seriesSelector";
 import "./frames.css";
 
-const warningMessage = "";
-const getRepetatedMask = (series) => {
-	return series.map(s => s.repeated);
-};
+const warningMessage = "WARN: The time unit you chose is bigger than the measure itself";
 
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
@@ -40,15 +37,11 @@ export function Adf({ adf }) {
 	const [seriesRange, setSeriesRange] = useState([1, adf.series.length]);
 	const [currentSeries, setCurrentSeries] = useState({ index: 1, number: 1 });
 	const [openNotification, setOpenNotification] = useState(false);
-	const [repeatedMask, setRepeatedMask] = useState(getRepetatedMask(adf.series));
+	const [repeatedMask, setRepeatedMask] = useState([]);
 
-	useEffect(() => {
-		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
-	}, [timeUnit, adf.metadata.periodSec]);
-
-	useEffect(() => {
-		setRepeatedMask(getRepetatedMask(adf.series));
-	}, [adf]);
+	const getRepetatedMask = (series) => {
+		return series.map(s => s.repeated);
+	};
 
 	const onUnitChange = (_, newValue) => {
 		if (!newValue) return;
@@ -88,6 +81,14 @@ export function Adf({ adf }) {
 		});
 	}
 
+	useEffect(() => {
+		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
+	}, [timeUnit, adf.metadata.periodSec]);
+
+	useEffect(() => {
+		setRepeatedMask(getRepetatedMask(adf.series));
+	}, [adf]);
+
 	return (
 		<div className="adf-content">
 			<EmeraldNotification
@@ -114,7 +115,7 @@ export function Adf({ adf }) {
 				timeUnit={timeUnit}
 				lowerBoundRange={seriesRange[0]}
 				upperBoundRange={seriesRange[1]}
-				currentSeries={currentSeries}
+				selectedSeriesMetadata={currentSeries}
 				getSeriesIndex={getSeriesIndex}
 			/>
 		</div>
