@@ -23,14 +23,16 @@
 import { React } from "react";
 import "./components.css";
 
-export function EmeraldTable({ title, headers, rows, columnsAlign, tableId }) {
+export function EmeraldTable({ title, headers, rows, columnsAlign, tableId, width }) {
 
+	const tableStyle = {
+		width: width ? `${width}px` : "fit-content",
+	};
 	const getCellStyle = (index) => {
 		return {
 			textAlign: columnsAlign ? columnsAlign[index] : 'center'
 		};
 	}
-
 	const renderHeaderCell = (columnName, i) => {
 		return (
 			<th key={`${tableId}-header-cell-${columnName}`} style={getCellStyle(i)}>
@@ -38,7 +40,6 @@ export function EmeraldTable({ title, headers, rows, columnsAlign, tableId }) {
 			</th>
 		);
 	};
-
 	const renderCell = (cell, i) => {
 		return (
 			<td key={`${tableId}-cell-${cell}`} style={getCellStyle(i)}>
@@ -46,7 +47,6 @@ export function EmeraldTable({ title, headers, rows, columnsAlign, tableId }) {
 			</td>
 		);
 	};
-
 	const renderRow = (rowArray, index) => {
 		return (
 			<tr key={`${tableId}row-${index}`}>
@@ -65,12 +65,10 @@ export function EmeraldTable({ title, headers, rows, columnsAlign, tableId }) {
 			<div className="emerald-component-title">
 				{title}
 			</div>
-			<table className="emerald-table">
+			<table className="emerald-table" style={tableStyle}>
 				<thead>
 					<tr>
-						{
-							headers.map((columnName, i) => renderHeaderCell(columnName, i))
-						}
+						{headers.map((columnName, i) => renderHeaderCell(columnName, i))}
 					</tr>
 				</thead>
 				<tbody>

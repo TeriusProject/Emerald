@@ -20,7 +20,24 @@ export const adf = {
 			tY: 0,
 			max: 50
 		},
-		reductionInfo: {},
+		reductionInfo: {
+			soilDensity: 0,
+			pressure: 0,
+			lightExposure: 0,
+			waterUse: 0,
+			soilTemp: 0,
+			envTemp: 0,
+			additive: 0,
+		},
+		precisionInfo: {
+			soilDensity: 0,
+			pressure: 0,
+			lightExposure: 0,
+			waterUse: 0,
+			soilTemp: 0,
+			envTemp: 0,
+			additive: 0,
+		},
 		chunks: 4
 	},
 	metadata: {

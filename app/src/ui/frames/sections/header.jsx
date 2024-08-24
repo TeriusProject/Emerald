@@ -24,11 +24,14 @@ import { React, useState } from "react";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { EmeraldProperty } from "../../component/emeraldProperty";
 import { formatTime } from "../../../utils/formatter";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { EmeraldSoilScheme } from "../../component/emeraldSoilScheme";
 import { EmeraldWaveScheme } from "../../component/emeraldWaveScheme";
+import { EmeraldTable } from "../../component/emeraldTable";
+import { ColumnAlign } from "../../../model/columnAlign";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import "./sections.css";
+import { ReductionMode } from "../../../model/reductionMode";
 
 export function Header({ adf, time, timeUnit }) {
 
@@ -37,6 +40,28 @@ export function Header({ adf, time, timeUnit }) {
 	const header = adf.header;
 	const onExpandClick = (_) => {
 		setExpandedSectionOpen(!isExpandedSectionOpen);
+	};
+	const precisionTableRows = () => {
+		return [
+			["Soil density", header.precisionInfo.soilDensity.toExponential()],
+			["Atmospheric pressure", header.precisionInfo.pressure.toExponential()],
+			["Light exposure", header.precisionInfo.lightExposure.toExponential()],
+			["Water use", header.precisionInfo.waterUse.toExponential()],
+			["Soil temperature", header.precisionInfo.soilTemp.toExponential()],
+			["Environment temperature", header.precisionInfo.envTemp.toExponential()],
+			["Additive concentration", header.precisionInfo.additive.toExponential()],
+		];
+	};
+	const reductionModeTableRows = () => {
+		return [
+			["Soil density", ReductionMode[header.reductionInfo.soilDensity]],
+			["Atmospheric pressure", ReductionMode[header.reductionInfo.pressure]],
+			["Light exposure", ReductionMode[header.reductionInfo.lightExposure]],
+			["Water use", ReductionMode[header.reductionInfo.waterUse]],
+			["Soil temperature", ReductionMode[header.reductionInfo.soilTemp]],
+			["Environment temperature", ReductionMode[header.reductionInfo.envTemp]],
+			["Additive concentration", ReductionMode[header.reductionInfo.additive]],
+		];
 	};
 
 	return (
@@ -47,14 +72,40 @@ export function Header({ adf, time, timeUnit }) {
 				<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />
 			</div>
 			<div className="expanded-section" style={{ display: isExpandedSectionOpen ? 'flex' : 'none' }}>
-				<EmeraldSoilScheme height={200} width={70} n={2} maxDepth={500} tY={20} />
-				<EmeraldWaveScheme
-					width={400}
-					height={80}
-					minLength={header.lightInfo.min}
-					maxLength={header.lightInfo.max}
-					n={header.lightInfo.n}
-				/>
+				<div className="soil-wave-section">
+					<EmeraldSoilScheme
+						title={"Soil temperature sensors"}
+						height={200}
+						width={70}
+						n={2}
+						maxDepth={500}
+						tY={20}
+					/>
+					<EmeraldWaveScheme
+						title={"Wavelengths tracked"}
+						width={400}
+						height={80}
+						minLength={header.lightInfo.min}
+						maxLength={header.lightInfo.max}
+						n={header.lightInfo.n}
+					/>
+				</div>
+				<div className="reduction-and-precision-section">
+					<EmeraldTable
+						tableId={"reduction-table"}
+						title={"Reduction info"}
+						headers={["Field", "Reduction mode"]}
+						columnsAlign={[ColumnAlign.LEFT, ColumnAlign.CENTER]}
+						rows={reductionModeTableRows()}
+					/>
+					<EmeraldTable
+						tableId={"precision-table"}
+						title={"Precision info"}
+						headers={["Field", "Precision"]}
+						columnsAlign={[ColumnAlign.LEFT, ColumnAlign.RIGHT]}
+						rows={precisionTableRows()}
+					/>
+				</div>
 			</div>
 			<div className="expand-button" onClick={onExpandClick}>
 				{isExpandedSectionOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

@@ -26,7 +26,7 @@ import { uvLightNM, infraredLightNM, visibleLightNM } from "../../model/waveleng
 
 const invalidWavelengthRangeMessage = `The range of wavelength must be [${uvLightNM.min}-${infraredLightNM.max}]`;
 
-export function EmeraldWaveScheme({ width, height, maxLength, minLength, n }) {
+export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, n }) {
 
 	const [openNotification, setOpenNotification] = useState(false);
 
@@ -132,7 +132,8 @@ export function EmeraldWaveScheme({ width, height, maxLength, minLength, n }) {
 	checkRange();
 
 	return (
-		<Fragment>
+		<div className="wave-scheme-component">
+			{title ? <span className="component-title">{title}</span> : <Fragment></Fragment>}
 			<EmeraldNotification
 				id={`invalid-wavelength-range`}
 				open={openNotification}
@@ -149,6 +150,6 @@ export function EmeraldWaveScheme({ width, height, maxLength, minLength, n }) {
 					{infraredSectionLength > 0 ? renderInfraredSection() : <Fragment></Fragment>}
 				</div>
 			</div>
-		</Fragment>
+		</div>
 	);
 }

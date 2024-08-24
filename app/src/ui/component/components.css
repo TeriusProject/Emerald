@@ -216,6 +216,26 @@
 	border-bottom-color: #bbc0bb;
 }
 
+.soil-scheme-component {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.component-title {
+	width: fit-content;
+	margin-bottom: 20px;
+	font-size: var(--default-font-size);
+	color: var(--default-font-color);
+	font-weight: 300;
+}
+
+.wave-scheme-component {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .wavelength-scheme {
 	display: flex;
 	flex-direction: column;
@@ -291,5 +311,13 @@
 	.emerald-icon-button span {
 		text-wrap: nowrap;
 		overflow-x: hidden;
+	}
+
+	.soil-scheme-component{
+		margin-bottom: 40px;
+	}
+
+	.wave-scheme-component {
+		margin-bottom: 40px;
 	}
 }

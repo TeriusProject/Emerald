@@ -25,7 +25,7 @@ import { ReactComponent as Grass } from "../../img/grass.svg"
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import "./components.css";
 
-export function EmeraldSoilScheme({ height, width, n, maxDepth, tY }) {
+export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 	const blockBottomMargin = 30;
 	const blockHeight = height / n;
 	const blockContentHeight = blockHeight - blockBottomMargin;
@@ -97,11 +97,14 @@ export function EmeraldSoilScheme({ height, width, n, maxDepth, tY }) {
 	}
 
 	return (
+		<div className="soil-scheme-component">
+			{title ? <span className="component-title">{title}</span> : <Fragment></Fragment>}
 		<div className="soil-scheme">
 			<Grass style={{ width: `${width}px`, height: "20px" }} />
 			{tY ? renderTranslationBlock() : <Fragment></Fragment>}
 			{renderShiftBlock()}
 			{[...Array(n).keys()].map(i => renderBlock(i))}
+		</div>
 		</div>
 	);
 }

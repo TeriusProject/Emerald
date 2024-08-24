@@ -20,61 +20,61 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
- .adf-header-section {
+.adf-header-section {
 	margin: var(--default-section-margins);
 	padding: 30px;
 	border-radius: 3px;
- }
+}
 
- .adf-header-properties {
+.adf-header-properties {
 	display: flex;
 	column-gap: 30px;
 	justify-content: space-around;
-    align-items: center;
+	align-items: center;
 	padding-bottom: 30px;
- }
+}
 
- .expand-button {
+.expand-button {
 	margin-left: auto;
 	margin-right: auto;
 	width: fit-content;
 	border-radius: 20px;
 	cursor: pointer;
- }
+}
 
- .ribbon-section {
+.ribbon-section {
 	margin: var(--default-section-margins);
 	display: flex;
 	column-gap: 35px;
 	justify-content: center;
-    align-items: center;
- }
- 
- .adf-series-section {
+	align-items: center;
+}
+
+.adf-series-section {
 	margin: var(--default-section-margins);
 	padding-top: 30px;
 	padding-bottom: 30px;
 	border-radius: 3px;
- }
+}
 
- .series-title {
+.series-title {
 	width: 100%;
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-around;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: space-around;
 }
 
 .histogram-row {
-	display:flex;
+	display: flex;
 	justify-content: space-around;
-    align-items: center;
+	align-items: center;
 }
 
 .additives-section {
 	display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
+	justify-content: space-evenly;
+	align-items: flex-start;
 	margin-bottom: var(--default-vertical-skip);
 }
 
@@ -93,7 +93,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 }
 
 .series-selector-buttons-layout {
@@ -105,17 +105,27 @@
 
 .expanded-section {
 	align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
+	flex-direction: column;
+}
+
+.soil-wave-section {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.reduction-and-precision-section {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
 }
 
 @media only screen and (max-width: 1000px) {
-	.adf-header-section {
+	.adf-header-properties {
 		display: grid;
 		justify-content: start;
 	}
-	
-	
+
 	.additives-section {
 		flex-direction: column;
 		align-items: center;
@@ -130,10 +140,24 @@
 
 	.series-selector-buttons-layout {
 		display: grid;
-  		grid-template-columns: auto auto;
+		grid-template-columns: auto auto;
 		column-gap: 5px;
 		row-gap: 5px;
 		font-size: 14px;
 		margin-bottom: 30px;
+	}
+
+	.soil-wave-section {
+		width: 100%;
+		justify-content: unset;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.reduction-and-precision-section {
+		width: 100%;
+		flex-direction: column;
+		justify-content: unset;
+		align-items: center;
 	}
 }
