@@ -22,7 +22,7 @@ export const adf = {
 		},
 		reductionInfo: {
 			soilDensity: 0,
-			pressure: 0,
+			pressure: 1,
 			lightExposure: 0,
 			waterUse: 0,
 			soilTemp: 0,
@@ -30,7 +30,7 @@ export const adf = {
 			additive: 0,
 		},
 		precisionInfo: {
-			soilDensity: 0,
+			soilDensity: 0.001,
 			pressure: 0,
 			lightExposure: 0,
 			waterUse: 0,

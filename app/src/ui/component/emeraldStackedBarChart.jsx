@@ -41,7 +41,7 @@ export function EmeraldStackedBarChart({ title, data, labelFormatter, colors }) 
 		});
 	}
 	const onClickHandler = (a, b, c) => {
-		debugger;
+		/* to be implemented */
 	};
 	return (
 		<div className="stacked-bar-chart-component">

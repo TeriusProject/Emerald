@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import { EmeraldTable } from "../../component/emeraldTable";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { ColumnAlign } from "../../../model/columnAlign";
@@ -46,6 +46,7 @@ function AdditiveTable({ tableId, title, rows }) {
 	const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
 	const header = ["Name", "Concentration (g/kg)"];
 	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
+
 	const getAdditiveUrl = (id, name) => {
 		return (
 			<a href={`${chEBIUrl}${id}`} target="_blank" rel="noopener noreferrer">
@@ -113,29 +114,48 @@ function LightExposureAreaChart({ lightExposureData }) {
 	);
 }
 
-export function Series({ adf, time, timeUnit, currentSeries }) {
-	const [seriesIndex, setSeriesIndex] = useState(currentSeries.index);
-	const [series, setSeries] = useState(adf.series[currentSeries.index]);
+export function Series(props) {
+	const {
+		adf,
+		time,
+		timeUnit,
+		selectedSeriesMetadata,
+		setSelectedSeriesMetadata
+	} = props;
+
+	const isStillRepeating = () => {
+		var totalPreviousRepeatedSeries = 0;
+		for(var i = 0; i < selectedSeriesMetadata.index; i++) {
+			totalPreviousRepeatedSeries += adf.series[i].repeated;
+		}
+		const currentRepetition = selectedSeriesMetadata.number-totalPreviousRepeatedSeries;
+		return currentRepetition < adf.series[selectedSeriesMetadata.index].repeated;
+	};
 
 	const onBackButtonClick = (_) => {
-		debugger;
-		setSeriesIndex(seriesIndex - 1);
+		if (selectedSeriesMetadata.number === 1) return;
+		const newIndex = adf.series[selectedSeriesMetadata.index].repeated === 1
+			? selectedSeriesMetadata.index - 1
+			: selectedSeriesMetadata.index;
+		setSelectedSeriesMetadata({
+			number: selectedSeriesMetadata.number - 1,
+			index: newIndex,
+		});
 	}
+
 	const onNextButtonClick = (_) => {
-		debugger;
-		setSeriesIndex(seriesIndex + 1);
+		if (selectedSeriesMetadata.number === adf.metadata.nSeries) return;
+		const newIndex = isStillRepeating()
+		? selectedSeriesMetadata.index
+		: selectedSeriesMetadata.index + 1;
+		setSelectedSeriesMetadata({
+			number: selectedSeriesMetadata.number + 1,
+			index: newIndex,
+		});
 	}
-
-	useEffect(() => {
-		setSeries(adf.series[seriesIndex - 1]);
-	}, [seriesIndex, adf.series]);
-
-	useEffect(() => {
-		setSeriesIndex(currentSeries.index);
-	}, [currentSeries, adf.series]);
 
 	const renderOrdinalSeries = () => {
-		const seriesNumber = currentSeries.number;
+		const seriesNumber = selectedSeriesMetadata.number;
 		const suffix = seriesNumber === 1
 			? "st" : seriesNumber === 2
 				? "nd" : "th";
@@ -143,12 +163,16 @@ export function Series({ adf, time, timeUnit, currentSeries }) {
 	};
 
 	const startSeriesTime = () => {
-		return formatTime((currentSeries.number - 1) * time, timeUnit);
+		return formatTime((selectedSeriesMetadata.number - 1) * time, timeUnit);
 	};
 
 	const endSeriesTime = () => {
-		return formatTime((currentSeries.number * time), timeUnit);
+		return formatTime((selectedSeriesMetadata.number * time), timeUnit);
 	};
+
+	useEffect(() => {
+		setSelectedSeriesMetadata(selectedSeriesMetadata);
+	}, [selectedSeriesMetadata, setSelectedSeriesMetadata]);
 
 	return (
 		<EmeraldSection className="adf-series-section" elevation={3}>
@@ -168,23 +192,27 @@ export function Series({ adf, time, timeUnit, currentSeries }) {
 			</div>
 			<div className="additives-section">
 				<AdditiveTable
-					tableId={`${seriesIndex}-soilAdditiveTable`}
+					tableId={`${selectedSeriesMetadata.index}-soilAdditiveTable`}
 					title={soilAdditiveTableTitle}
-					rows={series.soilAdditives}
+					rows={adf.series[selectedSeriesMetadata.index].soilAdditives}
 				/>
 				<AdditiveTable
-					tableId={`${seriesIndex}-atmAdditiveTable`}
+					tableId={`${selectedSeriesMetadata.index}-atmAdditiveTable`}
 					title={atmosphereAdditiveTableTitle}
-					rows={series.atmAdditives}
+					rows={adf.series[selectedSeriesMetadata.index].atmAdditives}
 				/>
 			</div>
 			<div className="multidimension-chart-row">
-				<LightExposureAreaChart lightExposureData={series.lightExposure} />
-				<SoilDepthBarChart soilTemperatureData={series.soilTemperature} />
+				<LightExposureAreaChart
+					lightExposureData={adf.series[selectedSeriesMetadata.index].lightExposure}
+				/>
+				<SoilDepthBarChart
+					soilTemperatureData={adf.series[selectedSeriesMetadata.index].soilTemperature}
+				/>
 			</div>
 			<div className="histogram-row">
 				<EmeraldBarChart
-					data={series.waterUse}
+					data={adf.series[selectedSeriesMetadata.index].waterUse}
 					xAxisKey={"chunk"}
 					dataKey={"mm"}
 					seriesLabel={"Water use (mm)"}
@@ -192,7 +220,7 @@ export function Series({ adf, time, timeUnit, currentSeries }) {
 					colors={{ "mm": palettesByFamily.blue[0] }}
 				/>
 				<EmeraldBarChart
-					data={series.environmentTemp}
+					data={adf.series[selectedSeriesMetadata.index].environmentTemp}
 					xAxisKey={"chunk"}
 					dataKey={"temp"}
 					seriesLabel={"Environment temperature (\u2103)"}

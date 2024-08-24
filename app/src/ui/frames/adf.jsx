@@ -34,7 +34,7 @@ const warningMessage = "WARN: The time unit you chose is bigger than the measure
 export function Adf({ adf }) {
 	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
-	const [currentSeries, setCurrentSeries] = useState({ index: 1, number: 1 });
+	const [currentSeries, setCurrentSeries] = useState({ index: 0, number: 1 });
 	const [openNotification, setOpenNotification] = useState(false);
 	const [repeatedMask, setRepeatedMask] = useState([]);
 
@@ -71,17 +71,17 @@ export function Adf({ adf }) {
 
 	const onSeriesRangeChange = useCallback((newRange) => {
 		setCurrentSeries({
-			index: getSeriesIndex(newRange[0]) + 1,
+			index: getSeriesIndex(newRange[0]),
 			number: newRange[0],
 		});
 	}, [getSeriesIndex]);
 
 	const onSeriesClick = (_, clickedItem) => {
 		setCurrentSeries({
-			index: getSeriesIndex(clickedItem.dataIndex) + 1,
+			index: getSeriesIndex(clickedItem.dataIndex),
 			number: clickedItem.dataIndex + 1,
 		});
-	}
+	};
 
 	useEffect(() => {
 		setTimeLength(adf.metadata.periodSec / timeUnit.timeInSeconds);
@@ -115,7 +115,8 @@ export function Adf({ adf }) {
 				adf={adf}
 				time={timeLength}
 				timeUnit={timeUnit}
-				currentSeries={currentSeries}
+				selectedSeriesMetadata={currentSeries}
+				setSelectedSeriesMetadata={setCurrentSeries}
 			/>
 		</div>
 	);
