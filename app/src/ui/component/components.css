@@ -207,7 +207,8 @@
 }
 
 .translation-block {
-	background: #D8AE7E;
+	/* background: #D8AE7E; */
+	background: repeating-linear-gradient(-45deg, #a6a6a6b1, #a6a6a6b1 1px, #D8AE7E 2px, #D8AE7E 5px);
 	position: relative;
 }
 

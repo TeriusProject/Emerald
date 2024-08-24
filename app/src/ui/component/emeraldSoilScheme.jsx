@@ -57,7 +57,7 @@ export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 				<div key={`block-content-${index}`} className="soil-block-content" style={blockContentStyle}>
 					<DeviceThermostatIcon key={`icon-${index}`} className="sensor" style={iconStyle} />
 					<div key={`label-${index}`} className="block-label" style={labelStyle}>
-						{`${blockSizeMm * (index + 1)}mm`}
+						{`${(blockSizeMm) * (index + 1) + tY}mm`}
 					</div>
 				</div>
 			</div>
