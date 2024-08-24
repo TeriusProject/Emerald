@@ -222,14 +222,6 @@
 	align-items: flex-start;
 }
 
-.component-title {
-	width: fit-content;
-	margin-bottom: 20px;
-	font-size: var(--default-font-size);
-	color: var(--default-font-color);
-	font-weight: 300;
-}
-
 .wave-scheme-component {
 	display: flex;
 	flex-direction: column;

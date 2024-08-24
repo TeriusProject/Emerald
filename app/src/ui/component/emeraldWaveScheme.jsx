@@ -27,7 +27,6 @@ import { uvLightNM, infraredLightNM, visibleLightNM } from "../../model/waveleng
 const invalidWavelengthRangeMessage = `The range of wavelength must be [${uvLightNM.min}-${infraredLightNM.max}]`;
 
 export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, n }) {
-
 	const [openNotification, setOpenNotification] = useState(false);
 
 	const wavelengthBlockWidth = width / n;
@@ -133,13 +132,15 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 
 	return (
 		<div className="wave-scheme-component">
-			{title ? <span className="component-title">{title}</span> : <Fragment></Fragment>}
 			<EmeraldNotification
 				id={`invalid-wavelength-range`}
 				open={openNotification}
 				handleClose={onCloseNotification}
 				message={invalidWavelengthRangeMessage}
 			/>
+			<div className="emerald-component-title">
+				{title ? title : ""}
+			</div>
 			<div className="wavelength-scheme" style={schemeStyle}>
 				<div className="wavelength-block-container" style={blocksSectionStyle}>
 					{[...Array(n).keys()].map((i) => renderBlock(i))}

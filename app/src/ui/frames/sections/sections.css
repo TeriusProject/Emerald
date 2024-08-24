@@ -120,6 +120,10 @@
 	width: 100%;
 }
 
+.reduction-and-precision-table {
+	width: 400px;
+}
+
 @media only screen and (max-width: 1000px) {
 	.adf-header-properties {
 		display: grid;
@@ -159,5 +163,9 @@
 		flex-direction: column;
 		justify-content: unset;
 		align-items: center;
+	}
+
+	.reduction-and-precision-table {
+		width: 250px;
 	}
 }

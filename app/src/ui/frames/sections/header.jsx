@@ -34,7 +34,6 @@ import "./sections.css";
 import { ReductionMode } from "../../../model/reductionMode";
 
 export function Header({ adf, time, timeUnit }) {
-
 	const [isExpandedSectionOpen, setExpandedSectionOpen] = useState(false);
 
 	const header = adf.header;
@@ -92,6 +91,7 @@ export function Header({ adf, time, timeUnit }) {
 				</div>
 				<div className="reduction-and-precision-section">
 					<EmeraldTable
+						className="reduction-and-precision-table"
 						tableId={"reduction-table"}
 						title={"Reduction info"}
 						headers={["Field", "Reduction mode"]}
@@ -99,6 +99,7 @@ export function Header({ adf, time, timeUnit }) {
 						rows={reductionModeTableRows()}
 					/>
 					<EmeraldTable
+						className="reduction-and-precision-table"
 						tableId={"precision-table"}
 						title={"Precision info"}
 						headers={["Field", "Precision"]}

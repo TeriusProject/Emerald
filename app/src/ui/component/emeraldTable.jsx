@@ -23,10 +23,14 @@
 import { React } from "react";
 import "./components.css";
 
-export function EmeraldTable({ title, headers, rows, columnsAlign, tableId, width }) {
-
-	const tableStyle = {
-		width: width ? `${width}px` : "fit-content",
+export function EmeraldTable(props) {
+	const { title, headers, rows, columnsAlign, tableId, width, className } = props;
+	const tableClassList = ["emerald-table", className ? className : ''];
+	const getTableStyle = () => {
+		const tableStyle = {};
+		if (width)
+			tableStyle["width"] = `${width}px`;
+		return tableStyle;
 	};
 	const getCellStyle = (index) => {
 		return {
@@ -65,7 +69,7 @@ export function EmeraldTable({ title, headers, rows, columnsAlign, tableId, widt
 			<div className="emerald-component-title">
 				{title}
 			</div>
-			<table className="emerald-table" style={tableStyle}>
+			<table className={tableClassList.join(" ")} style={getTableStyle()}>
 				<thead>
 					<tr>
 						{headers.map((columnName, i) => renderHeaderCell(columnName, i))}

@@ -84,7 +84,7 @@ export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 			</div>
 		);
 	};
-	
+
 	const renderShiftBlock = () => {
 		const shiftBlockStyle = {
 			width: `${width}px`,
@@ -98,13 +98,15 @@ export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 
 	return (
 		<div className="soil-scheme-component">
-			{title ? <span className="component-title">{title}</span> : <Fragment></Fragment>}
-		<div className="soil-scheme">
-			<Grass style={{ width: `${width}px`, height: "20px" }} />
-			{tY ? renderTranslationBlock() : <Fragment></Fragment>}
-			{renderShiftBlock()}
-			{[...Array(n).keys()].map(i => renderBlock(i))}
-		</div>
+			<div className="emerald-component-title">
+				{title ? title : ""}
+			</div>
+			<div className="soil-scheme">
+				<Grass style={{ width: `${width}px`, height: "20px" }} />
+				{tY ? renderTranslationBlock() : <Fragment></Fragment>}
+				{renderShiftBlock()}
+				{[...Array(n).keys()].map(i => renderBlock(i))}
+			</div>
 		</div>
 	);
 }
