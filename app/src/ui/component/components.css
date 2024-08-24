@@ -181,6 +181,7 @@
 	flex-direction: column;
 	row-gap: 0px;
 	width: fit-content;
+	margin-top: 30px
 }
 
 .soil-block-content {
@@ -230,34 +231,45 @@
 
 .wavelength-scheme {
 	display: flex;
-	flex-direction: column;
+	margin-top: 30px;
 }
 
 .spectrum-scheme {
-	border-style: solid;
-	border-color: #bebebe;
-	border-width: 1px;
 	display: flex;
+	flex-direction: column;
 }
 
 .visible-light-subsection {
-	background: linear-gradient(90deg, Indigo, Blue, Green, Yellow, Orange, Red);
-}
-
-.spectrum-subsection {
-	border-right-color: #000000;
-	border-right-style: solid;
-	border-right-width: 1px;
-	text-align: center;
+	background: linear-gradient(180deg, Indigo, Blue, Green, Yellow, Orange, Red);
 }
 
 .wavelength-block-container {
 	border-color: #bebebe;
 	align-items: end;
+	width: 100%;
+	position: relative;
 }
 
-.wavelength-block:hover {
-	background-color: aqua;
+.first-wavelength-label {
+	color: var(--default-font-color);
+	position: absolute;
+	right: 0;
+	top: -18px;
+}
+
+.wavelength-block {
+	position: relative;
+	border-bottom-style: solid;
+	border-color: #bebebe;
+	border-bottom-width: 1px;
+}
+
+.wavelength-block span {
+	color: var(--default-font-color);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: fit-content;
 }
 
 .uv-pattern {

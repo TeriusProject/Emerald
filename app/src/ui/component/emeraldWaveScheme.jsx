@@ -30,9 +30,10 @@ const invalidWavelengthRangeMessage = "The range of wavelength must be"
 export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, n }) {
 	const [openNotification, setOpenNotification] = useState(false);
 
-	const wavelengthBlockWidth = width / n;
-	const spectrumSchemeHeight = 20;
-	const blocksSectionHeight = height - spectrumSchemeHeight;
+	/* 1 pixel is removed because of the bottom border 1 px thick */
+	const wavelengthBlockHeight = (height / n) - 1;
+	const spectrumSchemeWidth = 20;
+	const blockWavelengthRange = (maxLength - minLength) / n;
 	const uvStartingPoint = (uvLightNM.max - minLength) <= 0
 		? undefined
 		: minLength;
@@ -57,14 +58,11 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 		height: `${height}px`,
 	};
 	const spectrumSchemeStyle = {
-		width: `${width}px`,
-		height: `${spectrumSchemeHeight}px`,
+		height: `${height}px`,
+		width: `${spectrumSchemeWidth}px`,
 	};
 	const blocksSectionStyle = {
-		width: `${width}px`,
-		height: `${blocksSectionHeight}px`,
-		display: "grid",
-		gridTemplateColumns: "auto ".repeat(n).trimEnd(),
+		height: `${height}px`,
 	};
 	const onCloseNotification = () => {
 		setOpenNotification(false);
@@ -77,13 +75,12 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 	}, [minLength, maxLength]);
 	const renderBlock = (index) => {
 		const borderBlockStyle = {
-			height: `10px`,
-			width: `${wavelengthBlockWidth}px`,
-			borderColor: "#bebebe",
+			height: `${wavelengthBlockHeight}px`,
 		}
-		if (index < n - 1) {
-			borderBlockStyle["borderRightStyle"] = "solid";
-			borderBlockStyle["borderRightWidth"] = "1px"
+
+		if (index === 0) {
+			borderBlockStyle["borderTopStyle"] = "solid";
+			borderBlockStyle["borderTopWidth"] = "1px";
 		}
 
 		return (
@@ -92,24 +89,27 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 				className="wavelength-block"
 				style={borderBlockStyle}
 			>
+				<span>
+					{minLength + ((index + 1) * blockWavelengthRange)}nm
+				</span>
 			</div>
 		)
 	};
 	const renderUvSection = () => {
 		const uvSectionStyle = {
-			width: `${uvLength}px`,
-			height: `${spectrumSchemeHeight}px`,
+			height: `${uvLength}px`,
+			width: `${spectrumSchemeWidth}px`,
 		};
 
 		return (
-			<div className="spectrum-subsection uv-pattern" style={uvSectionStyle}>
+			<div className="uv-pattern" style={uvSectionStyle}>
 			</div>
 		);
 	};
 	const renderVisibleLightSection = () => {
 		const visibleSectionStyle = {
-			width: `${visibleLength}px`,
-			height: `${spectrumSchemeHeight}px`,
+			height: `${visibleLength}px`,
+			width: `${spectrumSchemeWidth}px`,
 		};
 
 		return (
@@ -119,8 +119,8 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 	};
 	const renderInfraredSection = () => {
 		const infraRedSectionStyle = {
-			width: `${irLength}px`,
-			height: `${spectrumSchemeHeight}px`,
+			height: `${irLength}px`,
+			width: `${spectrumSchemeWidth}px`,
 		};
 
 		return (
@@ -145,13 +145,14 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 				{title ? title : ""}
 			</div>
 			<div className="wavelength-scheme" style={schemeStyle}>
-				<div className="wavelength-block-container" style={blocksSectionStyle}>
-					{[...Array(n).keys()].map((i) => renderBlock(i))}
-				</div>
 				<div className="spectrum-scheme" style={spectrumSchemeStyle}>
 					{uvLength ? renderUvSection() : <Fragment></Fragment>}
 					{visibleLength ? renderVisibleLightSection() : <Fragment></Fragment>}
 					{irLength ? renderInfraredSection() : <Fragment></Fragment>}
+				</div>
+				<div className="wavelength-block-container" style={blocksSectionStyle}>
+					<span className="first-wavelength-label">{minLength}nm</span>
+					{[...Array(n).keys()].map((i) => renderBlock(i))}
 				</div>
 			</div>
 		</div>
