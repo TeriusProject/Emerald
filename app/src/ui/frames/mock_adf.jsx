@@ -13,7 +13,7 @@ export const adf = {
 		lightInfo: {
 			n: 10,
 			min: 200,
-			max: 700
+			max: 800
 		},
 		soilTempInfo: {
 			n: 2,

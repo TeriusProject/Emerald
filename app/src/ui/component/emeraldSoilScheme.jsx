@@ -33,10 +33,6 @@ export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 	const sensorTopPosition = blockHeight - blockBottomMargin - 15;
 	const sensorLeftPosition = (width / 2) - 10;
 	const labelTopPosition = blockContentHeight - 20;
-	const blockStyle = {
-		height: `${blockHeight}px`,
-		width: `${width}px`
-	};
 	const blockContentStyle = {
 		height: `${blockContentHeight}px`,
 		width: `${blockContentWidth}px`
@@ -50,6 +46,12 @@ export function EmeraldSoilScheme({ title, height, width, n, maxDepth, tY }) {
 	}
 	const blockSizeMm = (maxDepth - tY) / n;
 	const renderBlock = (index) => {
+		const blockStyle = {
+			height: `${blockHeight}px`,
+			width: `${width}px`
+		};
+		if (index === n - 1)
+			blockStyle["borderRadius"] = "0px 0px 5px 5px";
 		return (
 			<div key={`scheme-block-${index}`} className="soil-scheme-block" style={blockStyle}>
 				<div key={`block-content-${index}`} className="soil-block-content" style={blockContentStyle}>

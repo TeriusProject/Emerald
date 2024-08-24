@@ -20,11 +20,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { Fragment, React, useState } from "react";
+import { Fragment, React, useCallback, useEffect, useState } from "react";
 import { EmeraldNotification } from "./emeraldNotification";
 import { uvLightNM, infraredLightNM, visibleLightNM } from "../../model/wavelengths";
 
-const invalidWavelengthRangeMessage = `The range of wavelength must be [${uvLightNM.min}-${infraredLightNM.max}]`;
+const invalidWavelengthRangeMessage = "The range of wavelength must be"
+	+ `[${uvLightNM.min}-${infraredLightNM.max}]`;
 
 export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, n }) {
 	const [openNotification, setOpenNotification] = useState(false);
@@ -32,17 +33,25 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 	const wavelengthBlockWidth = width / n;
 	const spectrumSchemeHeight = 20;
 	const blocksSectionHeight = height - spectrumSchemeHeight;
-	const spectrumLength = maxLength - minLength;
-	const uvSectionEndingAt = uvLightNM.max - minLength;
-	const visibleLightStartingAt = Math.max(uvSectionEndingAt, 0);
-	const visibleLightEndingAt = visibleLightNM.max - visibleLightStartingAt;
-	const infraredStartingAt = Math.max(visibleLightEndingAt, 0);
-	const infraredEndingAt = maxLength;
-	const uvSectionLength = uvSectionEndingAt;
-	const visibleLightSectionLength = (visibleLightEndingAt - visibleLightStartingAt);
-	const infraredSectionLength = (infraredEndingAt - infraredStartingAt);
-	const totalLength = uvSectionEndingAt + visibleLightSectionLength + infraredSectionLength;
-	console.log(`${uvSectionLength} + ${visibleLightSectionLength} + ${infraredSectionLength} = ${spectrumLength}`)
+	const uvStartingPoint = (uvLightNM.max - minLength) <= 0
+		? undefined
+		: minLength;
+	const visibleStartingPoint = (visibleLightNM.max - minLength) <= 0
+		? undefined
+		: uvStartingPoint ? Math.min(uvLightNM.max, maxLength) : minLength;
+	const irStartingPoint = (infraredLightNM.max - minLength) <= 0
+		? undefined
+		: visibleStartingPoint ? Math.min(visibleLightNM.max, maxLength) : minLength;
+	const uvEndingPoint = visibleStartingPoint
+		? visibleStartingPoint
+		: maxLength;
+	const visibleEndingPoint = irStartingPoint
+		? irStartingPoint
+		: maxLength;
+	const irEndingPoint = maxLength;
+	const uvLength = uvEndingPoint - uvStartingPoint;
+	const visibleLength = visibleEndingPoint - visibleStartingPoint;
+	const irLength = irEndingPoint - irStartingPoint;
 	const schemeStyle = {
 		width: `${width}px`,
 		height: `${height}px`,
@@ -60,12 +69,12 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 	const onCloseNotification = () => {
 		setOpenNotification(false);
 	};
-	const checkRange = () => {
+	const checkRange = useCallback(() => {
 		if (minLength < uvLightNM.min
 			|| maxLength > infraredLightNM.max) {
 			setOpenNotification(true);
 		}
-	};
+	}, [minLength, maxLength]);
 	const renderBlock = (index) => {
 		const borderBlockStyle = {
 			height: `10px`,
@@ -87,24 +96,19 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 		)
 	};
 	const renderUvSection = () => {
-		const lengthPerc = uvSectionLength / totalLength;
-		const pixelLength = width * lengthPerc;
 		const uvSectionStyle = {
-			width: `${pixelLength}px`,
+			width: `${uvLength}px`,
 			height: `${spectrumSchemeHeight}px`,
 		};
 
 		return (
-			<div className="spectrum-subsection" style={uvSectionStyle}>
-				UV
+			<div className="spectrum-subsection uv-pattern" style={uvSectionStyle}>
 			</div>
 		);
 	};
 	const renderVisibleLightSection = () => {
-		const lengthPerc = visibleLightSectionLength / totalLength;
-		const pixelLength = width * lengthPerc;
 		const visibleSectionStyle = {
-			width: `${pixelLength}px`,
+			width: `${visibleLength}px`,
 			height: `${spectrumSchemeHeight}px`,
 		};
 
@@ -114,21 +118,20 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 		);
 	};
 	const renderInfraredSection = () => {
-		const lengthPerc = infraredSectionLength / totalLength;
-		const pixelLength = width * lengthPerc;
 		const infraRedSectionStyle = {
-			width: `${pixelLength}px`,
+			width: `${irLength}px`,
 			height: `${spectrumSchemeHeight}px`,
 		};
 
 		return (
-			<div style={infraRedSectionStyle}>
-				IR
+			<div className="ir-pattern" style={infraRedSectionStyle}>
 			</div>
 		);
 	};
 
-	checkRange();
+	useEffect(() => {
+		checkRange();
+	}, [minLength, maxLength, checkRange]);
 
 	return (
 		<div className="wave-scheme-component">
@@ -146,9 +149,9 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 					{[...Array(n).keys()].map((i) => renderBlock(i))}
 				</div>
 				<div className="spectrum-scheme" style={spectrumSchemeStyle}>
-					{uvSectionLength > 0 ? renderUvSection() : <Fragment></Fragment>}
-					{visibleLightEndingAt > 0 ? renderVisibleLightSection() : <Fragment></Fragment>}
-					{infraredSectionLength > 0 ? renderInfraredSection() : <Fragment></Fragment>}
+					{uvLength ? renderUvSection() : <Fragment></Fragment>}
+					{visibleLength ? renderVisibleLightSection() : <Fragment></Fragment>}
+					{irLength ? renderInfraredSection() : <Fragment></Fragment>}
 				</div>
 			</div>
 		</div>
