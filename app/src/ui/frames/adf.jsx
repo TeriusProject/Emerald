@@ -109,7 +109,7 @@ export function Adf({ adf }) {
 				onSeriesClick={onSeriesClick}
 			/>
 			<p>
-				...
+				In the following section you can explore in detail the data contained in any series.
 			</p>
 			<Series
 				adf={adf}
