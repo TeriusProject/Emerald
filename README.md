@@ -7,6 +7,7 @@ An interactive visualizer for ADF data
 > (_The Wonderful Wizard of Oz_)
 
 ## Build
+[![Node.js](https://github.com/TeriusProject/Emerald/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/TeriusProject/Emerald/actions/workflows/node.js.yml)
 
 Emerald it's a React application. to start it, run
 ```bash
