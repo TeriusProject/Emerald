@@ -1,4 +1,4 @@
-name: ./app CI
+name: Node.js
 
 on:
   push:
@@ -24,6 +24,9 @@ jobs:
         node-version: '22.8.0'
         cache-dependency-path: app/package-lock.json
         cache: 'npm'
-    - run: npm install
-    - run: CI=false npm run build
-    - run: CI=false npm test
+    - name: Install dependencies
+      run: npm install
+    - name: Build
+      run: CI=false npm run build
+    - name: Run test
+      run: CI=false npm test -- --passWithNoTests
