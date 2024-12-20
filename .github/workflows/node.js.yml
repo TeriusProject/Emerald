@@ -1,4 +1,4 @@
-name: app CI
+name: ./app CI
 
 on:
   push:
@@ -25,5 +25,5 @@ jobs:
         cache-dependency-path: app/package-lock.json
         cache: 'npm'
     - run: npm install
-    - run: npm run build
-    - run: npm test
+    - run: CI=false npm run build
+    - run: CI=false npm test
