@@ -27,10 +27,4 @@ Some screenshots are available in this section.
 
 ### Mobile version
 
-<div style="display: flex; column-gap: 30px; justify-content: space-around; align-items: start;">
-	<img style="width: 150px" src="./screenshots/mobile1.png">
-	<img style="width: 150px" src="./screenshots/mobile2.jpg">
-</div>
-<div style="display: flex; justify-content: center; margin-top: 30px;">
-	<img style="width: 300px;" src="./screenshots/mobile_hr.png">
-</div>
+![Mobile](./screenshots/mobile.png)
