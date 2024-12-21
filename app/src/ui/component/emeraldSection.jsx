@@ -24,8 +24,12 @@ import { React } from "react";
 import { Paper } from "@mui/material";
 
 export function EmeraldSection({ className, children, elevation }) {
+	const emeraldSectionStyle = {
+		backgroundColor: "rgb(249, 249, 249)",
+		borderRadius: "10px"
+	};
 	return (
-		<Paper className={className} elevation={elevation ?? 2}>
+		<Paper className={className} elevation={elevation ?? 2} sx={emeraldSectionStyle}>
 			{children}
 		</Paper>
 	);
