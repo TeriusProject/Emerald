@@ -1,4 +1,4 @@
-/* emeraldSection.jsx
+/* emeraldHeatmap.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -21,12 +21,16 @@
  */
 
 import { React } from "react";
-import "../frames/sections/sections.css";
+import { Heatmap } from '@mui/x-charts-pro/Heatmap';
 
-export function EmeraldSection({ className, children, elevation }) {
+export const EmeraldHeatmap = () => {
 	return (
-		<div className={`emerald-section ${className}`} elevation={elevation ?? 2}>
-			{children}
-		</div>
+		<Heatmap
+			xAxis={[{ data: [1, 2, 3, 4] }]}
+			yAxis={[{ data: ['A', 'B', 'C', 'D', 'E'] }]}
+			series={[{ data }]}
+			margin={{ top: 5, right: 5, left: 20 }}
+			height={300}
+		/>
 	);
 }

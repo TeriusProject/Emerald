@@ -23,6 +23,7 @@
  :root {
 	--max-width-mobile-screen: 1000px;
 	--menu-height: 70px;
+	--menu-shrunk-height: 45px;
 	--menu-font-color: #50c878ff;
 	--default-font-color: #424242;
 	--hr-color: #dfdfdf37;
@@ -41,7 +42,7 @@ body {
 footer {
 	font-size: calc(var(--default-font-size) - "2px");
     bottom: 0;
-    margin-top: var(--default-vertical-skip);
+    margin-top: 30px;
     margin-bottom: 15px;
     text-align: center;
     font-family: var(--default-font-family);
