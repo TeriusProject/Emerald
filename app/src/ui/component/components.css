@@ -318,6 +318,20 @@
 	padding-right: 10px;
 }
 
+.spectrum-secton-label {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+.wave-spectrum-labels {
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	justify-items: center;
+	align-items: center;
+}
+
 @media only screen and (max-width: 1000px) {
 	.emerald-table {
 		max-width: 100%;

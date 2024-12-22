@@ -95,37 +95,40 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 			</div>
 		)
 	};
-	const renderUvSection = () => {
-		const uvSectionStyle = {
-			height: `${uvLength}px`,
+	const spectrumSection = (sectionLength) => {
+		return {
+			height: `${sectionLength}px`,
 			width: `${spectrumSchemeWidth}px`,
 		};
-
+	};
+	const renderUvSection = () => {
 		return (
-			<div className="uv-pattern" style={uvSectionStyle}>
-			</div>
+			<div className="uv-pattern" style={spectrumSection(uvLength)}></div>
 		);
 	};
 	const renderVisibleLightSection = () => {
-		const visibleSectionStyle = {
-			height: `${visibleLength}px`,
-			width: `${spectrumSchemeWidth}px`,
-		};
-
 		return (
-			<div className="visible-light-subsection" style={visibleSectionStyle}>
-			</div>
+			<div className="visible-light-subsection" style={spectrumSection(visibleLength)}></div>
 		);
 	};
 	const renderInfraredSection = () => {
-		const infraRedSectionStyle = {
-			height: `${irLength}px`,
-			width: `${spectrumSchemeWidth}px`,
-		};
-
 		return (
-			<div className="ir-pattern" style={infraRedSectionStyle}>
-			</div>
+			<div className="ir-pattern" style={spectrumSection(irLength)}></div>
+		);
+	};
+	const renderUvLabelSection = () => {
+		return (
+			<div className="spectrum-secton-label" style={spectrumSection(uvLength)}>UV</div>
+		);
+	};
+	const renderVisibleLightLabelSection = () => {
+		return (
+			<div className="spectrum-secton-label" style={spectrumSection(visibleLength)}>V</div>
+		);
+	};
+	const renderInfraredLabelSection = () => {
+		return (
+			<div className="spectrum-secton-label" style={spectrumSection(irLength)}>IR</div>
 		);
 	};
 
@@ -141,10 +144,15 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 				handleClose={onCloseNotification}
 				message={invalidWavelengthRangeMessage}
 			/>
-			<div className="emerald-component-title">
-				{title ? title : ""}
-			</div>
+			{
+				title ? <div className="emerald-component-title">{title}</div> : <Fragment></Fragment>
+			}
 			<div className="wavelength-scheme" style={schemeStyle}>
+				<div className="wave-spectrum-labels">
+					{uvLength ? renderUvLabelSection(): <Fragment></Fragment>}
+					{visibleLength ? renderVisibleLightLabelSection() : <Fragment></Fragment>}
+					{irLength ? renderInfraredLabelSection() : <Fragment></Fragment>}
+				</div>
 				<div className="spectrum-scheme" style={spectrumSchemeStyle}>
 					{uvLength ? renderUvSection() : <Fragment></Fragment>}
 					{visibleLength ? renderVisibleLightSection() : <Fragment></Fragment>}
