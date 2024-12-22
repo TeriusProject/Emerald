@@ -36,6 +36,7 @@ import {
 	formatFloatingPoint,
 	getDataProviderByType
 } from "../../utils/formatter";
+import { seriesButtonColors } from "../../utils/palette";
 import useId from '@mui/utils/useId';
 
 const getChartData = (series, dataType) => {
@@ -49,6 +50,21 @@ const getChartData = (series, dataType) => {
 	}
 	return resultData;
 };
+
+const getSeriesColor = (dataType) => {
+	switch(dataType) {
+		case SelectorDataType.WATER_USE:
+			return seriesButtonColors.WATER;
+		case SelectorDataType.TEMPERATURE: 
+			return seriesButtonColors.TEMPERATURE;
+		case SelectorDataType.SOIL_DENSITY:
+			return seriesButtonColors.SOIL_DENSITY;
+		case SelectorDataType.PH:
+			return seriesButtonColors.PH;
+		default:
+			throw new Error(`Unknown series dataType: ${dataType}`);
+	}
+}
 
 export function EmeraldChartRangeSelector(props) {
 	const {
@@ -128,7 +144,7 @@ export function EmeraldChartRangeSelector(props) {
 					{
 						type: 'line',
 						data: chartData,
-						color: "#9CDBA6",
+						color: getSeriesColor(dataType),
 						valueFormatter: (v) => `${formatFloatingPoint(v)} ${labelSuffix}`
 					},
 				]}

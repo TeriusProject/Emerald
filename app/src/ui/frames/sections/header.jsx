@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useState } from "react";
+import { React, useRef, useState } from "react";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { EmeraldProperty } from "../../component/emeraldProperty";
 import { formatTime } from "../../../utils/formatter";
@@ -28,44 +28,49 @@ import { EmeraldSoilScheme } from "../../component/emeraldSoilScheme";
 import { EmeraldWaveScheme } from "../../component/emeraldWaveScheme";
 import { EmeraldTable } from "../../component/emeraldTable";
 import { ColumnAlign } from "../../../model/columnAlign";
+import { ReductionMode } from "../../../model/reductionMode";
+import { HeaderTableLabels } from "../../../model/headerTableLabels";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import "./sections.css";
-import { ReductionMode } from "../../../model/reductionMode";
 
 export function Header({ adf, time, timeUnit }) {
 	const [isExpandedSectionOpen, setExpandedSectionOpen] = useState(false);
-
+	const headerRef = useRef(null);
 	const header = adf.header;
+
 	const onExpandClick = (_) => {
+		if (isExpandedSectionOpen) {
+			headerRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
 		setExpandedSectionOpen(!isExpandedSectionOpen);
 	};
 	const precisionTableRows = () => {
 		return [
-			["Soil density", header.precisionInfo.soilDensity.toExponential()],
-			["Atmospheric pressure", header.precisionInfo.pressure.toExponential()],
-			["Light exposure", header.precisionInfo.lightExposure.toExponential()],
-			["Water use", header.precisionInfo.waterUse.toExponential()],
-			["Soil temperature", header.precisionInfo.soilTemp.toExponential()],
-			["Environment temperature", header.precisionInfo.envTemp.toExponential()],
-			["Additive concentration", header.precisionInfo.additive.toExponential()],
+			[HeaderTableLabels.SOIL_DENSITY, header.precisionInfo.soilDensity.toExponential()],
+			[HeaderTableLabels.ATMOSPHERIC_PRESSURE, header.precisionInfo.pressure.toExponential()],
+			[HeaderTableLabels.LIGHT_EXPOSURE, header.precisionInfo.lightExposure.toExponential()],
+			[HeaderTableLabels.WATER_USE, header.precisionInfo.waterUse.toExponential()],
+			[HeaderTableLabels.SOIL_TEMPERATURE, header.precisionInfo.soilTemp.toExponential()],
+			[HeaderTableLabels.ENVIRONMENT_TEMPERATURE, header.precisionInfo.envTemp.toExponential()],
+			[HeaderTableLabels.ADDITIVE_CONCENTRATION, header.precisionInfo.additive.toExponential()],
 		];
 	};
 	const reductionModeTableRows = () => {
 		return [
-			["Soil density", ReductionMode[header.reductionInfo.soilDensity]],
-			["Atmospheric pressure", ReductionMode[header.reductionInfo.pressure]],
-			["Light exposure", ReductionMode[header.reductionInfo.lightExposure]],
-			["Water use", ReductionMode[header.reductionInfo.waterUse]],
-			["Soil temperature", ReductionMode[header.reductionInfo.soilTemp]],
-			["Environment temperature", ReductionMode[header.reductionInfo.envTemp]],
-			["Additive concentration", ReductionMode[header.reductionInfo.additive]],
+			[HeaderTableLabels.SOIL_DENSITY, ReductionMode[header.reductionInfo.soilDensity]],
+			[HeaderTableLabels.ATMOSPHERIC_PRESSURE, ReductionMode[header.reductionInfo.pressure]],
+			[HeaderTableLabels.LIGHT_EXPOSURE, ReductionMode[header.reductionInfo.lightExposure]],
+			[HeaderTableLabels.WATER_USE, ReductionMode[header.reductionInfo.waterUse]],
+			[HeaderTableLabels.SOIL_TEMPERATURE, ReductionMode[header.reductionInfo.soilTemp]],
+			[HeaderTableLabels.ENVIRONMENT_TEMPERATURE, ReductionMode[header.reductionInfo.envTemp]],
+			[HeaderTableLabels.ADDITIVE_CONCENTRATION, ReductionMode[header.reductionInfo.additive]],
 		];
 	};
 
 	return (
 		<EmeraldSection className="adf-header-section">
-			<div className="adf-header-properties">
+			<div className="adf-header-properties" ref={headerRef}>
 				<EmeraldProperty label="ADF version" value={adf.header.version.label} hexColor="#2996CD" />
 				<EmeraldProperty label="Farming technique" value={adf.header.farmingTechnique.label} />
 				<EmeraldProperty label="Series duration" value={formatTime(time, timeUnit)} hexColor="#F67E92" />

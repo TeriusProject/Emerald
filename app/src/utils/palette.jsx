@@ -35,3 +35,10 @@ export const palettesByFamily = {
 export const soilDepthPalette = ["#AFD198", "#E8EFCF", "#ECCA9C", "DBA979"];
 /* Shades of violet, from light to dark */
 export const lightExposurePalette = ["#EEA5A6", "#E493B3", "#B784B7", "#8E7AB5"];
+/* Buttons on the seriesSelector and charts */
+export const seriesButtonColors = Object.freeze({
+	WATER: "#54afff",
+	TEMPERATURE: "#f48617",
+	SOIL_DENSITY: "#765341",
+	PH: "#1d7c1d"
+});

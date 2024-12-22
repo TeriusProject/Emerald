@@ -1,4 +1,4 @@
-/* emeraldSection.jsx
+/* headerTableLabels.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,13 +20,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
-import "../frames/sections/sections.css";
-
-export function EmeraldSection({ className, children, elevation }) {
-	return (
-		<div className={`emerald-section ${className}`} elevation={elevation ?? 2}>
-			{children}
-		</div>
-	);
-}
+export const HeaderTableLabels = Object.freeze({
+	SOIL_DENSITY: "Soil density",
+	ATMOSPHERIC_PRESSURE: "Atmospheric pressure",
+	LIGHT_EXPOSURE: "Light exposure",
+	WATER_USE: "Water use",
+	SOIL_TEMPERATURE: "Soil temperature",
+	ENVIRONMENT_TEMPERATURE: "Environment temperature",
+	ADDITIVE_CONCENTRATION: "Additive concentration",
+});

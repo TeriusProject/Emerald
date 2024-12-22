@@ -20,14 +20,31 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react"
+import { React, useState, useEffect } from "react"
 import { ReactComponent as Logo } from "../../img/logo.svg"
+import { ReactComponent as EmeraldName } from "../../img/emerald.svg"
 import "./navbar.css"
 
 export function Navbar() {
+	const [isShrunk, setIsShrunk] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 50)
+				setIsShrunk(true);
+			else
+				setIsShrunk(false);
+		};
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, [setIsShrunk]);
+
 	return (
-		<div className="navbar">
-			<Logo />
+		<div className={isShrunk ? "navbar-shrunk" : "navbar"}>
+			{isShrunk ? <EmeraldName /> : <Logo />}
 		</div>
-	)
+	);
 }

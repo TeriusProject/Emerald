@@ -46,3 +46,31 @@
 	width: 45px;
 	height: 45px;
 }
+
+.navbar-shrunk {
+	font-size: 20px;
+	font-weight: 270;
+	letter-spacing: 2px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99999;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	background: rgb(80 200 120 / 10%);
+	box-shadow: 0 1px 10px -3px rgba(52, 52, 52, 0.27);
+	backdrop-filter: blur(15.5px);
+	-webkit-backdrop-filter: blur(15.5px);
+	color: var(--menu-font-color);
+	padding-left: 20px;
+	justify-content: start;
+	min-height: var(--menu-shrunk-height);
+	height: var(--menu-shrunk-height);
+}
+
+.navbar-shrunk svg {
+	width: auto;
+	height: 30px;
+}

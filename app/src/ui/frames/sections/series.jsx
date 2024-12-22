@@ -29,12 +29,7 @@ import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart
 import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint } from "../../../utils/formatter";
-import {
-	pastelPalette,
-	palettesByFamily,
-	soilDepthPalette,
-	lightExposurePalette
-} from "../../../utils/palette";
+import { soilDepthPalette, lightExposurePalette } from "../../../utils/palette";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -125,10 +120,10 @@ export function Series(props) {
 
 	const isStillRepeating = () => {
 		var totalPreviousRepeatedSeries = 0;
-		for(var i = 0; i < selectedSeriesMetadata.index; i++) {
+		for (var i = 0; i < selectedSeriesMetadata.index; i++) {
 			totalPreviousRepeatedSeries += adf.series[i].repeated;
 		}
-		const currentRepetition = selectedSeriesMetadata.number-totalPreviousRepeatedSeries;
+		const currentRepetition = selectedSeriesMetadata.number - totalPreviousRepeatedSeries;
 		return currentRepetition < adf.series[selectedSeriesMetadata.index].repeated;
 	};
 
@@ -146,8 +141,8 @@ export function Series(props) {
 	const onNextButtonClick = (_) => {
 		if (selectedSeriesMetadata.number === adf.metadata.nSeries) return;
 		const newIndex = isStillRepeating()
-		? selectedSeriesMetadata.index
-		: selectedSeriesMetadata.index + 1;
+			? selectedSeriesMetadata.index
+			: selectedSeriesMetadata.index + 1;
 		setSelectedSeriesMetadata({
 			number: selectedSeriesMetadata.number + 1,
 			index: newIndex,
@@ -217,7 +212,7 @@ export function Series(props) {
 					dataKey={"mm"}
 					seriesLabel={"Water use (mm)"}
 					labelFormatter={(v) => `${formatFloatingPoint(v)} mm`}
-					colors={{ "mm": palettesByFamily.blue[0] }}
+					colors={{ "mm": "rgba(158, 223, 255, 0.74)" }}
 				/>
 				<EmeraldBarChart
 					data={adf.series[selectedSeriesMetadata.index].environmentTemp}
@@ -225,7 +220,7 @@ export function Series(props) {
 					dataKey={"temp"}
 					seriesLabel={"Environment temperature (\u2103)"}
 					labelFormatter={(v) => `${formatFloatingPoint(v)} \u2103`}
-					colors={{ "temp": pastelPalette[2] }}
+					colors={{ "temp": "rgba(255, 202, 68, 0.65)" }}
 				/>
 			</div>
 		</EmeraldSection>

@@ -1,4 +1,4 @@
-/* emeraldSection.jsx
+/* emeraldAccordion.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,13 +20,27 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
-import "../frames/sections/sections.css";
+import { React, useState } from "react"
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import "./components.css";
 
-export function EmeraldSection({ className, children, elevation }) {
+export const EmeraldAccordion = ({ openByDefault, title, content, sx, className }) => {
+	const [isOpen, setIsOpen] = useState(openByDefault);
+	const toggle = () => {
+		setIsOpen(!isOpen);
+	}
+
 	return (
-		<div className={`emerald-section ${className}`} elevation={elevation ?? 2}>
-			{children}
+		<div className={`analytics-accordion ${className ? className : ''}`} style={sx}>
+			<div className="analytics-accordion-title no-select" onClick={toggle}>
+				{isOpen ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
+				{title}
+			</div>
+			<div
+				className="analytics-accordion-body" style={{ display: isOpen ? "block" : "none" }}>
+				{content}
+			</div>
 		</div>
 	);
 }

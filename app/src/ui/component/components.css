@@ -288,6 +288,50 @@
 			#ff1b1b75 20px);
 }
 
+.analytics-accordion {
+	color: rgb(50, 50, 50);
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.analytics-accordion-title {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	align-content: center;
+	column-gap: 10px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+.analytics-accordion-title svg {
+	color: color(srgb 0.6996 0.7776 0.88);
+}
+
+.analytics-accordion-body {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.spectrum-secton-label {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+.wave-spectrum-labels {
+	display: flex;
+	flex-direction: column;
+	margin-right: 10px;
+	justify-items: center;
+	align-items: center;
+}
+
 @media only screen and (max-width: 1000px) {
 	.emerald-table {
 		max-width: 100%;
