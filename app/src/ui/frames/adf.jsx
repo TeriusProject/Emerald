@@ -67,7 +67,7 @@ export function Adf({ adf }) {
 				return i;
 		}
 		throw new Error("Series index out of bound");
-	},[repeatedMask]);
+	}, [repeatedMask]);
 
 	const onSeriesRangeChange = useCallback((newRange) => {
 		setCurrentSeries({
@@ -108,9 +108,7 @@ export function Adf({ adf }) {
 				onRangeChange={onSeriesRangeChange}
 				onSeriesClick={onSeriesClick}
 			/>
-			<p>
-				In the following section you can explore in detail the data contained in any series.
-			</p>
+			<p>In the following section you can explore in detail the data contained in any series.</p>
 			<Series
 				adf={adf}
 				time={timeLength}

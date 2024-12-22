@@ -332,6 +332,58 @@
 	align-items: center;
 }
 
+.emerald-heatmap {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 50px;
+}
+
+.heatmap-view {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	padding: 20px;
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+.heatmap-row {
+	display: flex;
+	column-gap: 4px;
+	background-color: rgba(244, 244, 244, 0.74);
+	border-top-style: solid;
+	border-top-color: rgba(184, 184, 184, 0.56);
+	border-top-width: 1px;
+	padding: 2px 20px;
+}
+
+.heatmap-cell {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	max-width: 280px;
+	max-height: 140px;
+	min-width: 70px;
+	min-height: 35px;
+}
+
+.heatmap-legend {
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 5px;
+}
+
+.heatmap-legend-gradient {
+	width: 350px;
+	height: 30px;
+}
+
 @media only screen and (max-width: 1000px) {
 	.emerald-table {
 		max-width: 100%;

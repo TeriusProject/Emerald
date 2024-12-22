@@ -20,17 +20,69 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React } from "react";
-import { Heatmap } from '@mui/x-charts-pro/Heatmap';
+import { React, useLayoutEffect, useEffect, useState } from 'react';
+import { soilTemperaturePalette } from "../../utils/palette";
+import "./components.css";
 
-export const EmeraldHeatmap = () => {
+export const EmeraldHeatmap = ({ id, data }) => {
+	const [blockSize, setBlockSize] = useState(0);
+	const [minMaxValue, setMinMaxValue] = useState([-50, 50]);
+
+	useLayoutEffect(() => {
+		const onSizeUpdated = () => {
+			const newSize = Math.round((window.innerWidth - 250) / data[0].length);
+			setBlockSize(newSize);
+		};
+		window.addEventListener('resize', onSizeUpdated);
+		onSizeUpdated();
+		return () => window.removeEventListener('resize', onSizeUpdated);
+	}, [data]);
+
+	useEffect(() => {
+		setMinMaxValue([Math.min(...data.flat()), Math.max(...data.flat())]);
+	}, [data]);
+
+	const getColor = (value) => {
+		const val = (value - minMaxValue[0]) / (minMaxValue[1] - minMaxValue[0]);
+		const index = Math.floor(val * (soilTemperaturePalette.length - 1));
+		return soilTemperaturePalette[index];
+	};
+	const renderCells = (row, rowIndex) => {
+		return row.map((value, colIndex) => (
+			<div
+				key={`heatmap-${id}-${rowIndex}-${colIndex}`}
+				className="heatmap-cell"
+				style={{
+					backgroundColor: getColor(value),
+					width: `${blockSize}px`,
+					height: `${blockSize / 2}px`
+				}}
+			>
+				{value}
+			</div>
+		));
+	};
+	const renderBlocks = () => {
+		return data.map((row, rowIndex) => (
+			<div key={`heatmap-${id}-${rowIndex}`} className="heatmap-row">
+				{renderCells(row, rowIndex)}
+			</div>
+		));
+	};
+	const legendFill = {
+		backgroundImage: `linear-gradient(to right, ${soilTemperaturePalette[0]}, ${soilTemperaturePalette[soilTemperaturePalette.length - 1]})`,
+	}
+
 	return (
-		<Heatmap
-			xAxis={[{ data: [1, 2, 3, 4] }]}
-			yAxis={[{ data: ['A', 'B', 'C', 'D', 'E'] }]}
-			series={[{ data }]}
-			margin={{ top: 5, right: 5, left: 20 }}
-			height={300}
-		/>
+		<div className="emerald-heatmap">
+			<div className="heatmap-legend">
+				<span>{`${minMaxValue[0]}\u2103`}</span>
+				<div className="heatmap-legend-gradient" style={legendFill}></div>
+				<span>{`${minMaxValue[1]}\u2103`}</span>
+			</div>
+			<div className="heatmap-view">
+				{renderBlocks()}
+			</div>
+		</div>
 	);
-}
+};

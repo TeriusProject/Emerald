@@ -30,6 +30,7 @@ import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint } from "../../../utils/formatter";
 import { soilDepthPalette, lightExposurePalette } from "../../../utils/palette";
+import { EmeraldHeatmap } from "../../component/emeraldHeatmap";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -169,6 +170,13 @@ export function Series(props) {
 		setSelectedSeriesMetadata(selectedSeriesMetadata);
 	}, [selectedSeriesMetadata, setSelectedSeriesMetadata]);
 
+	const heatmapSample = [
+		[1, 2, 3, 4],
+		[5, 6, 7, 8],
+		[9, 10, 11, 12],
+		[13, 14, 15, 16]
+	];
+
 	return (
 		<EmeraldSection className="adf-series-section" elevation={3}>
 			<div className="series-title">
@@ -204,6 +212,7 @@ export function Series(props) {
 				<SoilDepthBarChart
 					soilTemperatureData={adf.series[selectedSeriesMetadata.index].soilTemperature}
 				/>
+				<EmeraldHeatmap id="soilTemperatureHeatmap" data={heatmapSample} />
 			</div>
 			<div className="histogram-row">
 				<EmeraldBarChart

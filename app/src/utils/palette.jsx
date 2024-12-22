@@ -35,6 +35,20 @@ export const palettesByFamily = {
 export const soilDepthPalette = ["#AFD198", "#E8EFCF", "#ECCA9C", "DBA979"];
 /* Shades of violet, from light to dark */
 export const lightExposurePalette = ["#EEA5A6", "#E493B3", "#B784B7", "#8E7AB5"];
+/* Based on https://colorhunt.co/palette/49698958a399a8cd9fe2f4c5 from Navy to light green */
+export const soilTemperaturePalette = [
+	"rgb(226, 244, 197)",
+	"rgb(196,232,176)",
+	"rgb(178,213,166)",
+	"rgb(168, 205, 159)",
+	"rgb(114,187,157)",
+	"rgb(101,172,155)",
+	"rgb(88, 163, 153)",
+	"rgb(85, 146, 151)",
+	"rgb(76, 117, 141)",
+	"rgb(73, 105, 137)"
+];
+
 /* Buttons on the seriesSelector and charts */
 export const seriesButtonColors = Object.freeze({
 	WATER: "#54afff",

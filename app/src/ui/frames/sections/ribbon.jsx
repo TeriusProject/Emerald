@@ -23,7 +23,7 @@
 import { React } from "react";
 import { TimeUnitSelector } from "../../component/emeraldSelector";
 
-export function Ribbon({ timeUnit, onUnitChange }) {
+export const Ribbon = ({ timeUnit, onUnitChange }) => {
 	return (
 		<div className="ribbon-section">
 			<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
