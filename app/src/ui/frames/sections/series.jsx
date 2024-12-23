@@ -26,10 +26,9 @@ import { EmeraldSection } from "../../component/emeraldSection";
 import { ColumnAlign } from "../../../model/columnAlign";
 import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
-import { EmeraldStackedBarChart } from "../../component/emeraldStackedBarChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint } from "../../../utils/formatter";
-import { soilDepthPalette, lightExposurePalette } from "../../../utils/palette";
+import { lightExposurePalette } from "../../../utils/palette";
 import { EmeraldHeatmap } from "../../component/emeraldHeatmap";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -62,30 +61,6 @@ function AdditiveTable({ tableId, title, rows }) {
 			headers={header}
 			rows={tableRows}
 			columnsAlign={columnsAlign}
-		/>
-	);
-}
-
-function SoilDepthBarChart({ soilTemperatureData }) {
-	const chartSeriesToColor = () => {
-		if (soilTemperatureData.series.length === 0) return;
-		return Object.keys(soilTemperatureData.series[0])
-			.map(k => parseInt(k))
-			.sort()
-			.map((seriesKey, i) => {
-				return [seriesKey, soilDepthPalette[i]];
-			});
-	};
-	const colors = chartSeriesToColor()
-		? Object.fromEntries(chartSeriesToColor())
-		: undefined;
-
-	return (
-		<EmeraldStackedBarChart
-			title={"Soil temperature (\u2103)"}
-			data={soilTemperatureData}
-			labelFormatter={function (v) { return `${formatFloatingPoint(v)} \u2103`; }}
-			colors={colors}
 		/>
 	);
 }
@@ -170,13 +145,6 @@ export function Series(props) {
 		setSelectedSeriesMetadata(selectedSeriesMetadata);
 	}, [selectedSeriesMetadata, setSelectedSeriesMetadata]);
 
-	const heatmapSample = [
-		[1, 2, 3, 4],
-		[5, 6, 7, 8],
-		[9, 10, 11, 12],
-		[13, 14, 15, 16]
-	];
-
 	return (
 		<EmeraldSection className="adf-series-section" elevation={3}>
 			<div className="series-title">
@@ -209,15 +177,15 @@ export function Series(props) {
 				<LightExposureAreaChart
 					lightExposureData={adf.series[selectedSeriesMetadata.index].lightExposure}
 				/>
-				<SoilDepthBarChart
+				{/* <SoilDepthBarChart
 					soilTemperatureData={adf.series[selectedSeriesMetadata.index].soilTemperature}
-				/>
+				/> */}
 				<EmeraldHeatmap
 					id="soilTemperatureHeatmap"
-					data={heatmapSample}
+					data={adf.series[selectedSeriesMetadata.index].soilTemperature.series}
 					title={"Soil temperature (\u2103)"}
 					xLabels={["a","b","c","d"]}
-					yLabels={["a","b","c","d"]}
+					yLabels={adf.series[selectedSeriesMetadata.index].soilTemperature.labels}
 				/>
 			</div>
 			<div className="histogram-row">

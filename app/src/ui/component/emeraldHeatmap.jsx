@@ -22,6 +22,7 @@
 
 import { React, useLayoutEffect, useEffect, useState } from 'react';
 import { soilTemperaturePalette } from "../../utils/palette";
+import { formatFloatingPoint, transposed } from "../../utils/formatter";
 import "./components.css";
 
 export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
@@ -31,7 +32,6 @@ export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
 	if (!data) throw new Error();
 	if (!xLabels) throw new Error();
 	if (!yLabels) throw new Error();
-	
 
 	useLayoutEffect(() => {
 		const onSizeUpdated = () => {
@@ -63,11 +63,11 @@ export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
 					height: `${blockSize / 2}px`
 				}}
 			>
-				{value}
+				{formatFloatingPoint(value)}
 			</div>
 		));
 	};
-	const renderBlocks = () => {
+	const renderBlocks = (data) => {
 		return data.map((row, rowIndex) => (
 			<div key={`heatmap-${id}-${rowIndex}`} className="heatmap-row">
 				{renderCells(row, rowIndex)}
@@ -75,8 +75,10 @@ export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
 		));
 	};
 	const legendFill = {
-		backgroundImage: `linear-gradient(to right, ${soilTemperaturePalette[0]}, ${soilTemperaturePalette[soilTemperaturePalette.length - 1]})`,
+		background: `linear-gradient(to right, ${soilTemperaturePalette[0]}, ${soilTemperaturePalette[soilTemperaturePalette.length - 1]})`,
 	}
+	const yLabelsStyle = { height: `${blockSize / 2}px` };
+	const xLabelsStyle = { width: `${blockSize}px` };
 
 	return (
 		<div className="emerald-heatmap">
@@ -85,21 +87,37 @@ export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
 			</div>
 			<div style={{ display: "flex", alignItems: "start", rowGap: "6px" }}>
 				<div>
-					{data[0].map((_, i) => <div key={`y-axes-label-${i}`} className="heatmap-y-axes-label" style={{ height: `${blockSize / 2}px` }}>{yLabels[i]}</div>)}
+					{
+						data[0].map((_, i) => {
+							return (
+								<div key={`y-axes-label-${i}`} className="heatmap-y-axes-label" style={yLabelsStyle}>
+									{yLabels[i]}
+								</div>
+							);
+						})
+					}
 				</div>
 				<div>
 					<div className="heatmap-view">
-						{renderBlocks()}
+						{renderBlocks(transposed(data))}
 					</div>
 					<div style={{ display: "flex", alignItems: "start", columnGap: "6px", paddingLeft: "4px" }}>
-						{data.map((_, i) => <div key={`x-axes-label-${i}`} className="heatmap-x-axes-label" style={{ width: `${blockSize}px` }}>{xLabels[i]}</div>)}
+						{
+							data.map((_, i) => {
+								return (
+									<div key={`x-axes-label-${i}`} className="heatmap-x-axes-label" style={xLabelsStyle}>
+										{xLabels[i]}
+									</div>
+								);
+							})
+						}
 					</div>
 				</div>
 			</div>
 			<div className="heatmap-legend">
-				<span>{`${minMaxValue[0]}\u2103`}</span>
+				<span>{`${formatFloatingPoint(minMaxValue[0])}\u2103`}</span>
 				<div className="heatmap-legend-gradient" style={legendFill}></div>
-				<span>{`${minMaxValue[1]}\u2103`}</span>
+				<span>{`${formatFloatingPoint(minMaxValue[1])}\u2103`}</span>
 			</div>
 		</div>
 	);
