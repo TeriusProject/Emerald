@@ -22,6 +22,12 @@
 
 import { SelectorDataType } from "../model/seriesSelectorDataType";
 
+export const transposed = (matrix) => {
+	if (!matrix) throw new Error("Cannot transpose an empty matrix");
+	if (matrix.length === 0) return [];
+	return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+}
+
 export const formatFloatingPoint = (n) => {
 	return n.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });;
 }
