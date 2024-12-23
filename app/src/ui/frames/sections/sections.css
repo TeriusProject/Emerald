@@ -22,7 +22,7 @@
 
  .emerald-section {
 	border-radius: 10px;
-	background-color: rgb(249, 249, 249);
+	background-color: var(--default-section-color);
 	color: rgba(0, 0, 0, 0.87);
 	-webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 	transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;

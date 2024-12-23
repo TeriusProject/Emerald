@@ -212,7 +212,13 @@ export function Series(props) {
 				<SoilDepthBarChart
 					soilTemperatureData={adf.series[selectedSeriesMetadata.index].soilTemperature}
 				/>
-				<EmeraldHeatmap id="soilTemperatureHeatmap" data={heatmapSample} />
+				<EmeraldHeatmap
+					id="soilTemperatureHeatmap"
+					data={heatmapSample}
+					title={"Soil temperature (\u2103)"}
+					xLabels={["a","b","c","d"]}
+					yLabels={["a","b","c","d"]}
+				/>
 			</div>
 			<div className="histogram-row">
 				<EmeraldBarChart

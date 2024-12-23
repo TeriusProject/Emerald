@@ -24,9 +24,14 @@ import { React, useLayoutEffect, useEffect, useState } from 'react';
 import { soilTemperaturePalette } from "../../utils/palette";
 import "./components.css";
 
-export const EmeraldHeatmap = ({ id, data }) => {
+export const EmeraldHeatmap = ({ id, data, xLabels, yLabels, title }) => {
 	const [blockSize, setBlockSize] = useState(0);
 	const [minMaxValue, setMinMaxValue] = useState([-50, 50]);
+
+	if (!data) throw new Error();
+	if (!xLabels) throw new Error();
+	if (!yLabels) throw new Error();
+	
 
 	useLayoutEffect(() => {
 		const onSizeUpdated = () => {
@@ -75,13 +80,26 @@ export const EmeraldHeatmap = ({ id, data }) => {
 
 	return (
 		<div className="emerald-heatmap">
+			<div>
+				{title}
+			</div>
+			<div style={{ display: "flex", alignItems: "start", rowGap: "6px" }}>
+				<div>
+					{data[0].map((_, i) => <div key={`y-axes-label-${i}`} className="heatmap-y-axes-label" style={{ height: `${blockSize / 2}px` }}>{yLabels[i]}</div>)}
+				</div>
+				<div>
+					<div className="heatmap-view">
+						{renderBlocks()}
+					</div>
+					<div style={{ display: "flex", alignItems: "start", columnGap: "6px", paddingLeft: "4px" }}>
+						{data.map((_, i) => <div key={`x-axes-label-${i}`} className="heatmap-x-axes-label" style={{ width: `${blockSize}px` }}>{xLabels[i]}</div>)}
+					</div>
+				</div>
+			</div>
 			<div className="heatmap-legend">
 				<span>{`${minMaxValue[0]}\u2103`}</span>
 				<div className="heatmap-legend-gradient" style={legendFill}></div>
 				<span>{`${minMaxValue[1]}\u2103`}</span>
-			</div>
-			<div className="heatmap-view">
-				{renderBlocks()}
 			</div>
 		</div>
 	);
