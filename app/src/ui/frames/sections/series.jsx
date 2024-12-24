@@ -27,7 +27,7 @@ import { ColumnAlign } from "../../../model/columnAlign";
 import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
-import { formatTime, formatFloatingPoint } from "../../../utils/formatter";
+import { formatTime, formatFloatingPoint, ordinal } from "../../../utils/formatter";
 import { lightExposurePalette } from "../../../utils/palette";
 import { EmeraldHeatmap } from "../../component/emeraldHeatmap";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
@@ -37,7 +37,7 @@ import "./sections.css";
 const soilAdditiveTableTitle = "Soil Additives";
 const atmosphereAdditiveTableTitle = "Atmosphere Additives";
 
-function AdditiveTable({ tableId, title, rows }) {
+const AdditiveTable = ({ tableId, title, rows }) => {
 	const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
 	const header = ["Name", "Concentration (g/kg)"];
 	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
@@ -65,7 +65,7 @@ function AdditiveTable({ tableId, title, rows }) {
 	);
 }
 
-function LightExposureAreaChart({ lightExposureData }) {
+const LightExposureAreaChart = ({ lightExposureData }) => {
 	const chartSeriesToColor = () => {
 		return Object.keys(lightExposureData.series)
 			.map(k => parseInt(k))
@@ -85,7 +85,7 @@ function LightExposureAreaChart({ lightExposureData }) {
 	);
 }
 
-export function Series(props) {
+export const Series = (props) => {
 	const {
 		adf,
 		time,
@@ -102,7 +102,6 @@ export function Series(props) {
 		const currentRepetition = selectedSeriesMetadata.number - totalPreviousRepeatedSeries;
 		return currentRepetition < adf.series[selectedSeriesMetadata.index].repeated;
 	};
-
 	const onBackButtonClick = (_) => {
 		if (selectedSeriesMetadata.number === 1) return;
 		const newIndex = adf.series[selectedSeriesMetadata.index].repeated === 1
@@ -113,7 +112,6 @@ export function Series(props) {
 			index: newIndex,
 		});
 	}
-
 	const onNextButtonClick = (_) => {
 		if (selectedSeriesMetadata.number === adf.metadata.nSeries) return;
 		const newIndex = isStillRepeating()
@@ -124,22 +122,21 @@ export function Series(props) {
 			index: newIndex,
 		});
 	}
-
-	const renderOrdinalSeries = () => {
-		const seriesNumber = selectedSeriesMetadata.number;
-		const suffix = seriesNumber === 1
-			? "st" : seriesNumber === 2
-				? "nd" : "th";
-		return `${seriesNumber}${suffix}`;
-	};
-
 	const startSeriesTime = () => {
 		return formatTime((selectedSeriesMetadata.number - 1) * time, timeUnit);
 	};
-
 	const endSeriesTime = () => {
 		return formatTime((selectedSeriesMetadata.number * time), timeUnit);
 	};
+	const getChunksLabels = () => {
+		const labels = [];
+		for (var i  = 0, start = 0, end = time/adf["header"].chunks; start < time; i++) {
+			labels.push(`${formatTime(start, timeUnit)} \u2015 ${formatTime(end, timeUnit)}`);
+			start += time/adf["header"].chunks;
+			end += time/adf["header"].chunks;
+		}
+		return labels
+	}
 
 	useEffect(() => {
 		setSelectedSeriesMetadata(selectedSeriesMetadata);
@@ -152,7 +149,7 @@ export function Series(props) {
 					<KeyboardArrowLeftIcon />
 				</EmeraldArrowButton>
 				<div className="series-metadata">
-					<span>{renderOrdinalSeries()} series</span>
+					<span>{ordinal(selectedSeriesMetadata.number)} series</span>
 					<span>
 						{startSeriesTime()} &mdash; {endSeriesTime()}
 					</span>
@@ -177,14 +174,11 @@ export function Series(props) {
 				<LightExposureAreaChart
 					lightExposureData={adf.series[selectedSeriesMetadata.index].lightExposure}
 				/>
-				{/* <SoilDepthBarChart
-					soilTemperatureData={adf.series[selectedSeriesMetadata.index].soilTemperature}
-				/> */}
 				<EmeraldHeatmap
 					id="soilTemperatureHeatmap"
 					data={adf.series[selectedSeriesMetadata.index].soilTemperature.series}
 					title={"Soil temperature (\u2103)"}
-					xLabels={["a","b","c","d"]}
+					xLabels={getChunksLabels()}
 					yLabels={adf.series[selectedSeriesMetadata.index].soilTemperature.labels}
 				/>
 			</div>

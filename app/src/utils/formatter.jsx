@@ -37,6 +37,20 @@ export const formatTime = (time, timeUnit) => {
 	return `${timeStr} ${timeUnit.symbol}`
 }
 
+export const ordinal = (number) => {
+	const absNumber = Math.abs(number);
+	const suffix = (absNumber % 100 >= 11 && absNumber % 100 <= 13)
+		? "th"
+		: (absNumber % 10 === 1)
+			? "st"
+			: (absNumber % 10 === 2)
+				? "nd"
+				: (absNumber % 10 === 3)
+					? "rd"
+					: "th";
+	return `${number}${suffix}`;
+};
+
 function add(acc, x) {
 	return acc + x;
 }

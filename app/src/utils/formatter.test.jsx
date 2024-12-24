@@ -1,4 +1,31 @@
-import { formatFloatingPoint, formatTime, transposed } from "./formatter";
+/* formatter.test.jsx
+ * ------------------------------------------------------------------------
+ * Emerald - data visualizer
+ * Copyright (C) 2024 Matteo Nicoli
+ *
+ * This file is part of Terius
+ *
+ * Emerald is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * Terius is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+import {
+	formatFloatingPoint,
+	formatTime,
+	transposed,
+	ordinal
+} from "./formatter";
 
 describe('formatFloatingPoint', () => {
 	test('formats integer without decimal places', () => {
@@ -111,5 +138,39 @@ describe('transposed', () => {
 		const input = [];
 		const expectedOutput = [];
 		expect(transposed(input)).toEqual(expectedOutput);
+	});
+});
+
+describe('ordinal function', () => {
+	test('returns "1st" for input 1', () => {
+		expect(ordinal(1)).toBe('1st');
+	});
+
+	test('returns "2nd" for input 2', () => {
+		expect(ordinal(2)).toBe('2nd');
+	});
+
+	test('returns "3rd" for input 3', () => {
+		expect(ordinal(3)).toBe('3rd');
+	});
+
+	test('returns "4th" for input 4', () => {
+		expect(ordinal(4)).toBe('4th');
+	});
+
+	test('returns "21st" for input 21', () => {
+		expect(ordinal(21)).toBe('21st');
+	});
+
+	test('returns "22nd" for input 22', () => {
+		expect(ordinal(22)).toBe('22nd');
+	});
+
+	test('returns "23rd" for input 23', () => {
+		expect(ordinal(23)).toBe('23rd');
+	});
+
+	test('returns "100th" for input 100', () => {
+		expect(ordinal(100)).toBe('100th');
 	});
 });
