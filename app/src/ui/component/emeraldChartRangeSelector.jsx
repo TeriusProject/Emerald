@@ -30,12 +30,7 @@ import { ChartsOnAxisClickHandler } from '@mui/x-charts';
 import { ChartsTooltip } from "@mui/x-charts";
 import { Slider } from '@mui/material';
 import { SelectorDataType } from "../../model/seriesSelectorDataType";
-import {
-	formatTime,
-	formatDataTypeUnit,
-	formatFloatingPoint,
-	getDataProviderByType
-} from "../../utils/formatter";
+import { formatTime, formatDataTypeUnit, formatFloatingPoint, getDataProviderByType } from "../../utils/formatter";
 import { seriesButtonColors } from "../../utils/palette";
 import useId from '@mui/utils/useId';
 
@@ -52,10 +47,10 @@ const getChartData = (series, dataType) => {
 };
 
 const getSeriesColor = (dataType) => {
-	switch(dataType) {
+	switch (dataType) {
 		case SelectorDataType.WATER_USE:
 			return seriesButtonColors.WATER;
-		case SelectorDataType.TEMPERATURE: 
+		case SelectorDataType.TEMPERATURE:
 			return seriesButtonColors.TEMPERATURE;
 		case SelectorDataType.SOIL_DENSITY:
 			return seriesButtonColors.SOIL_DENSITY;
@@ -66,7 +61,7 @@ const getSeriesColor = (dataType) => {
 	}
 }
 
-export function EmeraldChartRangeSelector(props) {
+export const EmeraldChartRangeSelector = (props) => {
 	const {
 		series,
 		nSeries,
