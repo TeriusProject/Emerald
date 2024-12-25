@@ -28,9 +28,9 @@ import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint, ordinal } from "../../../utils/formatter";
-import { lightExposurePalette,seriesButtonColors } from "../../../utils/palette";
+import { lightExposurePalette, seriesButtonColors } from "../../../utils/palette";
 import { EmeraldHeatmap } from "../../component/emeraldHeatmap";
-import { EmeraldProperty} from "../../component/emeraldProperty";
+import { EmeraldProperty } from "../../component/emeraldProperty";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -131,10 +131,10 @@ export const Series = (props) => {
 	};
 	const getChunksLabels = () => {
 		const labels = [];
-		for (var i  = 0, start = 0, end = time/adf["header"].chunks; start < time; i++) {
+		for (var i = 0, start = 0, end = time / adf["header"].chunks; start < time; i++) {
 			labels.push(`${formatTime(start, timeUnit)} \u2015 ${formatTime(end, timeUnit)}`);
-			start += time/adf["header"].chunks;
-			end += time/adf["header"].chunks;
+			start += time / adf["header"].chunks;
+			end += time / adf["header"].chunks;
 		}
 		return labels
 	}
@@ -160,20 +160,8 @@ export const Series = (props) => {
 				</EmeraldArrowButton>
 			</div>
 			<div className="series-properties-section">
-				<EmeraldProperty label="Soil density" value={adf.header.version.label} hexColor={seriesButtonColors.SOIL_DENSITY} />
-				<EmeraldProperty label="Soil pH" value={adf.header.version.label} hexColor={seriesButtonColors.PH} />
-			</div>
-			<div className="additives-section">
-				<AdditiveTable
-					tableId={`${selectedSeriesMetadata.index}-soilAdditiveTable`}
-					title={soilAdditiveTableTitle}
-					rows={adf.series[selectedSeriesMetadata.index].soilAdditives}
-				/>
-				<AdditiveTable
-					tableId={`${selectedSeriesMetadata.index}-atmAdditiveTable`}
-					title={atmosphereAdditiveTableTitle}
-					rows={adf.series[selectedSeriesMetadata.index].atmAdditives}
-				/>
+				<EmeraldProperty label="Soil density" value={`${formatFloatingPoint(adf.series[selectedSeriesMetadata.index].soilDensity)} kg/m\u00B3`} hexColor={seriesButtonColors.SOIL_DENSITY} />
+				<EmeraldProperty label="Soil pH" value={formatFloatingPoint(adf.series[selectedSeriesMetadata.index].pH)} hexColor={seriesButtonColors.PH} />
 			</div>
 			<div className="multidimension-chart-row">
 				<LightExposureAreaChart
@@ -203,6 +191,18 @@ export const Series = (props) => {
 					seriesLabel={"Environment temperature (\u2103)"}
 					labelFormatter={(v) => `${formatFloatingPoint(v)} \u2103`}
 					colors={{ "temp": "rgba(255, 202, 68, 0.65)" }}
+				/>
+			</div>
+			<div className="additives-section">
+				<AdditiveTable
+					tableId={`${selectedSeriesMetadata.index}-soilAdditiveTable`}
+					title={soilAdditiveTableTitle}
+					rows={adf.series[selectedSeriesMetadata.index].soilAdditives}
+				/>
+				<AdditiveTable
+					tableId={`${selectedSeriesMetadata.index}-atmAdditiveTable`}
+					title={atmosphereAdditiveTableTitle}
+					rows={adf.series[selectedSeriesMetadata.index].atmAdditives}
 				/>
 			</div>
 		</EmeraldSection>

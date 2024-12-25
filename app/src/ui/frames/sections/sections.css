@@ -82,7 +82,7 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: flex-start;
-	margin-bottom: var(--default-vertical-skip);
+	margin-top: var(--default-vertical-skip);
 }
 
 .data-selector-section {
@@ -135,6 +135,7 @@
 .series-properties-section {
 	display: flex;
 	column-gap: 10px;
+	justify-content: space-evenly;
 }
 
 @media only screen and (max-width: 1000px) {

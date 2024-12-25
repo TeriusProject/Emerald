@@ -50,23 +50,23 @@ describe('formatFloatingPoint', () => {
 });
 
 describe('formatTime', () => {
-	const timeUnit = { symbol: 'hours' };
+	const timeUnit = { symbol: 'h' };
 
 	test('formats time correctly with unit', () => {
-		expect(formatTime(5, timeUnit)).toBe('5 hours');
+		expect(formatTime(5, timeUnit)).toBe('5 h');
 	});
 
 	test('formats floating point time correctly with unit', () => {
-		expect(formatTime(2.5, timeUnit)).toBe('2.5 hours');
+		expect(formatTime(2.5, timeUnit)).toBe('2.5 h');
 	});
 
 	test('handles zero time correctly', () => {
-		expect(formatTime(0, timeUnit)).toBe('0 hours');
+		expect(formatTime(0, timeUnit)).toBe('0 h');
 	});
 
 	test('formats negative time correctly with unit', () => {
-		const negativeTimeUnit = { symbol: 'minutes' };
-		expect(formatTime(-3.25, negativeTimeUnit)).toBe('-3.25 minutes');
+		const negativeTimeUnit = { symbol: 's' };
+		expect(formatTime(-3.25, negativeTimeUnit)).toBe('-3.25 s');
 	});
 });
 
