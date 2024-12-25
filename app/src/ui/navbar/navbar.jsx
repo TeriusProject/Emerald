@@ -21,16 +21,17 @@
  */
 
 import { React, useState, useEffect } from "react"
+import { TimeUnitSelector } from "../component/emeraldSelector";
 import { ReactComponent as Logo } from "../../img/logo.svg"
 import { ReactComponent as EmeraldName } from "../../img/emerald.svg"
 import "./navbar.css"
 
-export function Navbar() {
+export function Navbar({ timeUnit, onUnitChange }) {
 	const [isShrunk, setIsShrunk] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 50)
+			if (window.scrollY > 85)
 				setIsShrunk(true);
 			else
 				setIsShrunk(false);
@@ -42,9 +43,17 @@ export function Navbar() {
 		};
 	}, [setIsShrunk]);
 
-	return (
-		<div className={isShrunk ? "navbar-shrunk" : "navbar"}>
-			{isShrunk ? <EmeraldName /> : <Logo />}
+	const defaultNavbar = (
+		<div className="navbar">
+			<Logo />
 		</div>
 	);
+	const shrunkNavbar = (
+		<div className="navbar-shrunk">
+			<EmeraldName />
+			<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
+		</div>
+	);
+
+	return isShrunk ? shrunkNavbar : defaultNavbar;
 }
