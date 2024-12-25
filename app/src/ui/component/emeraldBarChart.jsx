@@ -24,12 +24,12 @@ import { React } from "react";
 import { BarChart } from "@mui/x-charts";
 import { pastelPalette } from "../../utils/palette";
 
-export function EmeraldBarChart({ data, xAxisKey, dataKey, labelFormatter, seriesLabel, colors }) {
+export function EmeraldBarChart({ data, xLabels, dataKey, labelFormatter, seriesLabel, colors }) {
 	return (
 		<BarChart
 			className="emerald-series-histogram"
 			dataset={data}
-			xAxis={[{ scaleType: 'band', dataKey: xAxisKey }]}
+			xAxis={[{ scaleType: 'band', data: xLabels }]}
 			series={[{
 				dataKey: dataKey,
 				label: seriesLabel,
