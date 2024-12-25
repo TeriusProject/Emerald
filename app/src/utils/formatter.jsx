@@ -55,13 +55,12 @@ function add(acc, x) {
 	return acc + x;
 }
 
-export function getDataProviderByType(dataType) {
+export const getDataProviderByType = (dataType) => {
 	switch (dataType) {
 		case SelectorDataType.WATER_USE:
 			return (series) => series.waterUse.reduce(add, 0);
 		case SelectorDataType.TEMPERATURE:
 			const avg = (s) => s.environmentTemp
-				// .map(t => t.temp)
 				.reduce(add, 0) / s.environmentTemp.length;
 			return (series) => avg(series);
 		case SelectorDataType.PH:
@@ -69,9 +68,8 @@ export function getDataProviderByType(dataType) {
 		case SelectorDataType.SOIL_DENSITY:
 			return (series) => series.soilDensity;
 		default:
-			break;
+			return (_) => { };
 	}
-	return (_) => { };
 }
 
 export const formatDataTypeUnit = (dataType) => {
