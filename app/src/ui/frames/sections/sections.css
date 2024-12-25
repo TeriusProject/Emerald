@@ -132,6 +132,11 @@
 	width: 400px;
 }
 
+.series-properties-section {
+	display: flex;
+	column-gap: 10px;
+}
+
 @media only screen and (max-width: 1000px) {
 	.adf-header-properties {
 		display: grid;

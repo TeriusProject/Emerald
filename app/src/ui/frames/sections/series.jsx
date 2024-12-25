@@ -28,8 +28,9 @@ import { EmeraldBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint, ordinal } from "../../../utils/formatter";
-import { lightExposurePalette } from "../../../utils/palette";
+import { lightExposurePalette,seriesButtonColors } from "../../../utils/palette";
 import { EmeraldHeatmap } from "../../component/emeraldHeatmap";
+import { EmeraldProperty} from "../../component/emeraldProperty";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./sections.css";
@@ -158,6 +159,10 @@ export const Series = (props) => {
 					<KeyboardArrowRightIcon />
 				</EmeraldArrowButton>
 			</div>
+			<div className="series-properties-section">
+				<EmeraldProperty label="Soil density" value={adf.header.version.label} hexColor={seriesButtonColors.SOIL_DENSITY} />
+				<EmeraldProperty label="Soil pH" value={adf.header.version.label} hexColor={seriesButtonColors.PH} />
+			</div>
 			<div className="additives-section">
 				<AdditiveTable
 					tableId={`${selectedSeriesMetadata.index}-soilAdditiveTable`}
@@ -185,7 +190,7 @@ export const Series = (props) => {
 			<div className="histogram-row">
 				<EmeraldBarChart
 					data={adf.series[selectedSeriesMetadata.index].waterUse}
-					xAxisKey={"chunk"}
+					xLabels={getChunksLabels()}
 					dataKey={"mm"}
 					seriesLabel={"Water use (mm)"}
 					labelFormatter={(v) => `${formatFloatingPoint(v)} mm`}
@@ -193,7 +198,7 @@ export const Series = (props) => {
 				/>
 				<EmeraldBarChart
 					data={adf.series[selectedSeriesMetadata.index].environmentTemp}
-					xAxisKey={"chunk"}
+					xLabels={getChunksLabels()}
 					dataKey={"temp"}
 					seriesLabel={"Environment temperature (\u2103)"}
 					labelFormatter={(v) => `${formatFloatingPoint(v)} \u2103`}
