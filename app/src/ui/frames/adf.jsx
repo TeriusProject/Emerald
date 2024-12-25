@@ -20,7 +20,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useCallback, useEffect, useState } from "react";
+import { React, Fragment, useCallback, useEffect, useState } from "react";
+import { Navbar } from "../navbar/navbar";
 import { Header } from "./sections/header";
 import { Series } from "./sections/series";
 import { timeUnits } from "../../model/timeUnit";
@@ -31,8 +32,8 @@ import "./frames.css";
 
 const warningMessage = "WARN: The time unit you chose is bigger than the measure itself";
 
-export function Adf({ adf }) {
-	const [timeUnit, setTimeUnit] = useState(timeUnits[0]);
+export const Adf = ({ adf }) => {
+	const [timeUnit, setTimeUnit] = useState(timeUnits[2]);
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
 	const [currentSeries, setCurrentSeries] = useState({ index: 0, number: 1 });
 	const [openNotification, setOpenNotification] = useState(false);
@@ -92,30 +93,33 @@ export function Adf({ adf }) {
 	}, [adf]);
 
 	return (
-		<div className="adf-content">
-			<EmeraldNotification
-				id={`unit-conversion-failed`}
-				open={openNotification}
-				handleClose={onCloseNotification}
-				message={warningMessage}
-			/>
-			<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
-			<Header adf={adf} time={timeLength} timeUnit={timeUnit} />
-			<SeriesSelector
-				time={timeLength}
-				timeUnit={timeUnit}
-				adf={adf}
-				onRangeChange={onSeriesRangeChange}
-				onSeriesClick={onSeriesClick}
-			/>
-			<p>In the following section you can explore in detail the data contained in any series.</p>
-			<Series
-				adf={adf}
-				time={timeLength}
-				timeUnit={timeUnit}
-				selectedSeriesMetadata={currentSeries}
-				setSelectedSeriesMetadata={setCurrentSeries}
-			/>
-		</div>
+		<Fragment>
+			<Navbar timeUnit={timeUnit} onUnitChange={onUnitChange} />
+			<div className="adf-content">
+				<EmeraldNotification
+					id={`unit-conversion-failed`}
+					open={openNotification}
+					handleClose={onCloseNotification}
+					message={warningMessage}
+				/>
+				<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
+				<Header adf={adf} time={timeLength} timeUnit={timeUnit} />
+				<SeriesSelector
+					time={timeLength}
+					timeUnit={timeUnit}
+					adf={adf}
+					onRangeChange={onSeriesRangeChange}
+					onSeriesClick={onSeriesClick}
+				/>
+				<p>In the following section you can explore in detail the data contained in any series.</p>
+				<Series
+					adf={adf}
+					time={timeLength}
+					timeUnit={timeUnit}
+					selectedSeriesMetadata={currentSeries}
+					setSelectedSeriesMetadata={setCurrentSeries}
+				/>
+			</div>
+		</Fragment>
 	);
 }

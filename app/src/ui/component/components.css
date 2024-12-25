@@ -348,17 +348,28 @@
 	border-left-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	/* margin-bottom: 50px; */
 }
 
 .heatmap-row {
 	display: flex;
 	column-gap: 4px;
 	background: linear-gradient(to right, rgba(227, 227, 227, 0.32) 49.16%, rgb(249, 249, 249));
-	border-bottom-style: solid;
-	border-bottom-color: rgba(184, 184, 184, 0.56);
-	border-bottom-width: 1px;
-	padding: 3px 20px 3px 4px;
+	padding: 3px 4px 3px 4px;
+}
+
+.heatmap-row:hover {
+	border-radius: 10px;
+	background:rgba(205, 205, 205, 0.832);
+	animation: highlightRow 0.3s;
+}
+
+@keyframes highlightRow {
+	from {
+		background: linear-gradient(to right, rgba(227, 227, 227, 0.32) 49.16%, rgb(249, 249, 249));
+	}
+	to {
+		background:rgba(205, 205, 205, 0.832);
+	}
 }
 
 .heatmap-cell {

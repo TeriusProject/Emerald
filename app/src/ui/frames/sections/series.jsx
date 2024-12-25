@@ -24,7 +24,7 @@ import { React, useEffect } from "react";
 import { EmeraldTable } from "../../component/emeraldTable";
 import { EmeraldSection } from "../../component/emeraldSection";
 import { ColumnAlign } from "../../../model/columnAlign";
-import { EmeraldBarChart } from "../../component/emeraldBarChart";
+import { EmeraldBiaxialBarChart } from "../../component/emeraldBarChart";
 import { EmeraldStackedAreaChart } from "../../component/emeraldStackedAreaChart";
 import { EmeraldArrowButton } from "../../component/emeraldArrowButton";
 import { formatTime, formatFloatingPoint, ordinal } from "../../../utils/formatter";
@@ -175,21 +175,26 @@ export const Series = (props) => {
 				/>
 			</div>
 			<div className="histogram-row">
-				<EmeraldBarChart
-					data={adf.series[selectedSeriesMetadata.index].waterUse}
+				<EmeraldBiaxialBarChart
+					data={{
+						"mm": adf.series[selectedSeriesMetadata.index].waterUse,
+						"temp": adf.series[selectedSeriesMetadata.index].environmentTemp
+					}}
 					xLabels={getChunksLabels()}
-					dataKey={"mm"}
-					seriesLabel={"Water use (mm)"}
-					labelFormatter={(v) => `${formatFloatingPoint(v)} mm`}
-					colors={{ "mm": "rgba(158, 223, 255, 0.74)" }}
-				/>
-				<EmeraldBarChart
-					data={adf.series[selectedSeriesMetadata.index].environmentTemp}
-					xLabels={getChunksLabels()}
-					dataKey={"temp"}
-					seriesLabel={"Environment temperature (\u2103)"}
-					labelFormatter={(v) => `${formatFloatingPoint(v)} \u2103`}
-					colors={{ "temp": "rgba(255, 202, 68, 0.65)" }}
+					dataKey1={"mm"}
+					dataKey2={"temp"}
+					seriesLabel={{
+						"mm": "Water use (mm)",
+						"temp": "Environment temperature (\u2103)"
+					}}
+					labelFormatter={{
+						"mm": (v) => `${formatFloatingPoint(v)} mm`,
+						"temp": (v) => `${formatFloatingPoint(v)} \u2103`
+					}}
+					colors={{
+						"mm": "rgba(158, 223, 255, 0.74)",
+						"temp": "rgba(255, 202, 68, 0.65)"
+					}}
 				/>
 			</div>
 			<div className="additives-section">

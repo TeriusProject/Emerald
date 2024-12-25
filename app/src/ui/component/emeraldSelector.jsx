@@ -21,10 +21,9 @@
  */
 
 import { React } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Autocomplete } from "@mui/material";
 import { timeUnits } from "../../model/timeUnit";
 import { adfVersions } from "../../model/adfVersion";
-import Autocomplete from '@mui/material/Autocomplete';
 
 export function EmeraldSelector({ data, formatter, label, initValue, onValueChange, className }) {
 	return (

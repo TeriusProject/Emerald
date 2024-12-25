@@ -24,7 +24,8 @@ import { React } from "react";
 import { BarChart } from "@mui/x-charts";
 import { pastelPalette } from "../../utils/palette";
 
-export function EmeraldBarChart({ data, xLabels, dataKey, labelFormatter, seriesLabel, colors }) {
+export const EmeraldBarChart = (props) => {
+	const { data, xLabels, dataKey, labelFormatter, seriesLabel, colors } = props;
 	return (
 		<BarChart
 			className="emerald-series-histogram"
@@ -34,8 +35,55 @@ export function EmeraldBarChart({ data, xLabels, dataKey, labelFormatter, series
 				dataKey: dataKey,
 				label: seriesLabel,
 				valueFormatter: labelFormatter,
-				color: colors ? colors[dataKey]?? pastelPalette[0] : pastelPalette[1]
+				color: colors ? colors[dataKey] ?? pastelPalette[0] : pastelPalette[1]
 			}]}
+			height={350}
+			grid={{ horizontal: true }}
+			borderRadius={10}
+			slotProps={{
+				legend: {
+					direction: 'row',
+					position: { vertical: 'bottom', horizontal: 'middle' },
+					padding: -5,
+				},
+			}}
+		/>
+	);
+}
+
+export const EmeraldBiaxialBarChart = (props) => {
+	const {
+		data,
+		xLabels,
+		dataKey1,
+		dataKey2,
+		labelFormatter,
+		seriesLabel,
+		colors
+	} = props;
+
+	return (
+		<BarChart
+			className="emerald-series-histogram"
+			series={[
+				{
+					data: data[dataKey1],
+					label: seriesLabel[dataKey1],
+					valueFormatter: labelFormatter[dataKey1],
+					color: colors ? colors[dataKey1]: pastelPalette[1],
+					yAxisId: dataKey1,
+				},
+				{
+					data: data[dataKey2],
+					label: seriesLabel[dataKey2],
+					valueFormatter: labelFormatter[dataKey2],
+					color: colors ? colors[dataKey2] : pastelPalette[1],
+					yAxisId: dataKey2,
+				}
+			]}
+			xAxis={[{ scaleType: 'band', data: xLabels }]}
+			yAxis={[{ id: dataKey1 }, { id: dataKey2 }]}
+			rightAxis={`${dataKey2}`}
 			height={350}
 			grid={{ horizontal: true }}
 			borderRadius={10}

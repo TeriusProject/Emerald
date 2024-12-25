@@ -20,16 +20,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, Fragment } from "react";
-import { Navbar } from "../navbar/navbar";
-import { adf } from "./mock_adf";
+import { React } from "react";
+import { adf_mock } from "./mock_adf";
 import { Adf } from "./adf";
 
 export function Main() {
 	return (
-		<Fragment>
-			<Navbar />
-			<Adf adf={adf} />
-		</Fragment>
+		<Adf adf={adf_mock} />
 	);
 }
