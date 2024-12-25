@@ -70,7 +70,7 @@ export const EmeraldBiaxialBarChart = (props) => {
 					data: data[dataKey1],
 					label: seriesLabel[dataKey1],
 					valueFormatter: labelFormatter[dataKey1],
-					color: colors ? colors[dataKey1]: pastelPalette[1],
+					color: colors ? colors[dataKey1] : pastelPalette[1],
 					yAxisId: dataKey1,
 				},
 				{

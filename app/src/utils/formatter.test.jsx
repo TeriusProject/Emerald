@@ -20,11 +20,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+import { SelectorDataType } from "../model/seriesSelectorDataType";
 import {
 	formatFloatingPoint,
 	formatTime,
 	transposed,
-	ordinal
+	ordinal,
+	getDataProviderByType
 } from "./formatter";
 
 describe('formatFloatingPoint', () => {
@@ -172,5 +174,41 @@ describe('ordinal function', () => {
 
 	test('returns "100th" for input 100', () => {
 		expect(ordinal(100)).toBe('100th');
+	});
+});
+
+const mockSeries = { waterUse: [10, 20, 30], environmentTemp: [15, 20, 25], pH: 7.0, soilDensity: 1.5 };
+
+const add = (accumulator, currentValue) => accumulator + currentValue;
+
+describe('getDataProviderByType', () => {
+	it('should return a function that calculates total water use', () => {
+		const waterUseProvider = getDataProviderByType(SelectorDataType.WATER_USE);
+		const result = waterUseProvider(mockSeries);
+		expect(result).toBe(60);
+	});
+
+	it('should return a function that calculates average temperature', () => {
+		const temperatureProvider = getDataProviderByType(SelectorDataType.TEMPERATURE);
+		const result = temperatureProvider(mockSeries);
+		expect(result).toBeCloseTo(20);
+	});
+
+	it('should return pH value', () => {
+		const pHProvider = getDataProviderByType(SelectorDataType.PH);
+		const result = pHProvider(mockSeries);
+		expect(result).toBe(7.0);
+	});
+
+	it('should return soil density', () => {
+		const soilDensityProvider = getDataProviderByType(SelectorDataType.SOIL_DENSITY);
+		const result = soilDensityProvider(mockSeries);
+		expect(result).toBe(1.5);
+	});
+
+	it('should return an empty function for unknown data type', () => {
+		const unknownProvider = getDataProviderByType('UNKNOWN_TYPE');
+		expect(typeof unknownProvider).toBe('function');
+		expect(unknownProvider([])).toEqual(undefined);
 	});
 });
