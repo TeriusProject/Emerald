@@ -37,12 +37,11 @@ import "./sections.css";
 
 const soilAdditiveTableTitle = "Soil Additives";
 const atmosphereAdditiveTableTitle = "Atmosphere Additives";
+const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
+const header = ["Name", "Concentration (g/kg)"];
+const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
 
 const AdditiveTable = ({ tableId, title, rows }) => {
-	const chEBIUrl = "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:";
-	const header = ["Name", "Concentration (g/kg)"];
-	const columnsAlign = [ColumnAlign.LEFT, ColumnAlign.RIGHT];
-
 	const getAdditiveUrl = (id, name) => {
 		return (
 			<a href={`${chEBIUrl}${id}`} target="_blank" rel="noopener noreferrer">
