@@ -34,7 +34,7 @@ export function EmeraldSelector({ data, formatter, label, initValue, onValueChan
 			defaultValue={initValue}
 			getOptionLabel={formatter}
 			renderInput={(params) => (
-				<TextField {...params} label={label} variant="standard" />
+				<TextField {...params} label={label} variant="standard" size="small" />
 			)}
 			onChange={onValueChange}
 		/>
@@ -47,7 +47,7 @@ export function TimeUnitSelector({ init, onChange }) {
 			className="emerald-time-unit-selector"
 			data={timeUnits}
 			initValue={init}
-			label="Time Unit"
+			label={null}
 			formatter={(item) => item.label}
 			onValueChange={onChange}
 		/>
