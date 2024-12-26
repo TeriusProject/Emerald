@@ -24,6 +24,7 @@ import { React, useState, useEffect } from "react"
 import { TimeUnitSelector } from "../component/emeraldSelector";
 import { ReactComponent as Logo } from "../../img/logo.svg"
 import { ReactComponent as EmeraldName } from "../../img/emerald.svg"
+import MenuIcon from '@mui/icons-material/Menu';
 import "./navbar.css"
 
 export function Navbar({ timeUnit, onUnitChange }) {
@@ -51,7 +52,10 @@ export function Navbar({ timeUnit, onUnitChange }) {
 	const shrunkNavbar = (
 		<div className="navbar-shrunk">
 			<EmeraldName />
-			<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
+			<div className="navbar-shrunk-item-container">
+				<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
+				<MenuIcon />
+			</div>
 		</div>
 	);
 
