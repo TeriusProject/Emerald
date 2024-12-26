@@ -65,7 +65,7 @@ const AdditiveTable = ({ tableId, title, rows }) => {
 	);
 }
 
-const LightExposureAreaChart = ({ lightExposureData }) => {
+const LightExposureAreaChart = ({ lightExposureData, seriesLabels }) => {
 	const chartSeriesToColor = () => {
 		return Object.keys(lightExposureData.series)
 			.map(k => parseInt(k))
@@ -81,6 +81,7 @@ const LightExposureAreaChart = ({ lightExposureData }) => {
 			seriesDataCollection={lightExposureData}
 			labelFormatter={function (v) { return `${formatFloatingPoint(v)} nm`; }}
 			colors={Object.fromEntries(chartSeriesToColor())}
+			seriesLabels={seriesLabels}
 		/>
 	);
 }
@@ -165,6 +166,7 @@ export const Series = (props) => {
 			<div className="multidimension-chart-row">
 				<LightExposureAreaChart
 					lightExposureData={adf.series[selectedSeriesMetadata.index].lightExposure}
+					seriesLabels={getChunksLabels()}
 				/>
 				<EmeraldHeatmap
 					id="soilTemperatureHeatmap"
