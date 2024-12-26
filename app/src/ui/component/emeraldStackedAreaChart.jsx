@@ -23,12 +23,13 @@
 import { React } from "react";
 import { LineChart, lineElementClasses } from "@mui/x-charts";
 
-export function EmeraldStackedAreaChart({ title, seriesDataCollection, labelFormatter, colors }) {
+export const EmeraldStackedAreaChart = (props) => {
+	const { title, seriesDataCollection, labelFormatter, colors, seriesLabels } = props;
 	const series = seriesDataCollection.series;
-	const data = Object.keys(series).map(seriesDataKey => {
+	const data = Object.keys(series).map((seriesDataKey, i) => {
 		const seriesObject = {
 			data: series[seriesDataKey],
-			label: seriesDataKey,
+			label: seriesLabels[i],
 			area: true,
 			stack: 'total',
 			showMark: false,

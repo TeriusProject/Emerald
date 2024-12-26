@@ -141,6 +141,16 @@ describe('transposed', () => {
 		const expectedOutput = [];
 		expect(transposed(input)).toEqual(expectedOutput);
 	});
+
+	test('throws an error for null input', () => {
+        const input = null;
+        expect(() => transposed(input)).toThrow('Input matrix cannot be null|undefined');
+    });
+
+    test('throws an error for undefined input', () => {
+        const input = undefined;
+        expect(() => transposed(input)).toThrow('Input matrix cannot be null|undefined');
+    });
 });
 
 describe('ordinal function', () => {

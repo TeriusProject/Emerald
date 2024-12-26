@@ -23,11 +23,12 @@
 import { Fragment, React, useCallback, useEffect, useState } from "react";
 import { EmeraldNotification } from "./emeraldNotification";
 import { uvLightNM, infraredLightNM, visibleLightNM } from "../../model/wavelengths";
+import {formatFloatingPoint} from "../../utils/formatter";
 
 const invalidWavelengthRangeMessage = "The range of wavelength must be"
 	+ `[${uvLightNM.min}-${infraredLightNM.max}]`;
 
-export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, n }) {
+export const EmeraldWaveScheme = ({ title, width, height, maxLength, minLength, n }) => {
 	const [openNotification, setOpenNotification] = useState(false);
 
 	/* 1 pixel is removed because of the bottom border 1 px thick */
@@ -90,7 +91,7 @@ export function EmeraldWaveScheme({ title, width, height, maxLength, minLength, 
 				style={borderBlockStyle}
 			>
 				<span>
-					{minLength + ((index + 1) * blockWavelengthRange)}nm
+					{formatFloatingPoint(minLength + ((index + 1) * blockWavelengthRange))}nm
 				</span>
 			</div>
 		)
