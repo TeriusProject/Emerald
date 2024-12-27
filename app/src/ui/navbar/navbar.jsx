@@ -20,14 +20,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-import { React, useState, useEffect } from "react"
+import { React, Fragment, useState, useEffect } from "react";
 import { TimeUnitSelector } from "../component/emeraldSelector";
-import { ReactComponent as Logo } from "../../img/logo.svg"
-import { ReactComponent as EmeraldName } from "../../img/emerald.svg"
+import { EmeraldNotification } from "../component/emeraldNotification";
+import { ReactComponent as Logo } from "../../img/logo.svg";
+import { ReactComponent as EmeraldName } from "../../img/emerald.svg";
 import MenuIcon from '@mui/icons-material/Menu';
-import "./navbar.css"
+import "./navbar.css";
+
+const menuNotImplementedMessage = "Menu hasn't been implemented yet";
 
 export function Navbar({ timeUnit, onUnitChange }) {
+	const [openNotification, setOpenNotification] = useState(false);
 	const [isShrunk, setIsShrunk] = useState(false);
 
 	useEffect(() => {
@@ -50,13 +54,23 @@ export function Navbar({ timeUnit, onUnitChange }) {
 		</div>
 	);
 	const shrunkNavbar = (
-		<div className="navbar-shrunk">
-			<EmeraldName />
-			<div className="navbar-shrunk-item-container">
-				<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
-				<MenuIcon />
+		<Fragment>
+			<div className="navbar-shrunk">
+				<EmeraldName />
+				<div className="navbar-shrunk-item-container">
+					<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
+					<div onClick={() => setOpenNotification(true)}>
+						<MenuIcon />
+					</div>
+				</div>
 			</div>
-		</div>
+			<EmeraldNotification
+				id={`menu-not-implemented`}
+				open={openNotification}
+				handleClose={() => setOpenNotification(false)}
+				message={menuNotImplementedMessage}
+			/>
+		</Fragment>
 	);
 
 	return isShrunk ? shrunkNavbar : defaultNavbar;

@@ -23,8 +23,9 @@
 import { React } from "react";
 import { Slide, Snackbar } from "@mui/material";
 
-export function EmeraldNotification({ id, open, handleClose, message, expiresMillis }) {
-	const expiresTimeMilliseconds = 6000;
+const expiresTimeMilliseconds = 6000;
+
+export const EmeraldNotification = ({ id, open, handleClose, message, expiresMillis }) => {
 	return (
 		<Snackbar
 			key={`notification-${id}`}
