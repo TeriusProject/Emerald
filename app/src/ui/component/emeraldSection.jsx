@@ -23,9 +23,9 @@
 import { React } from "react";
 import "../frames/sections/sections.css";
 
-export function EmeraldSection({ className, children, elevation }) {
+export const EmeraldSection = ({ className, children }) => {
 	return (
-		<div className={`emerald-section ${className}`} elevation={elevation ?? 2}>
+		<div className={`emerald-section ${className}`} >
 			{children}
 		</div>
 	);
