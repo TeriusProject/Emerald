@@ -59,7 +59,7 @@ export function Navbar({ timeUnit, onUnitChange }) {
 				<EmeraldName />
 				<div className="navbar-shrunk-item-container">
 					<TimeUnitSelector init={timeUnit} onChange={onUnitChange} />
-					<div onClick={() => setOpenNotification(true)}>
+					<div className="navbar-menu-button" onClick={() => setOpenNotification(true)}>
 						<MenuIcon />
 					</div>
 				</div>

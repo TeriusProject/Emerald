@@ -42,12 +42,24 @@
 	padding-bottom: 30px;
 }
 
-.expand-button {
-	margin-left: auto;
-	margin-right: auto;
-	width: fit-content;
-	border-radius: 20px;
+.expand-button-row {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 	cursor: pointer;
+}
+
+.expand-button {
+	width: 35px;
+	height: 35px;
+	border-radius: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.expand-button:hover {
+	background: rgba(163, 163, 163, 0.26);
 }
 
 .ribbon-section {
