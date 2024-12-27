@@ -113,8 +113,10 @@ export function Header({ adf, time, timeUnit }) {
 					/>
 				</div>
 			</div>
-			<div className="expand-button" onClick={onExpandClick}>
-				{isExpandedSectionOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+			<div className="expand-button-row" onClick={onExpandClick}>
+				<div className="expand-button">
+					{isExpandedSectionOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+				</div>
 			</div>
 		</EmeraldSection>
 	);
