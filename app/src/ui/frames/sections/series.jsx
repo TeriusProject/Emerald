@@ -144,7 +144,7 @@ export const Series = (props) => {
 	}, [selectedSeriesMetadata, setSelectedSeriesMetadata]);
 
 	return (
-		<EmeraldSection className="adf-series-section" elevation={3}>
+		<EmeraldSection className="adf-series-section">
 			<div className="series-title">
 				<EmeraldArrowButton onClick={onBackButtonClick}>
 					<KeyboardArrowLeftIcon />
