@@ -1,4 +1,4 @@
-/* frames.css
+/* uploadView.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,19 +20,13 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-.adf-content {
-	margin-top: calc(var(--menu-height) + 20px);
-}
+import { React } from "react";
+import { EmeraldDragAndDrop } from "../component/emeraldDragAndDrop";
 
-a {
-	color: #868686;
-	font-weight: 200;
-}
-
-p {
-	margin: var(--default-section-margins);
-}
-
-.upload-view {
-	margin-top: calc(var(--menu-height) + 20px);
+export const UploadView = () => {
+	return (
+		<div className="upload-view">
+			<EmeraldDragAndDrop />
+		</div>
+	);
 }
