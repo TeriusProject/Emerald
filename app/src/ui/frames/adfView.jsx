@@ -1,4 +1,4 @@
-/* adf.jsx
+/* adfView.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -21,44 +21,20 @@
  */
 
 import { React, Fragment, useCallback, useEffect, useState } from "react";
-import { Navbar } from "../navbar/navbar";
 import { Header } from "./sections/header";
 import { Series } from "./sections/series";
-import { timeUnits } from "../../model/timeUnit";
 import { Ribbon } from "./sections/ribbon";
-import { EmeraldNotification } from "../component/emeraldNotification";
 import { SeriesSelector } from "./sections/seriesSelector";
 import "./frames.css";
 
-const warningMessage = "WARN: The time unit you chose is bigger than the measure itself";
-
-export const Adf = ({ adf }) => {
-	const [timeUnit, setTimeUnit] = useState(timeUnits[2]);
+export const AdfView = ({ adf, timeUnit, onUnitChange}) => {
 	const [timeLength, setTimeLength] = useState(adf.metadata.periodSec);
 	const [currentSeries, setCurrentSeries] = useState({ index: 0, number: 1 });
-	const [openNotification, setOpenNotification] = useState(false);
 	const [repeatedMask, setRepeatedMask] = useState([]);
-
-	const onUnitChange = (_, newValue) => {
-		if (!newValue) return;
-
-		if (checkTimeUnit(newValue))
-			setOpenNotification(true);
-		setTimeUnit(newValue);
-	};
 
 	const getRepetatedMask = (series) => {
 		return series.map(s => s.repeated);
 	};
-
-	const onCloseNotification = () => {
-		setOpenNotification(false);
-	};
-
-	const checkTimeUnit = (newValue) => {
-		return (adf.metadata.periodSec < newValue.timeInSeconds)
-	};
-
 	const getSeriesIndex = useCallback((seriesNumber) => {
 		if (repeatedMask.length === 0) return 0;
 		for (var i = 0, acc = 0; i < repeatedMask.length; i++) {
@@ -69,14 +45,12 @@ export const Adf = ({ adf }) => {
 		}
 		throw new Error("Series index out of bound");
 	}, [repeatedMask]);
-
 	const onSeriesRangeChange = useCallback((newRange) => {
 		setCurrentSeries({
 			index: getSeriesIndex(newRange[0]),
 			number: newRange[0],
 		});
 	}, [getSeriesIndex]);
-
 	const onSeriesClick = (_, clickedItem) => {
 		setCurrentSeries({
 			index: getSeriesIndex(clickedItem.dataIndex),
@@ -94,14 +68,7 @@ export const Adf = ({ adf }) => {
 
 	return (
 		<Fragment>
-			<Navbar timeUnit={timeUnit} onUnitChange={onUnitChange} />
 			<div className="adf-content">
-				<EmeraldNotification
-					id={`unit-conversion-failed`}
-					open={openNotification}
-					handleClose={onCloseNotification}
-					message={warningMessage}
-				/>
 				<Ribbon timeUnit={timeUnit} onUnitChange={onUnitChange} />
 				<Header adf={adf} time={timeLength} timeUnit={timeUnit} />
 				<SeriesSelector

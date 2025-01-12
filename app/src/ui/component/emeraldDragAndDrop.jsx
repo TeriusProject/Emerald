@@ -1,4 +1,4 @@
-/* frames.css
+/* emeraldDragAndDrop.jsx
  * ------------------------------------------------------------------------
  * Emerald - data visualizer
  * Copyright (C) 2024 Matteo Nicoli
@@ -20,19 +20,34 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-.adf-content {
-	margin-top: calc(var(--menu-height) + 20px);
-}
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 
-a {
-	color: #868686;
-	font-weight: 200;
-}
+export const EmeraldDragAndDrop = ({ onUpload }) => {
+	const onDrop = useCallback((acceptedFiles) => {
+		console.log("Uploaded files:", acceptedFiles);
+	}, []);
 
-p {
-	margin: var(--default-section-margins);
-}
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-.upload-view {
-	margin-top: calc(var(--menu-height) + 20px);
+	return (
+		<div
+			{...getRootProps()}
+			style={{
+				border: "2px dashed #cccccc",
+				borderRadius: "10px",
+				padding: "20px",
+				textAlign: "center",
+				cursor: "pointer",
+				backgroundColor: isDragActive ? "#f0f8ff" : "#fafafa",
+			}}
+		>
+			<input {...getInputProps()} />
+			{isDragActive ? (
+				<p>Drop the files here...</p>
+			) : (
+				<p>Drag & drop some files here, or click to select files</p>
+			)}
+		</div>
+	);
 }
