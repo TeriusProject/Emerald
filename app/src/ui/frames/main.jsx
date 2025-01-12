@@ -26,6 +26,7 @@ import { Navbar } from "../navbar/navbar";
 import { timeUnits } from "../../model/timeUnit";
 import { EmeraldNotification } from "../component/emeraldNotification";
 import { UploadView } from "./uploadView";
+import "./frames.css";
 
 const warningMessage = "WARN: The time unit you chose is bigger than the measure itself";
 

@@ -22,31 +22,29 @@
 
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import "./components.css";
 
 export const EmeraldDragAndDrop = ({ onUpload }) => {
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
 	const onDrop = useCallback((acceptedFiles) => {
 		console.log("Uploaded files:", acceptedFiles);
 	}, []);
 
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
 	return (
 		<div
 			{...getRootProps()}
+			className="drag-and-drop-div"
 			style={{
-				border: "2px dashed #cccccc",
-				borderRadius: "10px",
-				padding: "20px",
-				textAlign: "center",
-				cursor: "pointer",
-				backgroundColor: isDragActive ? "#f0f8ff" : "#fafafa",
+				backgroundColor: isDragActive ? "var(--emerald-color-transperent)" : "#fafafa",
 			}}
 		>
 			<input {...getInputProps()} />
 			{isDragActive ? (
-				<p>Drop the files here...</p>
+				<p>Drop here...</p>
 			) : (
-				<p>Drag & drop some files here, or click to select files</p>
+				<p>Let's start by dragging & dropping your ADF file here (or click to select one)</p>
 			)}
 		</div>
 	);

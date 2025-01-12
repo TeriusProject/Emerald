@@ -22,6 +22,7 @@
 
 import { React } from "react";
 import { EmeraldDragAndDrop } from "../component/emeraldDragAndDrop";
+import "./frames.css";
 
 export const UploadView = () => {
 	return (
