@@ -24,11 +24,11 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
 export const EmeraldDragAndDrop = ({ onUpload }) => {
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
 	const onDrop = useCallback((acceptedFiles) => {
 		console.log("Uploaded files:", acceptedFiles);
 	}, []);
-
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
 	return (
 		<div

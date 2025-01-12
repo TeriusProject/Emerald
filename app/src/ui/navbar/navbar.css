@@ -33,7 +33,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: rgb(80 200 120 / 10%);
+	background: var(--emerald-color-transperent);
 	box-shadow: 0 1px 10px -3px rgba(52, 52, 52, 0.27);
 	backdrop-filter: blur(15.5px);
 	-webkit-backdrop-filter: blur(15.5px);
@@ -59,7 +59,7 @@
 	position: fixed;
 	display: flex;
 	align-items: center;
-	background: rgb(80 200 120 / 10%);
+	background: var(--emerald-color-transperent);
 	box-shadow: 0 1px 10px -3px rgba(52, 52, 52, 0.27);
 	backdrop-filter: blur(15.5px);
 	-webkit-backdrop-filter: blur(15.5px);
